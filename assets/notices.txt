@@ -1,4 +1,4 @@
-VRCWebP 1.1.11
+VRCWebP 1.1.12
 
 Browser sessions: Only VRChat auth and twoFactorAuth session cookies from the selected browser profile are imported through an explicitly invoked WebExtension. The local bridge uses Windows native messaging and a pipe restricted to the current user. Saved sessions are encrypted using Windows DPAPI CurrentUser. Disconnect deletes the encrypted session; it does not log the browser out of VRChat.
 

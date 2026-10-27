@@ -18,7 +18,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>../../assets/application.ico</ApplicationIcon>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-    <Version>1.1.11</Version>
+    <Version>1.1.12</Version>
     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
   <ItemGroup>

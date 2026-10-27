@@ -198,7 +198,8 @@ async function findSession(expected) {
         // cookies, and an empty partition key includes Firefox's partitioned cookies.
         const details = { domain: new URL(origin).hostname, storeId, partitionKey: {} };
 
-        if (globalThis.browser) {
+        // Chrome also exposes browser.*; test the Firefox-only capability instead.
+        if (typeof api.runtime.getBrowserInfo === "function") {
             // null includes Firefox first-party-isolation cookies; filter to VRChat below.
             details.firstPartyDomain = null;
         }
