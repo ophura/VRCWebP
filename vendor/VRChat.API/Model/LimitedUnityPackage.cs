@@ -1,0 +1,150 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// LimitedUnityPackage
+/// </summary>
+[DataContract(Name = "LimitedUnityPackage")]
+public partial class LimitedUnityPackage : IEquatable<LimitedUnityPackage>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LimitedUnityPackage" /> class.
+    /// </summary>
+
+    protected LimitedUnityPackage() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LimitedUnityPackage" /> class.
+    /// </summary>
+    /// <param name="createdAt">createdAt (required).</param>
+    /// <param name="platform">This is normally &#x60;android&#x60;, &#x60;ios&#x60;, &#x60;standalonewindows&#x60;, &#x60;web&#x60;, or the empty value &#x60;&#x60;, but also supposedly can be any random Unity version such as &#x60;2019.2.4-801-Release&#x60; or &#x60;2019.2.2-772-Release&#x60; or even &#x60;unknownplatform&#x60;. (required).</param>
+    /// <param name="unityVersion">unityVersion (required).</param>
+    public LimitedUnityPackage(DateTime? createdAt = default, string platform = default, string unityVersion = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.CreatedAt = createdAt;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Platform = platform;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.UnityVersion = unityVersion;
+    }
+
+    /// <summary>
+    /// Gets or Sets CreatedAt
+    /// </summary>
+    [DataMember(Name = "created_at", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime? CreatedAt { get; set; }
+
+    /// <summary>
+    /// This is normally &#x60;android&#x60;, &#x60;ios&#x60;, &#x60;standalonewindows&#x60;, &#x60;web&#x60;, or the empty value &#x60;&#x60;, but also supposedly can be any random Unity version such as &#x60;2019.2.4-801-Release&#x60; or &#x60;2019.2.2-772-Release&#x60; or even &#x60;unknownplatform&#x60;.
+    /// </summary>
+    /// <value>This is normally &#x60;android&#x60;, &#x60;ios&#x60;, &#x60;standalonewindows&#x60;, &#x60;web&#x60;, or the empty value &#x60;&#x60;, but also supposedly can be any random Unity version such as &#x60;2019.2.4-801-Release&#x60; or &#x60;2019.2.2-772-Release&#x60; or even &#x60;unknownplatform&#x60;.</value>
+    [DataMember(Name = "platform", IsRequired = true, EmitDefaultValue = true)]
+    public string Platform { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UnityVersion
+    /// </summary>
+    [DataMember(Name = "unityVersion", IsRequired = true, EmitDefaultValue = true)]
+    public string UnityVersion { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class LimitedUnityPackage {\n");
+        sb.Append("  CreatedAt: ").Append(CreatedAt).Append('\n');
+        sb.Append("  Platform: ").Append(Platform).Append('\n');
+        sb.Append("  UnityVersion: ").Append(UnityVersion).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as LimitedUnityPackage);
+    }
+
+    /// <summary>
+    /// Returns true if LimitedUnityPackage instances are equal
+    /// </summary>
+    /// <param name="input">Instance of LimitedUnityPackage to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(LimitedUnityPackage input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.CreatedAt == input.CreatedAt ||
+                (this.CreatedAt != null &&
+                this.CreatedAt.Equals(input.CreatedAt))
+            ) &&
+            (
+                this.Platform == input.Platform ||
+                (this.Platform != null &&
+                this.Platform.Equals(input.Platform))
+            ) &&
+            (
+                this.UnityVersion == input.UnityVersion ||
+                (this.UnityVersion != null &&
+                this.UnityVersion.Equals(input.UnityVersion))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.CreatedAt != null)
+            {
+                hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+            }
+            if (this.Platform != null)
+            {
+                hashCode = (hashCode * 59) + this.Platform.GetHashCode();
+            }
+            if (this.UnityVersion != null)
+            {
+                hashCode = (hashCode * 59) + this.UnityVersion.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        // UnityVersion (string) minLength
+        if (this.UnityVersion != null && this.UnityVersion.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for UnityVersion, length must be greater than 1.", new [] { "UnityVersion" });
+        }
+
+        yield break;
+    }
+}

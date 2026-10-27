@@ -1,0 +1,165 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// Types of dynamic user content permitted in an instance
+/// </summary>
+[DataContract(Name = "InstanceContentSettings")]
+public partial class InstanceContentSettings : IEquatable<InstanceContentSettings>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InstanceContentSettings" /> class.
+    /// </summary>
+    /// <param name="drones">drones (default to true).</param>
+    /// <param name="emoji">emoji (default to true).</param>
+    /// <param name="pedestals">pedestals (default to true).</param>
+    /// <param name="prints">prints (default to true).</param>
+    /// <param name="props">props (default to true).</param>
+    /// <param name="stickers">stickers (default to true).</param>
+    public InstanceContentSettings(bool drones = true, bool emoji = true, bool pedestals = true, bool prints = true, bool props = true, bool stickers = true)
+    {
+        this.Drones = drones;
+        this.Emoji = emoji;
+        this.Pedestals = pedestals;
+        this.Prints = prints;
+        this.Props = props;
+        this.Stickers = stickers;
+    }
+
+    /// <summary>
+    /// Gets or Sets Drones
+    /// </summary>
+    [DataMember(Name = "drones", EmitDefaultValue = true)]
+    public bool Drones { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Emoji
+    /// </summary>
+    [DataMember(Name = "emoji", EmitDefaultValue = true)]
+    public bool Emoji { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Pedestals
+    /// </summary>
+    [DataMember(Name = "pedestals", EmitDefaultValue = true)]
+    public bool Pedestals { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Prints
+    /// </summary>
+    [DataMember(Name = "prints", EmitDefaultValue = true)]
+    public bool Prints { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Props
+    /// </summary>
+    [DataMember(Name = "props", EmitDefaultValue = true)]
+    public bool Props { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Stickers
+    /// </summary>
+    [DataMember(Name = "stickers", EmitDefaultValue = true)]
+    public bool Stickers { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class InstanceContentSettings {\n");
+        sb.Append("  Drones: ").Append(Drones).Append('\n');
+        sb.Append("  Emoji: ").Append(Emoji).Append('\n');
+        sb.Append("  Pedestals: ").Append(Pedestals).Append('\n');
+        sb.Append("  Prints: ").Append(Prints).Append('\n');
+        sb.Append("  Props: ").Append(Props).Append('\n');
+        sb.Append("  Stickers: ").Append(Stickers).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as InstanceContentSettings);
+    }
+
+    /// <summary>
+    /// Returns true if InstanceContentSettings instances are equal
+    /// </summary>
+    /// <param name="input">Instance of InstanceContentSettings to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(InstanceContentSettings input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Drones == input.Drones ||
+                this.Drones.Equals(input.Drones)
+            ) &&
+            (
+                this.Emoji == input.Emoji ||
+                this.Emoji.Equals(input.Emoji)
+            ) &&
+            (
+                this.Pedestals == input.Pedestals ||
+                this.Pedestals.Equals(input.Pedestals)
+            ) &&
+            (
+                this.Prints == input.Prints ||
+                this.Prints.Equals(input.Prints)
+            ) &&
+            (
+                this.Props == input.Props ||
+                this.Props.Equals(input.Props)
+            ) &&
+            (
+                this.Stickers == input.Stickers ||
+                this.Stickers.Equals(input.Stickers)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.Drones.GetHashCode();
+            hashCode = (hashCode * 59) + this.Emoji.GetHashCode();
+            hashCode = (hashCode * 59) + this.Pedestals.GetHashCode();
+            hashCode = (hashCode * 59) + this.Prints.GetHashCode();
+            hashCode = (hashCode * 59) + this.Props.GetHashCode();
+            hashCode = (hashCode * 59) + this.Stickers.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

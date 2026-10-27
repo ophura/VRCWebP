@@ -1,0 +1,135 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// Attribution shown alongside a listing.
+/// </summary>
+[DataContract(Name = "ProductListingAttribution")]
+public partial class ProductListingAttribution : IEquatable<ProductListingAttribution>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ProductListingAttribution" /> class.
+    /// </summary>
+    /// <param name="collaborationId">collaborationId.</param>
+    /// <param name="creator">creator.</param>
+    /// <param name="publisher">publisher.</param>
+    public ProductListingAttribution(string collaborationId = default, ProductListingAttributionCreator creator = default, ProductListingAttributionCreator publisher = default)
+    {
+        this.CollaborationId = collaborationId;
+        this.Creator = creator;
+        this.Publisher = publisher;
+    }
+
+    /// <summary>
+    /// Gets or Sets CollaborationId
+    /// </summary>
+    [DataMember(Name = "collaborationId", EmitDefaultValue = true)]
+    public string CollaborationId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Creator
+    /// </summary>
+    [DataMember(Name = "creator", EmitDefaultValue = false)]
+    public ProductListingAttributionCreator Creator { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Publisher
+    /// </summary>
+    [DataMember(Name = "publisher", EmitDefaultValue = true)]
+    public ProductListingAttributionCreator Publisher { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class ProductListingAttribution {\n");
+        sb.Append("  CollaborationId: ").Append(CollaborationId).Append('\n');
+        sb.Append("  Creator: ").Append(Creator).Append('\n');
+        sb.Append("  Publisher: ").Append(Publisher).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as ProductListingAttribution);
+    }
+
+    /// <summary>
+    /// Returns true if ProductListingAttribution instances are equal
+    /// </summary>
+    /// <param name="input">Instance of ProductListingAttribution to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(ProductListingAttribution input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.CollaborationId == input.CollaborationId ||
+                (this.CollaborationId != null &&
+                this.CollaborationId.Equals(input.CollaborationId))
+            ) &&
+            (
+                this.Creator == input.Creator ||
+                (this.Creator != null &&
+                this.Creator.Equals(input.Creator))
+            ) &&
+            (
+                this.Publisher == input.Publisher ||
+                (this.Publisher != null &&
+                this.Publisher.Equals(input.Publisher))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.CollaborationId != null)
+            {
+                hashCode = (hashCode * 59) + this.CollaborationId.GetHashCode();
+            }
+            if (this.Creator != null)
+            {
+                hashCode = (hashCode * 59) + this.Creator.GetHashCode();
+            }
+            if (this.Publisher != null)
+            {
+                hashCode = (hashCode * 59) + this.Publisher.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

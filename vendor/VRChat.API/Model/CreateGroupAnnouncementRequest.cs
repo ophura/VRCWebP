@@ -1,0 +1,171 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// CreateGroupAnnouncementRequest
+/// </summary>
+[DataContract(Name = "CreateGroupAnnouncementRequest")]
+public partial class CreateGroupAnnouncementRequest : IEquatable<CreateGroupAnnouncementRequest>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CreateGroupAnnouncementRequest" /> class.
+    /// </summary>
+
+    protected CreateGroupAnnouncementRequest() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CreateGroupAnnouncementRequest" /> class.
+    /// </summary>
+    /// <param name="imageId">imageId.</param>
+    /// <param name="sendNotification">Send notification to group members. (default to false).</param>
+    /// <param name="text">Announcement text (required).</param>
+    /// <param name="title">Announcement title (required).</param>
+    public CreateGroupAnnouncementRequest(string imageId = default, bool sendNotification = false, string text = default, string title = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Text = text;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Title = title;
+        this.ImageId = imageId;
+        this.SendNotification = sendNotification;
+    }
+
+    /// <summary>
+    /// Gets or Sets ImageId
+    /// </summary>
+    [DataMember(Name = "imageId", EmitDefaultValue = false)]
+    public string ImageId { get; set; }
+
+    /// <summary>
+    /// Send notification to group members.
+    /// </summary>
+    /// <value>Send notification to group members.</value>
+    [DataMember(Name = "sendNotification", EmitDefaultValue = true)]
+    public bool SendNotification { get; set; }
+
+    /// <summary>
+    /// Announcement text
+    /// </summary>
+    /// <value>Announcement text</value>
+    [DataMember(Name = "text", IsRequired = true, EmitDefaultValue = true)]
+    public string Text { get; set; }
+
+    /// <summary>
+    /// Announcement title
+    /// </summary>
+    /// <value>Announcement title</value>
+    [DataMember(Name = "title", IsRequired = true, EmitDefaultValue = true)]
+    public string Title { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class CreateGroupAnnouncementRequest {\n");
+        sb.Append("  ImageId: ").Append(ImageId).Append('\n');
+        sb.Append("  SendNotification: ").Append(SendNotification).Append('\n');
+        sb.Append("  Text: ").Append(Text).Append('\n');
+        sb.Append("  Title: ").Append(Title).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as CreateGroupAnnouncementRequest);
+    }
+
+    /// <summary>
+    /// Returns true if CreateGroupAnnouncementRequest instances are equal
+    /// </summary>
+    /// <param name="input">Instance of CreateGroupAnnouncementRequest to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(CreateGroupAnnouncementRequest input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.ImageId == input.ImageId ||
+                (this.ImageId != null &&
+                this.ImageId.Equals(input.ImageId))
+            ) &&
+            (
+                this.SendNotification == input.SendNotification ||
+                this.SendNotification.Equals(input.SendNotification)
+            ) &&
+            (
+                this.Text == input.Text ||
+                (this.Text != null &&
+                this.Text.Equals(input.Text))
+            ) &&
+            (
+                this.Title == input.Title ||
+                (this.Title != null &&
+                this.Title.Equals(input.Title))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.ImageId != null)
+            {
+                hashCode = (hashCode * 59) + this.ImageId.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.SendNotification.GetHashCode();
+            if (this.Text != null)
+            {
+                hashCode = (hashCode * 59) + this.Text.GetHashCode();
+            }
+            if (this.Title != null)
+            {
+                hashCode = (hashCode * 59) + this.Title.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        // Text (string) minLength
+        if (this.Text != null && this.Text.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for Text, length must be greater than 1.", new [] { "Text" });
+        }
+
+        // Title (string) minLength
+        if (this.Title != null && this.Title.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for Title, length must be greater than 1.", new [] { "Title" });
+        }
+
+        yield break;
+    }
+}

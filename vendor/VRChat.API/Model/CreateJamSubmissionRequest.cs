@@ -1,0 +1,126 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// Submit content for a Jam. Both content upload by submitter and jam submission itself must be made within the jam&#39;s designated times.
+/// </summary>
+[DataContract(Name = "CreateJamSubmissionRequest")]
+public partial class CreateJamSubmissionRequest : IEquatable<CreateJamSubmissionRequest>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CreateJamSubmissionRequest" /> class.
+    /// </summary>
+
+    protected CreateJamSubmissionRequest() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CreateJamSubmissionRequest" /> class.
+    /// </summary>
+    /// <param name="contentId">The id of the uploaded content (e.g., avatar, world) being submitted. (required).</param>
+    /// <param name="description">A description of the content being submitted. (required).</param>
+    public CreateJamSubmissionRequest(string contentId = default, string description = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ContentId = contentId;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Description = description;
+    }
+
+    /// <summary>
+    /// The id of the uploaded content (e.g., avatar, world) being submitted.
+    /// </summary>
+    /// <value>The id of the uploaded content (e.g., avatar, world) being submitted.</value>
+    [DataMember(Name = "contentId", IsRequired = true, EmitDefaultValue = true)]
+    public string ContentId { get; set; }
+
+    /// <summary>
+    /// A description of the content being submitted.
+    /// </summary>
+    /// <value>A description of the content being submitted.</value>
+    [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
+    public string Description { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class CreateJamSubmissionRequest {\n");
+        sb.Append("  ContentId: ").Append(ContentId).Append('\n');
+        sb.Append("  Description: ").Append(Description).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as CreateJamSubmissionRequest);
+    }
+
+    /// <summary>
+    /// Returns true if CreateJamSubmissionRequest instances are equal
+    /// </summary>
+    /// <param name="input">Instance of CreateJamSubmissionRequest to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(CreateJamSubmissionRequest input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.ContentId == input.ContentId ||
+                (this.ContentId != null &&
+                this.ContentId.Equals(input.ContentId))
+            ) &&
+            (
+                this.Description == input.Description ||
+                (this.Description != null &&
+                this.Description.Equals(input.Description))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.ContentId != null)
+            {
+                hashCode = (hashCode * 59) + this.ContentId.GetHashCode();
+            }
+            if (this.Description != null)
+            {
+                hashCode = (hashCode * 59) + this.Description.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

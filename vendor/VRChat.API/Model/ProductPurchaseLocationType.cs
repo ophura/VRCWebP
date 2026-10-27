@@ -1,0 +1,77 @@
+
+using System.Runtime.Serialization;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// Defines ProductPurchaseLocationType
+/// </summary>
+
+public enum ProductPurchaseLocationType
+{
+    /// <summary>
+    /// Enum ClientAvatarMarketplace for value: client_avatar_marketplace
+    /// </summary>
+    [EnumMember(Value = "client_avatar_marketplace")]
+    ClientAvatarMarketplace = 1,
+
+    /// <summary>
+    /// Enum ClientCreatorStore for value: client_creator_store
+    /// </summary>
+    [EnumMember(Value = "client_creator_store")]
+    ClientCreatorStore = 2,
+
+    /// <summary>
+    /// Enum ClientGroupStore for value: client_group_store
+    /// </summary>
+    [EnumMember(Value = "client_group_store")]
+    ClientGroupStore = 3,
+
+    /// <summary>
+    /// Enum ClientWorldComponent for value: client_world_component
+    /// </summary>
+    [EnumMember(Value = "client_world_component")]
+    ClientWorldComponent = 4,
+
+    /// <summary>
+    /// Enum ClientWorldStore for value: client_world_store
+    /// </summary>
+    [EnumMember(Value = "client_world_store")]
+    ClientWorldStore = 5,
+
+    /// <summary>
+    /// Enum Undefined for value: undefined
+    /// </summary>
+    [EnumMember(Value = "undefined")]
+    Undefined = 6,
+
+    /// <summary>
+    /// Enum WebAny for value: web_any
+    /// </summary>
+    [EnumMember(Value = "web_any")]
+    WebAny = 7,
+
+    /// <summary>
+    /// Enum WebAvatarMarketplace for value: web_avatar_marketplace
+    /// </summary>
+    [EnumMember(Value = "web_avatar_marketplace")]
+    WebAvatarMarketplace = 8,
+
+    /// <summary>
+    /// Enum WebCreatorStore for value: web_creator_store
+    /// </summary>
+    [EnumMember(Value = "web_creator_store")]
+    WebCreatorStore = 9,
+
+    /// <summary>
+    /// Enum WebGroupStore for value: web_group_store
+    /// </summary>
+    [EnumMember(Value = "web_group_store")]
+    WebGroupStore = 10,
+
+    /// <summary>
+    /// Enum WebWorldStore for value: web_world_store
+    /// </summary>
+    [EnumMember(Value = "web_world_store")]
+    WebWorldStore = 11
+}

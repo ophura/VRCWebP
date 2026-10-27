@@ -1,0 +1,99 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// Success
+/// </summary>
+[DataContract(Name = "Success")]
+public partial class Success : IEquatable<Success>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Success" /> class.
+    /// </summary>
+    /// <param name="varSuccess">varSuccess.</param>
+    public Success(Response varSuccess = default)
+    {
+        this.VarSuccess = varSuccess;
+    }
+
+    /// <summary>
+    /// Gets or Sets VarSuccess
+    /// </summary>
+    [DataMember(Name = "success", EmitDefaultValue = false)]
+    public Response VarSuccess { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class Success {\n");
+        sb.Append("  VarSuccess: ").Append(VarSuccess).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as Success);
+    }
+
+    /// <summary>
+    /// Returns true if Success instances are equal
+    /// </summary>
+    /// <param name="input">Instance of Success to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(Success input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.VarSuccess == input.VarSuccess ||
+                (this.VarSuccess != null &&
+                this.VarSuccess.Equals(input.VarSuccess))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.VarSuccess != null)
+            {
+                hashCode = (hashCode * 59) + this.VarSuccess.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

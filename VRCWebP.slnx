@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/VRCWebP/VRCWebP.csproj" />
+    <Project Path="src/VRChat.API.Aot/VRChat.API.Aot.csproj" />
+  </Folder>
+</Solution>

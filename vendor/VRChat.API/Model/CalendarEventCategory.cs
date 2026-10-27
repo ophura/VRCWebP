@@ -1,0 +1,90 @@
+
+using System.Runtime.Serialization;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// The activity intended to take place at an event
+/// </summary>
+/// <value>The activity intended to take place at an event</value>
+
+public enum CalendarEventCategory
+{
+    /// <summary>
+    /// Enum Arts for value: arts
+    /// </summary>
+    [EnumMember(Value = "arts")]
+    Arts = 1,
+
+    /// <summary>
+    /// Enum Avatars for value: avatars
+    /// </summary>
+    [EnumMember(Value = "avatars")]
+    Avatars = 2,
+
+    /// <summary>
+    /// Enum Dance for value: dance
+    /// </summary>
+    [EnumMember(Value = "dance")]
+    Dance = 3,
+
+    /// <summary>
+    /// Enum Education for value: education
+    /// </summary>
+    [EnumMember(Value = "education")]
+    Education = 4,
+
+    /// <summary>
+    /// Enum Exploration for value: exploration
+    /// </summary>
+    [EnumMember(Value = "exploration")]
+    Exploration = 5,
+
+    /// <summary>
+    /// Enum FilmMedia for value: film_media
+    /// </summary>
+    [EnumMember(Value = "film_media")]
+    FilmMedia = 6,
+
+    /// <summary>
+    /// Enum Gaming for value: gaming
+    /// </summary>
+    [EnumMember(Value = "gaming")]
+    Gaming = 7,
+
+    /// <summary>
+    /// Enum Hangout for value: hangout
+    /// </summary>
+    [EnumMember(Value = "hangout")]
+    Hangout = 8,
+
+    /// <summary>
+    /// Enum Music for value: music
+    /// </summary>
+    [EnumMember(Value = "music")]
+    Music = 9,
+
+    /// <summary>
+    /// Enum Other for value: other
+    /// </summary>
+    [EnumMember(Value = "other")]
+    Other = 10,
+
+    /// <summary>
+    /// Enum Performance for value: performance
+    /// </summary>
+    [EnumMember(Value = "performance")]
+    Performance = 11,
+
+    /// <summary>
+    /// Enum Roleplaying for value: roleplaying
+    /// </summary>
+    [EnumMember(Value = "roleplaying")]
+    Roleplaying = 12,
+
+    /// <summary>
+    /// Enum Wellness for value: wellness
+    /// </summary>
+    [EnumMember(Value = "wellness")]
+    Wellness = 13
+}

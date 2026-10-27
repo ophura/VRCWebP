@@ -1,0 +1,150 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// APIHealth
+/// </summary>
+[DataContract(Name = "APIHealth")]
+public partial class APIHealth : IEquatable<APIHealth>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="APIHealth" /> class.
+    /// </summary>
+
+    protected APIHealth() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="APIHealth" /> class.
+    /// </summary>
+    /// <param name="buildVersionTag">buildVersionTag (required).</param>
+    /// <param name="ok">ok (required).</param>
+    /// <param name="serverName">serverName (required).</param>
+    public APIHealth(string buildVersionTag = default, bool ok = default, string serverName = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.BuildVersionTag = buildVersionTag;
+        this.Ok = ok;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ServerName = serverName;
+    }
+
+    /// <summary>
+    /// Gets or Sets BuildVersionTag
+    /// </summary>
+    [DataMember(Name = "buildVersionTag", IsRequired = true, EmitDefaultValue = true)]
+    public string BuildVersionTag { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Ok
+    /// </summary>
+    [DataMember(Name = "ok", IsRequired = true, EmitDefaultValue = true)]
+    public bool Ok { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ServerName
+    /// </summary>
+    [DataMember(Name = "serverName", IsRequired = true, EmitDefaultValue = true)]
+    public string ServerName { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class APIHealth {\n");
+        sb.Append("  BuildVersionTag: ").Append(BuildVersionTag).Append('\n');
+        sb.Append("  Ok: ").Append(Ok).Append('\n');
+        sb.Append("  ServerName: ").Append(ServerName).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as APIHealth);
+    }
+
+    /// <summary>
+    /// Returns true if APIHealth instances are equal
+    /// </summary>
+    /// <param name="input">Instance of APIHealth to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(APIHealth input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.BuildVersionTag == input.BuildVersionTag ||
+                (this.BuildVersionTag != null &&
+                this.BuildVersionTag.Equals(input.BuildVersionTag))
+            ) &&
+            (
+                this.Ok == input.Ok ||
+                this.Ok.Equals(input.Ok)
+            ) &&
+            (
+                this.ServerName == input.ServerName ||
+                (this.ServerName != null &&
+                this.ServerName.Equals(input.ServerName))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.BuildVersionTag != null)
+            {
+                hashCode = (hashCode * 59) + this.BuildVersionTag.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.Ok.GetHashCode();
+            if (this.ServerName != null)
+            {
+                hashCode = (hashCode * 59) + this.ServerName.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        // BuildVersionTag (string) minLength
+        if (this.BuildVersionTag != null && this.BuildVersionTag.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for BuildVersionTag, length must be greater than 1.", new [] { "BuildVersionTag" });
+        }
+
+        // ServerName (string) minLength
+        if (this.ServerName != null && this.ServerName.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for ServerName, length must be greater than 1.", new [] { "ServerName" });
+        }
+
+        yield break;
+    }
+}

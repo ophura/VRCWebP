@@ -1,0 +1,229 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// CreateGroupGalleryRequest
+/// </summary>
+[DataContract(Name = "CreateGroupGalleryRequest")]
+public partial class CreateGroupGalleryRequest : IEquatable<CreateGroupGalleryRequest>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CreateGroupGalleryRequest" /> class.
+    /// </summary>
+
+    protected CreateGroupGalleryRequest() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CreateGroupGalleryRequest" /> class.
+    /// </summary>
+    /// <param name="description">Description of the gallery..</param>
+    /// <param name="membersOnly">Whether the gallery is members only. (default to false).</param>
+    /// <param name="name">Name of the gallery. (required).</param>
+    /// <param name="roleIdsToAutoApprove">roleIdsToAutoApprove.</param>
+    /// <param name="roleIdsToManage">roleIdsToManage.</param>
+    /// <param name="roleIdsToSubmit">roleIdsToSubmit.</param>
+    /// <param name="roleIdsToView">roleIdsToView.</param>
+    public CreateGroupGalleryRequest(string description = default, bool membersOnly = false, string name = default, List<string> roleIdsToAutoApprove = default, List<string> roleIdsToManage = default, List<string> roleIdsToSubmit = default, List<string> roleIdsToView = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Name = name;
+        this.Description = description;
+        this.MembersOnly = membersOnly;
+        this.RoleIdsToAutoApprove = roleIdsToAutoApprove;
+        this.RoleIdsToManage = roleIdsToManage;
+        this.RoleIdsToSubmit = roleIdsToSubmit;
+        this.RoleIdsToView = roleIdsToView;
+    }
+
+    /// <summary>
+    /// Description of the gallery.
+    /// </summary>
+    /// <value>Description of the gallery.</value>
+    [DataMember(Name = "description", EmitDefaultValue = false)]
+    public string Description { get; set; }
+
+    /// <summary>
+    /// Whether the gallery is members only.
+    /// </summary>
+    /// <value>Whether the gallery is members only.</value>
+    [DataMember(Name = "membersOnly", EmitDefaultValue = true)]
+    public bool MembersOnly { get; set; }
+
+    /// <summary>
+    /// Name of the gallery.
+    /// </summary>
+    /// <value>Name of the gallery.</value>
+    [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
+    public string Name { get; set; }
+
+    /// <summary>
+    /// Gets or Sets RoleIdsToAutoApprove
+    /// </summary>
+    [DataMember(Name = "roleIdsToAutoApprove", EmitDefaultValue = true)]
+    public List<string> RoleIdsToAutoApprove { get; set; }
+
+    /// <summary>
+    /// Gets or Sets RoleIdsToManage
+    /// </summary>
+    [DataMember(Name = "roleIdsToManage", EmitDefaultValue = true)]
+    public List<string> RoleIdsToManage { get; set; }
+
+    /// <summary>
+    /// Gets or Sets RoleIdsToSubmit
+    /// </summary>
+    [DataMember(Name = "roleIdsToSubmit", EmitDefaultValue = true)]
+    public List<string> RoleIdsToSubmit { get; set; }
+
+    /// <summary>
+    /// Gets or Sets RoleIdsToView
+    /// </summary>
+    [DataMember(Name = "roleIdsToView", EmitDefaultValue = true)]
+    public List<string> RoleIdsToView { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class CreateGroupGalleryRequest {\n");
+        sb.Append("  Description: ").Append(Description).Append('\n');
+        sb.Append("  MembersOnly: ").Append(MembersOnly).Append('\n');
+        sb.Append("  Name: ").Append(Name).Append('\n');
+        sb.Append("  RoleIdsToAutoApprove: ").Append(RoleIdsToAutoApprove).Append('\n');
+        sb.Append("  RoleIdsToManage: ").Append(RoleIdsToManage).Append('\n');
+        sb.Append("  RoleIdsToSubmit: ").Append(RoleIdsToSubmit).Append('\n');
+        sb.Append("  RoleIdsToView: ").Append(RoleIdsToView).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as CreateGroupGalleryRequest);
+    }
+
+    /// <summary>
+    /// Returns true if CreateGroupGalleryRequest instances are equal
+    /// </summary>
+    /// <param name="input">Instance of CreateGroupGalleryRequest to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(CreateGroupGalleryRequest input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Description == input.Description ||
+                (this.Description != null &&
+                this.Description.Equals(input.Description))
+            ) &&
+            (
+                this.MembersOnly == input.MembersOnly ||
+                this.MembersOnly.Equals(input.MembersOnly)
+            ) &&
+            (
+                this.Name == input.Name ||
+                (this.Name != null &&
+                this.Name.Equals(input.Name))
+            ) &&
+            (
+                this.RoleIdsToAutoApprove == input.RoleIdsToAutoApprove ||
+                this.RoleIdsToAutoApprove != null &&
+                input.RoleIdsToAutoApprove != null &&
+                this.RoleIdsToAutoApprove.SequenceEqual(input.RoleIdsToAutoApprove)
+            ) &&
+            (
+                this.RoleIdsToManage == input.RoleIdsToManage ||
+                this.RoleIdsToManage != null &&
+                input.RoleIdsToManage != null &&
+                this.RoleIdsToManage.SequenceEqual(input.RoleIdsToManage)
+            ) &&
+            (
+                this.RoleIdsToSubmit == input.RoleIdsToSubmit ||
+                this.RoleIdsToSubmit != null &&
+                input.RoleIdsToSubmit != null &&
+                this.RoleIdsToSubmit.SequenceEqual(input.RoleIdsToSubmit)
+            ) &&
+            (
+                this.RoleIdsToView == input.RoleIdsToView ||
+                this.RoleIdsToView != null &&
+                input.RoleIdsToView != null &&
+                this.RoleIdsToView.SequenceEqual(input.RoleIdsToView)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.Description != null)
+            {
+                hashCode = (hashCode * 59) + this.Description.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.MembersOnly.GetHashCode();
+            if (this.Name != null)
+            {
+                hashCode = (hashCode * 59) + this.Name.GetHashCode();
+            }
+            if (this.RoleIdsToAutoApprove != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.RoleIdsToAutoApprove);
+            }
+            if (this.RoleIdsToManage != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.RoleIdsToManage);
+            }
+            if (this.RoleIdsToSubmit != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.RoleIdsToSubmit);
+            }
+            if (this.RoleIdsToView != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.RoleIdsToView);
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        // Description (string) minLength
+        if (this.Description != null && this.Description.Length < 0)
+        {
+            yield return new ValidationResult("Invalid value for Description, length must be greater than 0.", new [] { "Description" });
+        }
+
+        // Name (string) minLength
+        if (this.Name != null && this.Name.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+        }
+
+        yield break;
+    }
+}

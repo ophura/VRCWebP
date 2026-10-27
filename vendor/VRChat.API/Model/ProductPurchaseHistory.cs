@@ -1,0 +1,135 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// ProductPurchaseHistory
+/// </summary>
+[DataContract(Name = "ProductPurchaseHistory")]
+public partial class ProductPurchaseHistory : IEquatable<ProductPurchaseHistory>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ProductPurchaseHistory" /> class.
+    /// </summary>
+
+    protected ProductPurchaseHistory() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ProductPurchaseHistory" /> class.
+    /// </summary>
+    /// <param name="endDate">endDate (required).</param>
+    /// <param name="startDate">startDate (required).</param>
+    /// <param name="transactions">transactions (required).</param>
+    public ProductPurchaseHistory(DateTime endDate = default, DateTime startDate = default, List<ProductPurchaseRecord> transactions = default)
+    {
+        this.EndDate = endDate;
+        this.StartDate = startDate;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Transactions = transactions;
+    }
+
+    /// <summary>
+    /// Gets or Sets EndDate
+    /// </summary>
+    [DataMember(Name = "endDate", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime EndDate { get; set; }
+
+    /// <summary>
+    /// Gets or Sets StartDate
+    /// </summary>
+    [DataMember(Name = "startDate", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime StartDate { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Transactions
+    /// </summary>
+    [DataMember(Name = "transactions", IsRequired = true, EmitDefaultValue = true)]
+    public List<ProductPurchaseRecord> Transactions { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class ProductPurchaseHistory {\n");
+        sb.Append("  EndDate: ").Append(EndDate).Append('\n');
+        sb.Append("  StartDate: ").Append(StartDate).Append('\n');
+        sb.Append("  Transactions: ").Append(Transactions).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as ProductPurchaseHistory);
+    }
+
+    /// <summary>
+    /// Returns true if ProductPurchaseHistory instances are equal
+    /// </summary>
+    /// <param name="input">Instance of ProductPurchaseHistory to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(ProductPurchaseHistory input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.EndDate == input.EndDate ||
+                this.EndDate.Equals(input.EndDate)
+            ) &&
+            (
+                this.StartDate == input.StartDate ||
+                this.StartDate.Equals(input.StartDate)
+            ) &&
+            (
+                this.Transactions == input.Transactions ||
+                this.Transactions != null &&
+                input.Transactions != null &&
+                this.Transactions.SequenceEqual(input.Transactions)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.EndDate.GetHashCode();
+            hashCode = (hashCode * 59) + this.StartDate.GetHashCode();
+            if (this.Transactions != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Transactions);
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

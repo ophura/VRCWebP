@@ -1,0 +1,141 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// UpdateGroupMemberRequest
+/// </summary>
+[DataContract(Name = "UpdateGroupMemberRequest")]
+public partial class UpdateGroupMemberRequest : IEquatable<UpdateGroupMemberRequest>, IValidatableObject
+{
+
+    /// <summary>
+    /// Gets or Sets Visibility
+    /// </summary>
+    [DataMember(Name = "visibility", EmitDefaultValue = false)]
+    public GroupUserVisibility? Visibility { get; set; }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UpdateGroupMemberRequest" /> class.
+    /// </summary>
+    /// <param name="isSubscribedToAnnouncements">isSubscribedToAnnouncements.</param>
+    /// <param name="isSubscribedToEventAnnouncements">isSubscribedToEventAnnouncements.</param>
+    /// <param name="managerNotes">managerNotes.</param>
+    /// <param name="visibility">visibility.</param>
+    public UpdateGroupMemberRequest(bool isSubscribedToAnnouncements = default, bool isSubscribedToEventAnnouncements = default, string managerNotes = default, GroupUserVisibility? visibility = default)
+    {
+        this.IsSubscribedToAnnouncements = isSubscribedToAnnouncements;
+        this.IsSubscribedToEventAnnouncements = isSubscribedToEventAnnouncements;
+        this.ManagerNotes = managerNotes;
+        this.Visibility = visibility;
+    }
+
+    /// <summary>
+    /// Gets or Sets IsSubscribedToAnnouncements
+    /// </summary>
+    [DataMember(Name = "isSubscribedToAnnouncements", EmitDefaultValue = true)]
+    public bool IsSubscribedToAnnouncements { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IsSubscribedToEventAnnouncements
+    /// </summary>
+    [DataMember(Name = "isSubscribedToEventAnnouncements", EmitDefaultValue = true)]
+    public bool IsSubscribedToEventAnnouncements { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ManagerNotes
+    /// </summary>
+    [DataMember(Name = "managerNotes", EmitDefaultValue = false)]
+    public string ManagerNotes { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class UpdateGroupMemberRequest {\n");
+        sb.Append("  IsSubscribedToAnnouncements: ").Append(IsSubscribedToAnnouncements).Append('\n');
+        sb.Append("  IsSubscribedToEventAnnouncements: ").Append(IsSubscribedToEventAnnouncements).Append('\n');
+        sb.Append("  ManagerNotes: ").Append(ManagerNotes).Append('\n');
+        sb.Append("  Visibility: ").Append(Visibility).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as UpdateGroupMemberRequest);
+    }
+
+    /// <summary>
+    /// Returns true if UpdateGroupMemberRequest instances are equal
+    /// </summary>
+    /// <param name="input">Instance of UpdateGroupMemberRequest to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(UpdateGroupMemberRequest input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.IsSubscribedToAnnouncements == input.IsSubscribedToAnnouncements ||
+                this.IsSubscribedToAnnouncements.Equals(input.IsSubscribedToAnnouncements)
+            ) &&
+            (
+                this.IsSubscribedToEventAnnouncements == input.IsSubscribedToEventAnnouncements ||
+                this.IsSubscribedToEventAnnouncements.Equals(input.IsSubscribedToEventAnnouncements)
+            ) &&
+            (
+                this.ManagerNotes == input.ManagerNotes ||
+                (this.ManagerNotes != null &&
+                this.ManagerNotes.Equals(input.ManagerNotes))
+            ) &&
+            (
+                this.Visibility == input.Visibility ||
+                this.Visibility.Equals(input.Visibility)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.IsSubscribedToAnnouncements.GetHashCode();
+            hashCode = (hashCode * 59) + this.IsSubscribedToEventAnnouncements.GetHashCode();
+            if (this.ManagerNotes != null)
+            {
+                hashCode = (hashCode * 59) + this.ManagerNotes.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.Visibility.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

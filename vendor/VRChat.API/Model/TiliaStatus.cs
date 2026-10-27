@@ -1,0 +1,142 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// TiliaStatus
+/// </summary>
+[DataContract(Name = "TiliaStatus")]
+public partial class TiliaStatus : IEquatable<TiliaStatus>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TiliaStatus" /> class.
+    /// </summary>
+
+    protected TiliaStatus() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TiliaStatus" /> class.
+    /// </summary>
+    /// <param name="economyOnline">economyOnline (required).</param>
+    /// <param name="economyState">economyState.</param>
+    /// <param name="plannedOfflineWindowEnd">plannedOfflineWindowEnd.</param>
+    /// <param name="plannedOfflineWindowStart">plannedOfflineWindowStart.</param>
+    public TiliaStatus(bool economyOnline = default, int economyState = default, DateTime plannedOfflineWindowEnd = default, DateTime plannedOfflineWindowStart = default)
+    {
+        this.EconomyOnline = economyOnline;
+        this.EconomyState = economyState;
+        this.PlannedOfflineWindowEnd = plannedOfflineWindowEnd;
+        this.PlannedOfflineWindowStart = plannedOfflineWindowStart;
+    }
+
+    /// <summary>
+    /// Gets or Sets EconomyOnline
+    /// </summary>
+    [DataMember(Name = "economyOnline", IsRequired = true, EmitDefaultValue = true)]
+    public bool EconomyOnline { get; set; }
+
+    /// <summary>
+    /// Gets or Sets EconomyState
+    /// </summary>
+    [DataMember(Name = "economyState", EmitDefaultValue = false)]
+    public int EconomyState { get; set; }
+
+    /// <summary>
+    /// Gets or Sets PlannedOfflineWindowEnd
+    /// </summary>
+    [DataMember(Name = "plannedOfflineWindowEnd", EmitDefaultValue = false)]
+    public DateTime PlannedOfflineWindowEnd { get; set; }
+
+    /// <summary>
+    /// Gets or Sets PlannedOfflineWindowStart
+    /// </summary>
+    [DataMember(Name = "plannedOfflineWindowStart", EmitDefaultValue = false)]
+    public DateTime PlannedOfflineWindowStart { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class TiliaStatus {\n");
+        sb.Append("  EconomyOnline: ").Append(EconomyOnline).Append('\n');
+        sb.Append("  EconomyState: ").Append(EconomyState).Append('\n');
+        sb.Append("  PlannedOfflineWindowEnd: ").Append(PlannedOfflineWindowEnd).Append('\n');
+        sb.Append("  PlannedOfflineWindowStart: ").Append(PlannedOfflineWindowStart).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as TiliaStatus);
+    }
+
+    /// <summary>
+    /// Returns true if TiliaStatus instances are equal
+    /// </summary>
+    /// <param name="input">Instance of TiliaStatus to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(TiliaStatus input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.EconomyOnline == input.EconomyOnline ||
+                this.EconomyOnline.Equals(input.EconomyOnline)
+            ) &&
+            (
+                this.EconomyState == input.EconomyState ||
+                this.EconomyState.Equals(input.EconomyState)
+            ) &&
+            (
+                this.PlannedOfflineWindowEnd == input.PlannedOfflineWindowEnd ||
+                this.PlannedOfflineWindowEnd.Equals(input.PlannedOfflineWindowEnd)
+            ) &&
+            (
+                this.PlannedOfflineWindowStart == input.PlannedOfflineWindowStart ||
+                this.PlannedOfflineWindowStart.Equals(input.PlannedOfflineWindowStart)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.EconomyOnline.GetHashCode();
+            hashCode = (hashCode * 59) + this.EconomyState.GetHashCode();
+            hashCode = (hashCode * 59) + this.PlannedOfflineWindowEnd.GetHashCode();
+            hashCode = (hashCode * 59) + this.PlannedOfflineWindowStart.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

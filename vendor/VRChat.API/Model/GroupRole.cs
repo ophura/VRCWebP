@@ -1,0 +1,317 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// GroupRole
+/// </summary>
+[DataContract(Name = "GroupRole")]
+public partial class GroupRole : IEquatable<GroupRole>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GroupRole" /> class.
+    /// </summary>
+    /// <param name="createdAt">createdAt.</param>
+    /// <param name="defaultRole">defaultRole (default to false).</param>
+    /// <param name="description">description.</param>
+    /// <param name="groupId">groupId.</param>
+    /// <param name="id">id.</param>
+    /// <param name="isAddedOnJoin">isAddedOnJoin (default to false).</param>
+    /// <param name="isManagementRole">isManagementRole (default to false).</param>
+    /// <param name="isSelfAssignable">isSelfAssignable (default to false).</param>
+    /// <param name="name">name.</param>
+    /// <param name="order">order.</param>
+    /// <param name="permissions">permissions.</param>
+    /// <param name="productId">productId.</param>
+    /// <param name="requiresPurchase">requiresPurchase (default to false).</param>
+    /// <param name="requiresTwoFactor">requiresTwoFactor (default to false).</param>
+    /// <param name="updatedAt">updatedAt.</param>
+    public GroupRole(DateTime createdAt = default, bool defaultRole = false, string description = default, string groupId = default, string id = default, bool isAddedOnJoin = false, bool isManagementRole = false, bool isSelfAssignable = false, string name = default, int order = default, List<GroupPermissions> permissions = default, string productId = default, bool requiresPurchase = false, bool requiresTwoFactor = false, DateTime updatedAt = default)
+    {
+        this.CreatedAt = createdAt;
+        this.DefaultRole = defaultRole;
+        this.Description = description;
+        this.GroupId = groupId;
+        this.Id = id;
+        this.IsAddedOnJoin = isAddedOnJoin;
+        this.IsManagementRole = isManagementRole;
+        this.IsSelfAssignable = isSelfAssignable;
+        this.Name = name;
+        this.Order = order;
+        this.Permissions = permissions;
+        this.ProductId = productId;
+        this.RequiresPurchase = requiresPurchase;
+        this.RequiresTwoFactor = requiresTwoFactor;
+        this.UpdatedAt = updatedAt;
+    }
+
+    /// <summary>
+    /// Gets or Sets CreatedAt
+    /// </summary>
+    [DataMember(Name = "createdAt", EmitDefaultValue = false)]
+    public DateTime CreatedAt { get; set; }
+
+    /// <summary>
+    /// Gets or Sets DefaultRole
+    /// </summary>
+    [DataMember(Name = "defaultRole", EmitDefaultValue = true)]
+    public bool DefaultRole { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Description
+    /// </summary>
+    [DataMember(Name = "description", EmitDefaultValue = false)]
+    public string Description { get; set; }
+
+    /// <summary>
+    /// Gets or Sets GroupId
+    /// </summary>
+    [DataMember(Name = "groupId", EmitDefaultValue = false)]
+    public string GroupId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Id
+    /// </summary>
+    [DataMember(Name = "id", EmitDefaultValue = false)]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IsAddedOnJoin
+    /// </summary>
+    [DataMember(Name = "isAddedOnJoin", EmitDefaultValue = true)]
+    public bool IsAddedOnJoin { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IsManagementRole
+    /// </summary>
+    [DataMember(Name = "isManagementRole", EmitDefaultValue = true)]
+    public bool IsManagementRole { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IsSelfAssignable
+    /// </summary>
+    [DataMember(Name = "isSelfAssignable", EmitDefaultValue = true)]
+    public bool IsSelfAssignable { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Name
+    /// </summary>
+    [DataMember(Name = "name", EmitDefaultValue = false)]
+    public string Name { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Order
+    /// </summary>
+    [DataMember(Name = "order", EmitDefaultValue = false)]
+    public int Order { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Permissions
+    /// </summary>
+    [DataMember(Name = "permissions", EmitDefaultValue = false)]
+    public List<GroupPermissions> Permissions { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ProductId
+    /// </summary>
+    [DataMember(Name = "productId", EmitDefaultValue = false)]
+    public string ProductId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets RequiresPurchase
+    /// </summary>
+    [DataMember(Name = "requiresPurchase", EmitDefaultValue = true)]
+    public bool RequiresPurchase { get; set; }
+
+    /// <summary>
+    /// Gets or Sets RequiresTwoFactor
+    /// </summary>
+    [DataMember(Name = "requiresTwoFactor", EmitDefaultValue = true)]
+    public bool RequiresTwoFactor { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UpdatedAt
+    /// </summary>
+    [DataMember(Name = "updatedAt", EmitDefaultValue = false)]
+    public DateTime UpdatedAt { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class GroupRole {\n");
+        sb.Append("  CreatedAt: ").Append(CreatedAt).Append('\n');
+        sb.Append("  DefaultRole: ").Append(DefaultRole).Append('\n');
+        sb.Append("  Description: ").Append(Description).Append('\n');
+        sb.Append("  GroupId: ").Append(GroupId).Append('\n');
+        sb.Append("  Id: ").Append(Id).Append('\n');
+        sb.Append("  IsAddedOnJoin: ").Append(IsAddedOnJoin).Append('\n');
+        sb.Append("  IsManagementRole: ").Append(IsManagementRole).Append('\n');
+        sb.Append("  IsSelfAssignable: ").Append(IsSelfAssignable).Append('\n');
+        sb.Append("  Name: ").Append(Name).Append('\n');
+        sb.Append("  Order: ").Append(Order).Append('\n');
+        sb.Append("  Permissions: ").Append(Permissions).Append('\n');
+        sb.Append("  ProductId: ").Append(ProductId).Append('\n');
+        sb.Append("  RequiresPurchase: ").Append(RequiresPurchase).Append('\n');
+        sb.Append("  RequiresTwoFactor: ").Append(RequiresTwoFactor).Append('\n');
+        sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as GroupRole);
+    }
+
+    /// <summary>
+    /// Returns true if GroupRole instances are equal
+    /// </summary>
+    /// <param name="input">Instance of GroupRole to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(GroupRole input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.CreatedAt == input.CreatedAt ||
+                this.CreatedAt.Equals(input.CreatedAt)
+            ) &&
+            (
+                this.DefaultRole == input.DefaultRole ||
+                this.DefaultRole.Equals(input.DefaultRole)
+            ) &&
+            (
+                this.Description == input.Description ||
+                (this.Description != null &&
+                this.Description.Equals(input.Description))
+            ) &&
+            (
+                this.GroupId == input.GroupId ||
+                (this.GroupId != null &&
+                this.GroupId.Equals(input.GroupId))
+            ) &&
+            (
+                this.Id == input.Id ||
+                (this.Id != null &&
+                this.Id.Equals(input.Id))
+            ) &&
+            (
+                this.IsAddedOnJoin == input.IsAddedOnJoin ||
+                this.IsAddedOnJoin.Equals(input.IsAddedOnJoin)
+            ) &&
+            (
+                this.IsManagementRole == input.IsManagementRole ||
+                this.IsManagementRole.Equals(input.IsManagementRole)
+            ) &&
+            (
+                this.IsSelfAssignable == input.IsSelfAssignable ||
+                this.IsSelfAssignable.Equals(input.IsSelfAssignable)
+            ) &&
+            (
+                this.Name == input.Name ||
+                (this.Name != null &&
+                this.Name.Equals(input.Name))
+            ) &&
+            (
+                this.Order == input.Order ||
+                this.Order.Equals(input.Order)
+            ) &&
+            (
+                this.Permissions == input.Permissions ||
+                this.Permissions != null &&
+                input.Permissions != null &&
+                this.Permissions.SequenceEqual(input.Permissions)
+            ) &&
+            (
+                this.ProductId == input.ProductId ||
+                (this.ProductId != null &&
+                this.ProductId.Equals(input.ProductId))
+            ) &&
+            (
+                this.RequiresPurchase == input.RequiresPurchase ||
+                this.RequiresPurchase.Equals(input.RequiresPurchase)
+            ) &&
+            (
+                this.RequiresTwoFactor == input.RequiresTwoFactor ||
+                this.RequiresTwoFactor.Equals(input.RequiresTwoFactor)
+            ) &&
+            (
+                this.UpdatedAt == input.UpdatedAt ||
+                this.UpdatedAt.Equals(input.UpdatedAt)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+            hashCode = (hashCode * 59) + this.DefaultRole.GetHashCode();
+            if (this.Description != null)
+            {
+                hashCode = (hashCode * 59) + this.Description.GetHashCode();
+            }
+            if (this.GroupId != null)
+            {
+                hashCode = (hashCode * 59) + this.GroupId.GetHashCode();
+            }
+            if (this.Id != null)
+            {
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.IsAddedOnJoin.GetHashCode();
+            hashCode = (hashCode * 59) + this.IsManagementRole.GetHashCode();
+            hashCode = (hashCode * 59) + this.IsSelfAssignable.GetHashCode();
+            if (this.Name != null)
+            {
+                hashCode = (hashCode * 59) + this.Name.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.Order.GetHashCode();
+            if (this.Permissions != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Permissions);
+            }
+            if (this.ProductId != null)
+            {
+                hashCode = (hashCode * 59) + this.ProductId.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.RequiresPurchase.GetHashCode();
+            hashCode = (hashCode * 59) + this.RequiresTwoFactor.GetHashCode();
+            hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

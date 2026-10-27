@@ -1,0 +1,141 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// InfoPushDataPresentation
+/// </summary>
+[DataContract(Name = "InfoPushDataPresentation")]
+public partial class InfoPushDataPresentation : IEquatable<InfoPushDataPresentation>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InfoPushDataPresentation" /> class.
+    /// </summary>
+
+    protected InfoPushDataPresentation() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InfoPushDataPresentation" /> class.
+    /// </summary>
+    /// <param name="layout">layout (required).</param>
+    /// <param name="pinnedDescription">pinnedDescription.</param>
+    /// <param name="socialDisplay">socialDisplay.</param>
+    public InfoPushDataPresentation(string layout = default, string pinnedDescription = default, string socialDisplay = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Layout = layout;
+        this.PinnedDescription = pinnedDescription;
+        this.SocialDisplay = socialDisplay;
+    }
+
+    /// <summary>
+    /// Gets or Sets Layout
+    /// </summary>
+    [DataMember(Name = "layout", IsRequired = true, EmitDefaultValue = true)]
+    public string Layout { get; set; }
+
+    /// <summary>
+    /// Gets or Sets PinnedDescription
+    /// </summary>
+    [DataMember(Name = "pinnedDescription", EmitDefaultValue = false)]
+    public string PinnedDescription { get; set; }
+
+    /// <summary>
+    /// Gets or Sets SocialDisplay
+    /// </summary>
+    [DataMember(Name = "socialDisplay", EmitDefaultValue = false)]
+    public string SocialDisplay { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class InfoPushDataPresentation {\n");
+        sb.Append("  Layout: ").Append(Layout).Append('\n');
+        sb.Append("  PinnedDescription: ").Append(PinnedDescription).Append('\n');
+        sb.Append("  SocialDisplay: ").Append(SocialDisplay).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as InfoPushDataPresentation);
+    }
+
+    /// <summary>
+    /// Returns true if InfoPushDataPresentation instances are equal
+    /// </summary>
+    /// <param name="input">Instance of InfoPushDataPresentation to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(InfoPushDataPresentation input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Layout == input.Layout ||
+                (this.Layout != null &&
+                this.Layout.Equals(input.Layout))
+            ) &&
+            (
+                this.PinnedDescription == input.PinnedDescription ||
+                (this.PinnedDescription != null &&
+                this.PinnedDescription.Equals(input.PinnedDescription))
+            ) &&
+            (
+                this.SocialDisplay == input.SocialDisplay ||
+                (this.SocialDisplay != null &&
+                this.SocialDisplay.Equals(input.SocialDisplay))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.Layout != null)
+            {
+                hashCode = (hashCode * 59) + this.Layout.GetHashCode();
+            }
+            if (this.PinnedDescription != null)
+            {
+                hashCode = (hashCode * 59) + this.PinnedDescription.GetHashCode();
+            }
+            if (this.SocialDisplay != null)
+            {
+                hashCode = (hashCode * 59) + this.SocialDisplay.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

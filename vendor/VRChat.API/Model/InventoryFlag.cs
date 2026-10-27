@@ -1,0 +1,77 @@
+
+using System.Runtime.Serialization;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// Defines InventoryFlag
+/// </summary>
+
+public enum InventoryFlag
+{
+    /// <summary>
+    /// Enum Archivable for value: archivable
+    /// </summary>
+    [EnumMember(Value = "archivable")]
+    Archivable = 1,
+
+    /// <summary>
+    /// Enum Cloneable for value: cloneable
+    /// </summary>
+    [EnumMember(Value = "cloneable")]
+    Cloneable = 2,
+
+    /// <summary>
+    /// Enum Consumable for value: consumable
+    /// </summary>
+    [EnumMember(Value = "consumable")]
+    Consumable = 3,
+
+    /// <summary>
+    /// Enum Equippable for value: equippable
+    /// </summary>
+    [EnumMember(Value = "equippable")]
+    Equippable = 4,
+
+    /// <summary>
+    /// Enum Global for value: global
+    /// </summary>
+    [EnumMember(Value = "global")]
+    Global = 5,
+
+    /// <summary>
+    /// Enum GlobalVisible for value: global_visible
+    /// </summary>
+    [EnumMember(Value = "global_visible")]
+    GlobalVisible = 6,
+
+    /// <summary>
+    /// Enum Instantiatable for value: instantiatable
+    /// </summary>
+    [EnumMember(Value = "instantiatable")]
+    Instantiatable = 7,
+
+    /// <summary>
+    /// Enum Trashable for value: trashable
+    /// </summary>
+    [EnumMember(Value = "trashable")]
+    Trashable = 8,
+
+    /// <summary>
+    /// Enum Ugc for value: ugc
+    /// </summary>
+    [EnumMember(Value = "ugc")]
+    Ugc = 9,
+
+    /// <summary>
+    /// Enum Unique for value: unique
+    /// </summary>
+    [EnumMember(Value = "unique")]
+    Unique = 10,
+
+    /// <summary>
+    /// Enum VrcPlusExclusive for value: vrc_plus_exclusive
+    /// </summary>
+    [EnumMember(Value = "vrc_plus_exclusive")]
+    VrcPlusExclusive = 11
+}

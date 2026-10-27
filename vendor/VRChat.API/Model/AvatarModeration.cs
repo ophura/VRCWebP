@@ -1,0 +1,133 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// AvatarModeration
+/// </summary>
+[DataContract(Name = "AvatarModeration")]
+public partial class AvatarModeration : IEquatable<AvatarModeration>, IValidatableObject
+{
+
+    /// <summary>
+    /// Gets or Sets AvatarModerationType
+    /// </summary>
+    [DataMember(Name = "avatarModerationType", IsRequired = true, EmitDefaultValue = true)]
+    public AvatarModerationType AvatarModerationType { get; set; }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AvatarModeration" /> class.
+    /// </summary>
+
+    protected AvatarModeration() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AvatarModeration" /> class.
+    /// </summary>
+    /// <param name="avatarModerationType">avatarModerationType (required).</param>
+    /// <param name="created">created (required).</param>
+    /// <param name="targetAvatarId">targetAvatarId (required).</param>
+    public AvatarModeration(AvatarModerationType avatarModerationType = default, DateTime created = default, string targetAvatarId = default)
+    {
+        this.AvatarModerationType = avatarModerationType;
+        this.Created = created;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.TargetAvatarId = targetAvatarId;
+    }
+
+    /// <summary>
+    /// Gets or Sets Created
+    /// </summary>
+    [DataMember(Name = "created", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime Created { get; set; }
+
+    /// <summary>
+    /// Gets or Sets TargetAvatarId
+    /// </summary>
+    [DataMember(Name = "targetAvatarId", IsRequired = true, EmitDefaultValue = true)]
+    public string TargetAvatarId { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class AvatarModeration {\n");
+        sb.Append("  AvatarModerationType: ").Append(AvatarModerationType).Append('\n');
+        sb.Append("  Created: ").Append(Created).Append('\n');
+        sb.Append("  TargetAvatarId: ").Append(TargetAvatarId).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as AvatarModeration);
+    }
+
+    /// <summary>
+    /// Returns true if AvatarModeration instances are equal
+    /// </summary>
+    /// <param name="input">Instance of AvatarModeration to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(AvatarModeration input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.AvatarModerationType == input.AvatarModerationType ||
+                this.AvatarModerationType.Equals(input.AvatarModerationType)
+            ) &&
+            (
+                this.Created == input.Created ||
+                this.Created.Equals(input.Created)
+            ) &&
+            (
+                this.TargetAvatarId == input.TargetAvatarId ||
+                (this.TargetAvatarId != null &&
+                this.TargetAvatarId.Equals(input.TargetAvatarId))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.AvatarModerationType.GetHashCode();
+            hashCode = (hashCode * 59) + this.Created.GetHashCode();
+            if (this.TargetAvatarId != null)
+            {
+                hashCode = (hashCode * 59) + this.TargetAvatarId.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

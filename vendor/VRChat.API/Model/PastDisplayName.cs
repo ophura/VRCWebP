@@ -1,0 +1,139 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// PastDisplayName
+/// </summary>
+[DataContract(Name = "PastDisplayName")]
+public partial class PastDisplayName : IEquatable<PastDisplayName>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PastDisplayName" /> class.
+    /// </summary>
+
+    protected PastDisplayName() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PastDisplayName" /> class.
+    /// </summary>
+    /// <param name="displayName">displayName (required).</param>
+    /// <param name="reverted">reverted (required).</param>
+    /// <param name="updatedAt">updatedAt (required).</param>
+    public PastDisplayName(string displayName = default, bool reverted = default, DateTime updatedAt = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.DisplayName = displayName;
+        this.Reverted = reverted;
+        this.UpdatedAt = updatedAt;
+    }
+
+    /// <summary>
+    /// Gets or Sets DisplayName
+    /// </summary>
+    [DataMember(Name = "displayName", IsRequired = true, EmitDefaultValue = true)]
+    public string DisplayName { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Reverted
+    /// </summary>
+    [DataMember(Name = "reverted", IsRequired = true, EmitDefaultValue = true)]
+    public bool Reverted { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UpdatedAt
+    /// </summary>
+    [DataMember(Name = "updated_at", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime UpdatedAt { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class PastDisplayName {\n");
+        sb.Append("  DisplayName: ").Append(DisplayName).Append('\n');
+        sb.Append("  Reverted: ").Append(Reverted).Append('\n');
+        sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as PastDisplayName);
+    }
+
+    /// <summary>
+    /// Returns true if PastDisplayName instances are equal
+    /// </summary>
+    /// <param name="input">Instance of PastDisplayName to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(PastDisplayName input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.DisplayName == input.DisplayName ||
+                (this.DisplayName != null &&
+                this.DisplayName.Equals(input.DisplayName))
+            ) &&
+            (
+                this.Reverted == input.Reverted ||
+                this.Reverted.Equals(input.Reverted)
+            ) &&
+            (
+                this.UpdatedAt == input.UpdatedAt ||
+                this.UpdatedAt.Equals(input.UpdatedAt)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.DisplayName != null)
+            {
+                hashCode = (hashCode * 59) + this.DisplayName.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.Reverted.GetHashCode();
+            hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        // DisplayName (string) minLength
+        if (this.DisplayName != null && this.DisplayName.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for DisplayName, length must be greater than 1.", new [] { "DisplayName" });
+        }
+
+        yield break;
+    }
+}

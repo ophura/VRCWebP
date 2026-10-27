@@ -1,0 +1,36 @@
+
+using System.Runtime.Serialization;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// The time unit used to specify how often a recurring event occurs.
+/// </summary>
+/// <value>The time unit used to specify how often a recurring event occurs.</value>
+
+public enum CalendarEventFrequency
+{
+    /// <summary>
+    /// Enum Daily for value: daily
+    /// </summary>
+    [EnumMember(Value = "daily")]
+    Daily = 1,
+
+    /// <summary>
+    /// Enum Monthly for value: monthly
+    /// </summary>
+    [EnumMember(Value = "monthly")]
+    Monthly = 2,
+
+    /// <summary>
+    /// Enum Weekly for value: weekly
+    /// </summary>
+    [EnumMember(Value = "weekly")]
+    Weekly = 3,
+
+    /// <summary>
+    /// Enum Yearly for value: yearly
+    /// </summary>
+    [EnumMember(Value = "yearly")]
+    Yearly = 4
+}

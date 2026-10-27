@@ -1,0 +1,217 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// JamSubmission
+/// </summary>
+[DataContract(Name = "JamSubmission")]
+public partial class JamSubmission : IEquatable<JamSubmission>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="JamSubmission" /> class.
+    /// </summary>
+
+    protected JamSubmission() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="JamSubmission" /> class.
+    /// </summary>
+    /// <param name="contentId">Either world ID or avatar ID (required).</param>
+    /// <param name="createdAt">createdAt (required).</param>
+    /// <param name="description">description (required).</param>
+    /// <param name="id">id (required).</param>
+    /// <param name="jamId">jamId (required).</param>
+    /// <param name="ratingsScore">ratingsScore (required).</param>
+    /// <param name="submitterId">A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed. (required).</param>
+    public JamSubmission(string contentId = default, DateTime createdAt = default, string description = default, string id = default, string jamId = default, int ratingsScore = default, string submitterId = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ContentId = contentId;
+        this.CreatedAt = createdAt;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Description = description;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Id = id;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.JamId = jamId;
+        this.RatingsScore = ratingsScore;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.SubmitterId = submitterId;
+    }
+
+    /// <summary>
+    /// Either world ID or avatar ID
+    /// </summary>
+    /// <value>Either world ID or avatar ID</value>
+    [DataMember(Name = "contentId", IsRequired = true, EmitDefaultValue = true)]
+    public string ContentId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets CreatedAt
+    /// </summary>
+    [DataMember(Name = "created_at", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime CreatedAt { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Description
+    /// </summary>
+    [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
+    public string Description { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Id
+    /// </summary>
+    [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Gets or Sets JamId
+    /// </summary>
+    [DataMember(Name = "jamId", IsRequired = true, EmitDefaultValue = true)]
+    public string JamId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets RatingsScore
+    /// </summary>
+    [DataMember(Name = "ratingsScore", IsRequired = true, EmitDefaultValue = true)]
+    public int RatingsScore { get; set; }
+
+    /// <summary>
+    /// A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed.
+    /// </summary>
+    /// <value>A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed.</value>
+    [DataMember(Name = "submitterId", IsRequired = true, EmitDefaultValue = true)]
+    public string SubmitterId { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class JamSubmission {\n");
+        sb.Append("  ContentId: ").Append(ContentId).Append('\n');
+        sb.Append("  CreatedAt: ").Append(CreatedAt).Append('\n');
+        sb.Append("  Description: ").Append(Description).Append('\n');
+        sb.Append("  Id: ").Append(Id).Append('\n');
+        sb.Append("  JamId: ").Append(JamId).Append('\n');
+        sb.Append("  RatingsScore: ").Append(RatingsScore).Append('\n');
+        sb.Append("  SubmitterId: ").Append(SubmitterId).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as JamSubmission);
+    }
+
+    /// <summary>
+    /// Returns true if JamSubmission instances are equal
+    /// </summary>
+    /// <param name="input">Instance of JamSubmission to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(JamSubmission input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.ContentId == input.ContentId ||
+                (this.ContentId != null &&
+                this.ContentId.Equals(input.ContentId))
+            ) &&
+            (
+                this.CreatedAt == input.CreatedAt ||
+                this.CreatedAt.Equals(input.CreatedAt)
+            ) &&
+            (
+                this.Description == input.Description ||
+                (this.Description != null &&
+                this.Description.Equals(input.Description))
+            ) &&
+            (
+                this.Id == input.Id ||
+                (this.Id != null &&
+                this.Id.Equals(input.Id))
+            ) &&
+            (
+                this.JamId == input.JamId ||
+                (this.JamId != null &&
+                this.JamId.Equals(input.JamId))
+            ) &&
+            (
+                this.RatingsScore == input.RatingsScore ||
+                this.RatingsScore.Equals(input.RatingsScore)
+            ) &&
+            (
+                this.SubmitterId == input.SubmitterId ||
+                (this.SubmitterId != null &&
+                this.SubmitterId.Equals(input.SubmitterId))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.ContentId != null)
+            {
+                hashCode = (hashCode * 59) + this.ContentId.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+            if (this.Description != null)
+            {
+                hashCode = (hashCode * 59) + this.Description.GetHashCode();
+            }
+            if (this.Id != null)
+            {
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
+            }
+            if (this.JamId != null)
+            {
+                hashCode = (hashCode * 59) + this.JamId.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.RatingsScore.GetHashCode();
+            if (this.SubmitterId != null)
+            {
+                hashCode = (hashCode * 59) + this.SubmitterId.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        // ContentId (string) minLength
+        if (this.ContentId != null && this.ContentId.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for ContentId, length must be greater than 1.", new [] { "ContentId" });
+        }
+
+        yield break;
+    }
+}

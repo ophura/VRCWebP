@@ -1,0 +1,105 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// UpdateAssetReviewNotesRequest
+/// </summary>
+[DataContract(Name = "UpdateAssetReviewNotesRequest")]
+public partial class UpdateAssetReviewNotesRequest : IEquatable<UpdateAssetReviewNotesRequest>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UpdateAssetReviewNotesRequest" /> class.
+    /// </summary>
+
+    protected UpdateAssetReviewNotesRequest() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UpdateAssetReviewNotesRequest" /> class.
+    /// </summary>
+    /// <param name="reviewNotes">reviewNotes (required).</param>
+    public UpdateAssetReviewNotesRequest(string reviewNotes = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ReviewNotes = reviewNotes;
+    }
+
+    /// <summary>
+    /// Gets or Sets ReviewNotes
+    /// </summary>
+    [DataMember(Name = "reviewNotes", IsRequired = true, EmitDefaultValue = true)]
+    public string ReviewNotes { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class UpdateAssetReviewNotesRequest {\n");
+        sb.Append("  ReviewNotes: ").Append(ReviewNotes).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as UpdateAssetReviewNotesRequest);
+    }
+
+    /// <summary>
+    /// Returns true if UpdateAssetReviewNotesRequest instances are equal
+    /// </summary>
+    /// <param name="input">Instance of UpdateAssetReviewNotesRequest to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(UpdateAssetReviewNotesRequest input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.ReviewNotes == input.ReviewNotes ||
+                (this.ReviewNotes != null &&
+                this.ReviewNotes.Equals(input.ReviewNotes))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.ReviewNotes != null)
+            {
+                hashCode = (hashCode * 59) + this.ReviewNotes.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

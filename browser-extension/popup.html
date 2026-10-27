@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="color-scheme" content="dark">
+  <title>Connect browser</title>
+  <style>
+    @font-face { font-family: "Cascadia Code"; src: url("CascadiaCode.ttf") format("truetype"); font-weight: 400; }
+    @font-face { font-family: "Cascadia Code"; src: url("CascadiaCode-SemiBold.ttf") format("truetype"); font-weight: 600; }
+    :root { color-scheme: dark; font: 13px "Cascadia Code", monospace; }
+    * { box-sizing: border-box; user-select: none !important; -webkit-user-select: none !important; -moz-user-select: none !important; }
+    input, textarea { user-select: text !important; -webkit-user-select: text !important; -moz-user-select: text !important; }
+    body { margin: 0; width: 304px; padding: 16px; background: #151515; color: #ebebeb; }
+    .card { padding: 20px; border: 1px solid #3b3b3b; border-radius: 18px; background: linear-gradient(135deg, #242424, #1a1a1a); }
+    .route { display: flex; justify-content: center; align-items: center; gap: 22px; padding: 4px 0 22px; color: #b2b2b2; }
+    svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+    .route svg { width: 32px; height: 32px; }
+    .route .arrow { width: 20px; height: 20px; color: #888; }
+    button { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 40px; padding: 9px 14px; border: 1px solid #aaa; border-radius: 10px; background: #aaa; color: #151515; font: 600 13px "Cascadia Code", monospace; cursor: pointer; transition: background 200ms, border-color 200ms, color 200ms, opacity 200ms, outline-color 200ms; }
+    button svg { width: 17px; height: 17px; }
+    button:hover { background: #bcbcbc; border-color: #bcbcbc; }
+    button:active { background: #919191; border-color: #919191; }
+    button { outline: 2px solid #0000; outline-offset: 3px; }
+    button:focus-visible { outline-color: #ddd; }
+    button:disabled { background: #494949; border-color: #494949; color: #a8a8a8; cursor: wait; }
+    [hidden] { display: none !important; }
+    #status { display: flex; align-items: center; gap: 8px; min-height: 40px; margin: 12px 0 0; color: #b2b2b2; font-size: 11px; line-height: 1.6; overflow-wrap: anywhere; transition: color 200ms; }
+    #status::before { content: ""; width: 5px; height: 5px; flex-shrink: 0; border-radius: 50%; background: currentColor; }
+    #status[data-state="working"]::before { animation: pulse 1s ease-in-out infinite alternate; }
+    #status[data-state="success"] { color: #dedede; }
+    #status[data-state="error"] { color: #d0d0d0; }
+    .privacy { display: flex; align-items: center; justify-content: center; gap: 7px; margin: 14px 0 0; color: #a8a8a8; font-size: 10px; }
+    .privacy svg { width: 13px; height: 13px; }
+    @keyframes pulse { from { opacity: .3; } to { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before { animation: none !important; transition: none !important; } }
+    #tooltip { position: fixed; z-index: 10; max-width: 270px; padding: 9px 11px; border: 1px solid #484848; border-radius: 8px; background: #2d2d2d; color: #f2f2f2; font: 11px/1.6 "Cascadia Code", monospace; box-shadow: 0 4px 18px #0005; pointer-events: none; opacity: 0; transition: opacity 200ms; }
+    #tooltip.visible { opacity: 1; }
+  </style>
+</head>
+<body>
+  <main class="card" aria-label="Connect browser session">
+    <div class="route" role="img" aria-label="Share this browser profile with the desktop app">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v16H3zM3 9h18M6 6.5h.01M9 6.5h.01" /></svg>
+      <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6" /></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v13H3zM8 21h8M12 17v4" /></svg>
+    </div>
+    <button id="connect" disabled aria-busy="true" data-tip="Connect this browser profile" aria-label="Connect this browser profile">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14l4-4M8 16l-2 2a4 4 0 0 1-5-5l5-5a4 4 0 0 1 6 0M16 8l2-2a4 4 0 0 1 5 5l-5 5a4 4 0 0 1-6 0" /></svg>
+      <span>Connect</span>
+    </button>
+    <p id="status" role="status" aria-live="polite" data-state="idle">Ready</p>
+  </main>
+  <p class="privacy" data-tip="Only VRChat's two session cookies are shared locally. The app protects saved sessions with Windows DPAPI.">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4-4 7-8 9-4-2-8-5-8-9V6zM8 12l3 3 5-6" /></svg>
+    <span>VRChat session only</span>
+  </p>
+  <div id="tooltip" role="tooltip" hidden></div>
+  <script src="popup.js"></script>
+</body>
+</html>

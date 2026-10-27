@@ -1,0 +1,135 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// Carries only the fields the update changed.
+/// </summary>
+[DataContract(Name = "GroupAuditLogDataGroupPostUpdate")]
+public partial class GroupAuditLogDataGroupPostUpdate : IEquatable<GroupAuditLogDataGroupPostUpdate>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GroupAuditLogDataGroupPostUpdate" /> class.
+    /// </summary>
+    /// <param name="editorId">editorId.</param>
+    /// <param name="text">text.</param>
+    /// <param name="title">title.</param>
+    public GroupAuditLogDataGroupPostUpdate(GroupAuditLogUserIdChange editorId = default, GroupAuditLogStringChange text = default, GroupAuditLogStringChange title = default)
+    {
+        this.EditorId = editorId;
+        this.Text = text;
+        this.Title = title;
+    }
+
+    /// <summary>
+    /// Gets or Sets EditorId
+    /// </summary>
+    [DataMember(Name = "editorId", EmitDefaultValue = false)]
+    public GroupAuditLogUserIdChange EditorId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Text
+    /// </summary>
+    [DataMember(Name = "text", EmitDefaultValue = false)]
+    public GroupAuditLogStringChange Text { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Title
+    /// </summary>
+    [DataMember(Name = "title", EmitDefaultValue = false)]
+    public GroupAuditLogStringChange Title { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class GroupAuditLogDataGroupPostUpdate {\n");
+        sb.Append("  EditorId: ").Append(EditorId).Append('\n');
+        sb.Append("  Text: ").Append(Text).Append('\n');
+        sb.Append("  Title: ").Append(Title).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as GroupAuditLogDataGroupPostUpdate);
+    }
+
+    /// <summary>
+    /// Returns true if GroupAuditLogDataGroupPostUpdate instances are equal
+    /// </summary>
+    /// <param name="input">Instance of GroupAuditLogDataGroupPostUpdate to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(GroupAuditLogDataGroupPostUpdate input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.EditorId == input.EditorId ||
+                (this.EditorId != null &&
+                this.EditorId.Equals(input.EditorId))
+            ) &&
+            (
+                this.Text == input.Text ||
+                (this.Text != null &&
+                this.Text.Equals(input.Text))
+            ) &&
+            (
+                this.Title == input.Title ||
+                (this.Title != null &&
+                this.Title.Equals(input.Title))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.EditorId != null)
+            {
+                hashCode = (hashCode * 59) + this.EditorId.GetHashCode();
+            }
+            if (this.Text != null)
+            {
+                hashCode = (hashCode * 59) + this.Text.GetHashCode();
+            }
+            if (this.Title != null)
+            {
+                hashCode = (hashCode * 59) + this.Title.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

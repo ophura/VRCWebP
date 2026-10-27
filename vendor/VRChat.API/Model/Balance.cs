@@ -1,0 +1,128 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// Balance
+/// </summary>
+[DataContract(Name = "Balance")]
+public partial class Balance : IEquatable<Balance>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Balance" /> class.
+    /// </summary>
+
+    protected Balance() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Balance" /> class.
+    /// </summary>
+    /// <param name="varBalance">varBalance (required) (default to 0).</param>
+    /// <param name="noTransactions">noTransactions.</param>
+    /// <param name="tiliaResponse">tiliaResponse.</param>
+    public Balance(int varBalance = 0, bool noTransactions = default, bool tiliaResponse = default)
+    {
+        this.VarBalance = varBalance;
+        this.NoTransactions = noTransactions;
+        this.TiliaResponse = tiliaResponse;
+    }
+
+    /// <summary>
+    /// Gets or Sets VarBalance
+    /// </summary>
+    [DataMember(Name = "balance", IsRequired = true, EmitDefaultValue = true)]
+    public int VarBalance { get; set; }
+
+    /// <summary>
+    /// Gets or Sets NoTransactions
+    /// </summary>
+    [DataMember(Name = "noTransactions", EmitDefaultValue = true)]
+    public bool NoTransactions { get; set; }
+
+    /// <summary>
+    /// Gets or Sets TiliaResponse
+    /// </summary>
+    [DataMember(Name = "tiliaResponse", EmitDefaultValue = true)]
+    public bool TiliaResponse { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class Balance {\n");
+        sb.Append("  VarBalance: ").Append(VarBalance).Append('\n');
+        sb.Append("  NoTransactions: ").Append(NoTransactions).Append('\n');
+        sb.Append("  TiliaResponse: ").Append(TiliaResponse).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as Balance);
+    }
+
+    /// <summary>
+    /// Returns true if Balance instances are equal
+    /// </summary>
+    /// <param name="input">Instance of Balance to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(Balance input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.VarBalance == input.VarBalance ||
+                this.VarBalance.Equals(input.VarBalance)
+            ) &&
+            (
+                this.NoTransactions == input.NoTransactions ||
+                this.NoTransactions.Equals(input.NoTransactions)
+            ) &&
+            (
+                this.TiliaResponse == input.TiliaResponse ||
+                this.TiliaResponse.Equals(input.TiliaResponse)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.VarBalance.GetHashCode();
+            hashCode = (hashCode * 59) + this.NoTransactions.GetHashCode();
+            hashCode = (hashCode * 59) + this.TiliaResponse.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

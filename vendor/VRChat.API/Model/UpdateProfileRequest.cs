@@ -1,0 +1,379 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// UpdateProfileRequest
+/// </summary>
+[DataContract(Name = "UpdateProfileRequest")]
+public partial class UpdateProfileRequest : IEquatable<UpdateProfileRequest>, IValidatableObject
+{
+    /// <summary>
+    /// Defines BackgroundType
+    /// </summary>
+
+    public enum BackgroundTypeEnum
+    {
+        /// <summary>
+        /// Enum Default for value: default
+        /// </summary>
+        [EnumMember(Value = "default")]
+        Default = 1,
+
+        /// <summary>
+        /// Enum Gradient for value: gradient
+        /// </summary>
+        [EnumMember(Value = "gradient")]
+        Gradient = 2,
+
+        /// <summary>
+        /// Enum Inventory for value: inventory
+        /// </summary>
+        [EnumMember(Value = "inventory")]
+        Inventory = 3,
+
+        /// <summary>
+        /// Enum Texture for value: texture
+        /// </summary>
+        [EnumMember(Value = "texture")]
+        Texture = 4
+    }
+
+    /// <summary>
+    /// Gets or Sets BackgroundType
+    /// </summary>
+    [DataMember(Name = "backgroundType", EmitDefaultValue = false)]
+    public BackgroundTypeEnum? BackgroundType { get; set; }
+
+    /// <summary>
+    /// Gets or Sets BannerType
+    /// </summary>
+    [DataMember(Name = "bannerType", EmitDefaultValue = false)]
+    public BannerType? BannerType { get; set; }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UpdateProfileRequest" /> class.
+    /// </summary>
+    /// <param name="backgroundGradientBottom">Six hexadecimal digits, without a leading &#x60;#&#x60;. May be empty..</param>
+    /// <param name="backgroundGradientTop">Six hexadecimal digits, without a leading &#x60;#&#x60;. May be empty..</param>
+    /// <param name="backgroundTextureId">backgroundTextureId.</param>
+    /// <param name="backgroundType">backgroundType.</param>
+    /// <param name="bannerColor">Six hexadecimal digits, without a leading &#x60;#&#x60;. May be empty..</param>
+    /// <param name="bannerCustomUrl">bannerCustomUrl.</param>
+    /// <param name="bannerType">bannerType.</param>
+    /// <param name="bio">bio.</param>
+    /// <param name="bioLinks">bioLinks.</param>
+    /// <param name="iconFrame">iconFrame.</param>
+    /// <param name="languages">languages.</param>
+    /// <param name="nameplateEffect">nameplateEffect.</param>
+    /// <param name="profileEffect">profileEffect.</param>
+    /// <param name="themeId">themeId.</param>
+    /// <param name="userIcon">userIcon.</param>
+    public UpdateProfileRequest(string backgroundGradientBottom = default, string backgroundGradientTop = default, string backgroundTextureId = default, BackgroundTypeEnum? backgroundType = default, string bannerColor = default, string bannerCustomUrl = default, BannerType? bannerType = default, string bio = default, List<string> bioLinks = default, string iconFrame = default, List<string> languages = default, string nameplateEffect = default, string profileEffect = default, PublicProfileThemeID themeId = default, string userIcon = default)
+    {
+        this.BackgroundGradientBottom = backgroundGradientBottom;
+        this.BackgroundGradientTop = backgroundGradientTop;
+        this.BackgroundTextureId = backgroundTextureId;
+        this.BackgroundType = backgroundType;
+        this.BannerColor = bannerColor;
+        this.BannerCustomUrl = bannerCustomUrl;
+        this.BannerType = bannerType;
+        this.Bio = bio;
+        this.BioLinks = bioLinks;
+        this.IconFrame = iconFrame;
+        this.Languages = languages;
+        this.NameplateEffect = nameplateEffect;
+        this.ProfileEffect = profileEffect;
+        this.ThemeId = themeId;
+        this.UserIcon = userIcon;
+    }
+
+    /// <summary>
+    /// Six hexadecimal digits, without a leading &#x60;#&#x60;. May be empty.
+    /// </summary>
+    /// <value>Six hexadecimal digits, without a leading &#x60;#&#x60;. May be empty.</value>
+    [DataMember(Name = "backgroundGradientBottom", EmitDefaultValue = false)]
+    public string BackgroundGradientBottom { get; set; }
+
+    /// <summary>
+    /// Six hexadecimal digits, without a leading &#x60;#&#x60;. May be empty.
+    /// </summary>
+    /// <value>Six hexadecimal digits, without a leading &#x60;#&#x60;. May be empty.</value>
+    [DataMember(Name = "backgroundGradientTop", EmitDefaultValue = false)]
+    public string BackgroundGradientTop { get; set; }
+
+    /// <summary>
+    /// Gets or Sets BackgroundTextureId
+    /// </summary>
+    [DataMember(Name = "backgroundTextureId", EmitDefaultValue = false)]
+    public string BackgroundTextureId { get; set; }
+
+    /// <summary>
+    /// Six hexadecimal digits, without a leading &#x60;#&#x60;. May be empty.
+    /// </summary>
+    /// <value>Six hexadecimal digits, without a leading &#x60;#&#x60;. May be empty.</value>
+    [DataMember(Name = "bannerColor", EmitDefaultValue = false)]
+    public string BannerColor { get; set; }
+
+    /// <summary>
+    /// Gets or Sets BannerCustomUrl
+    /// </summary>
+    [DataMember(Name = "bannerCustomUrl", EmitDefaultValue = false)]
+    public string BannerCustomUrl { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Bio
+    /// </summary>
+    [DataMember(Name = "bio", EmitDefaultValue = false)]
+    public string Bio { get; set; }
+
+    /// <summary>
+    /// Gets or Sets BioLinks
+    /// </summary>
+    [DataMember(Name = "bioLinks", EmitDefaultValue = false)]
+    public List<string> BioLinks { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IconFrame
+    /// </summary>
+    [DataMember(Name = "iconFrame", EmitDefaultValue = false)]
+    public string IconFrame { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Languages
+    /// </summary>
+    [DataMember(Name = "languages", EmitDefaultValue = false)]
+    public List<string> Languages { get; set; }
+
+    /// <summary>
+    /// Gets or Sets NameplateEffect
+    /// </summary>
+    [DataMember(Name = "nameplateEffect", EmitDefaultValue = false)]
+    public string NameplateEffect { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ProfileEffect
+    /// </summary>
+    [DataMember(Name = "profileEffect", EmitDefaultValue = false)]
+    public string ProfileEffect { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ThemeId
+    /// </summary>
+    [DataMember(Name = "themeId", EmitDefaultValue = false)]
+    public PublicProfileThemeID ThemeId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UserIcon
+    /// </summary>
+    [DataMember(Name = "userIcon", EmitDefaultValue = false)]
+    public string UserIcon { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class UpdateProfileRequest {\n");
+        sb.Append("  BackgroundGradientBottom: ").Append(BackgroundGradientBottom).Append('\n');
+        sb.Append("  BackgroundGradientTop: ").Append(BackgroundGradientTop).Append('\n');
+        sb.Append("  BackgroundTextureId: ").Append(BackgroundTextureId).Append('\n');
+        sb.Append("  BackgroundType: ").Append(BackgroundType).Append('\n');
+        sb.Append("  BannerColor: ").Append(BannerColor).Append('\n');
+        sb.Append("  BannerCustomUrl: ").Append(BannerCustomUrl).Append('\n');
+        sb.Append("  BannerType: ").Append(BannerType).Append('\n');
+        sb.Append("  Bio: ").Append(Bio).Append('\n');
+        sb.Append("  BioLinks: ").Append(BioLinks).Append('\n');
+        sb.Append("  IconFrame: ").Append(IconFrame).Append('\n');
+        sb.Append("  Languages: ").Append(Languages).Append('\n');
+        sb.Append("  NameplateEffect: ").Append(NameplateEffect).Append('\n');
+        sb.Append("  ProfileEffect: ").Append(ProfileEffect).Append('\n');
+        sb.Append("  ThemeId: ").Append((object)ThemeId).Append('\n');
+        sb.Append("  UserIcon: ").Append(UserIcon).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as UpdateProfileRequest);
+    }
+
+    /// <summary>
+    /// Returns true if UpdateProfileRequest instances are equal
+    /// </summary>
+    /// <param name="input">Instance of UpdateProfileRequest to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(UpdateProfileRequest input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.BackgroundGradientBottom == input.BackgroundGradientBottom ||
+                (this.BackgroundGradientBottom != null &&
+                this.BackgroundGradientBottom.Equals(input.BackgroundGradientBottom))
+            ) &&
+            (
+                this.BackgroundGradientTop == input.BackgroundGradientTop ||
+                (this.BackgroundGradientTop != null &&
+                this.BackgroundGradientTop.Equals(input.BackgroundGradientTop))
+            ) &&
+            (
+                this.BackgroundTextureId == input.BackgroundTextureId ||
+                (this.BackgroundTextureId != null &&
+                this.BackgroundTextureId.Equals(input.BackgroundTextureId))
+            ) &&
+            (
+                this.BackgroundType == input.BackgroundType ||
+                this.BackgroundType.Equals(input.BackgroundType)
+            ) &&
+            (
+                this.BannerColor == input.BannerColor ||
+                (this.BannerColor != null &&
+                this.BannerColor.Equals(input.BannerColor))
+            ) &&
+            (
+                this.BannerCustomUrl == input.BannerCustomUrl ||
+                (this.BannerCustomUrl != null &&
+                this.BannerCustomUrl.Equals(input.BannerCustomUrl))
+            ) &&
+            (
+                this.BannerType == input.BannerType ||
+                this.BannerType.Equals(input.BannerType)
+            ) &&
+            (
+                this.Bio == input.Bio ||
+                (this.Bio != null &&
+                this.Bio.Equals(input.Bio))
+            ) &&
+            (
+                this.BioLinks == input.BioLinks ||
+                this.BioLinks != null &&
+                input.BioLinks != null &&
+                this.BioLinks.SequenceEqual(input.BioLinks)
+            ) &&
+            (
+                this.IconFrame == input.IconFrame ||
+                (this.IconFrame != null &&
+                this.IconFrame.Equals(input.IconFrame))
+            ) &&
+            (
+                this.Languages == input.Languages ||
+                this.Languages != null &&
+                input.Languages != null &&
+                this.Languages.SequenceEqual(input.Languages)
+            ) &&
+            (
+                this.NameplateEffect == input.NameplateEffect ||
+                (this.NameplateEffect != null &&
+                this.NameplateEffect.Equals(input.NameplateEffect))
+            ) &&
+            (
+                this.ProfileEffect == input.ProfileEffect ||
+                (this.ProfileEffect != null &&
+                this.ProfileEffect.Equals(input.ProfileEffect))
+            ) &&
+            (
+                this.ThemeId == input.ThemeId ||
+                (this.ThemeId != null &&
+                this.ThemeId.Equals(input.ThemeId))
+            ) &&
+            (
+                this.UserIcon == input.UserIcon ||
+                (this.UserIcon != null &&
+                this.UserIcon.Equals(input.UserIcon))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.BackgroundGradientBottom != null)
+            {
+                hashCode = (hashCode * 59) + this.BackgroundGradientBottom.GetHashCode();
+            }
+            if (this.BackgroundGradientTop != null)
+            {
+                hashCode = (hashCode * 59) + this.BackgroundGradientTop.GetHashCode();
+            }
+            if (this.BackgroundTextureId != null)
+            {
+                hashCode = (hashCode * 59) + this.BackgroundTextureId.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.BackgroundType.GetHashCode();
+            if (this.BannerColor != null)
+            {
+                hashCode = (hashCode * 59) + this.BannerColor.GetHashCode();
+            }
+            if (this.BannerCustomUrl != null)
+            {
+                hashCode = (hashCode * 59) + this.BannerCustomUrl.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.BannerType.GetHashCode();
+            if (this.Bio != null)
+            {
+                hashCode = (hashCode * 59) + this.Bio.GetHashCode();
+            }
+            if (this.BioLinks != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.BioLinks);
+            }
+            if (this.IconFrame != null)
+            {
+                hashCode = (hashCode * 59) + this.IconFrame.GetHashCode();
+            }
+            if (this.Languages != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Languages);
+            }
+            if (this.NameplateEffect != null)
+            {
+                hashCode = (hashCode * 59) + this.NameplateEffect.GetHashCode();
+            }
+            if (this.ProfileEffect != null)
+            {
+                hashCode = (hashCode * 59) + this.ProfileEffect.GetHashCode();
+            }
+            if (this.ThemeId != null)
+            {
+                hashCode = (hashCode * 59) + this.ThemeId.GetHashCode();
+            }
+            if (this.UserIcon != null)
+            {
+                hashCode = (hashCode * 59) + this.UserIcon.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

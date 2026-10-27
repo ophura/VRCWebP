@@ -1,0 +1,100 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// UpdateTiliaTOSRequest
+/// </summary>
+[DataContract(Name = "UpdateTiliaTOSRequest")]
+public partial class UpdateTiliaTOSRequest : IEquatable<UpdateTiliaTOSRequest>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UpdateTiliaTOSRequest" /> class.
+    /// </summary>
+
+    protected UpdateTiliaTOSRequest() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UpdateTiliaTOSRequest" /> class.
+    /// </summary>
+    /// <param name="accepted">accepted (required).</param>
+    public UpdateTiliaTOSRequest(bool accepted = default)
+    {
+        this.Accepted = accepted;
+    }
+
+    /// <summary>
+    /// Gets or Sets Accepted
+    /// </summary>
+    [DataMember(Name = "accepted", IsRequired = true, EmitDefaultValue = true)]
+    public bool Accepted { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class UpdateTiliaTOSRequest {\n");
+        sb.Append("  Accepted: ").Append(Accepted).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as UpdateTiliaTOSRequest);
+    }
+
+    /// <summary>
+    /// Returns true if UpdateTiliaTOSRequest instances are equal
+    /// </summary>
+    /// <param name="input">Instance of UpdateTiliaTOSRequest to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(UpdateTiliaTOSRequest input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Accepted == input.Accepted ||
+                this.Accepted.Equals(input.Accepted)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.Accepted.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

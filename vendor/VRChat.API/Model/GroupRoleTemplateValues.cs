@@ -1,0 +1,165 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// GroupRoleTemplateValues
+/// </summary>
+[DataContract(Name = "GroupRoleTemplateValues")]
+public partial class GroupRoleTemplateValues : IEquatable<GroupRoleTemplateValues>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GroupRoleTemplateValues" /> class.
+    /// </summary>
+
+    protected GroupRoleTemplateValues() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GroupRoleTemplateValues" /> class.
+    /// </summary>
+    /// <param name="basePermissions">basePermissions (required).</param>
+    /// <param name="description">description (required).</param>
+    /// <param name="name">name (required).</param>
+    /// <param name="roles">roles (required).</param>
+    public GroupRoleTemplateValues(List<GroupPermissions> basePermissions = default, string description = default, string name = default, List<GroupRoleTemplateRole> roles = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.BasePermissions = basePermissions;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Description = description;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Name = name;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Roles = roles;
+    }
+
+    /// <summary>
+    /// Gets or Sets BasePermissions
+    /// </summary>
+    [DataMember(Name = "basePermissions", IsRequired = true, EmitDefaultValue = true)]
+    public List<GroupPermissions> BasePermissions { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Description
+    /// </summary>
+    [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
+    public string Description { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Name
+    /// </summary>
+    [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
+    public string Name { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Roles
+    /// </summary>
+    [DataMember(Name = "roles", IsRequired = true, EmitDefaultValue = true)]
+    public List<GroupRoleTemplateRole> Roles { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class GroupRoleTemplateValues {\n");
+        sb.Append("  BasePermissions: ").Append(BasePermissions).Append('\n');
+        sb.Append("  Description: ").Append(Description).Append('\n');
+        sb.Append("  Name: ").Append(Name).Append('\n');
+        sb.Append("  Roles: ").Append(Roles).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as GroupRoleTemplateValues);
+    }
+
+    /// <summary>
+    /// Returns true if GroupRoleTemplateValues instances are equal
+    /// </summary>
+    /// <param name="input">Instance of GroupRoleTemplateValues to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(GroupRoleTemplateValues input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.BasePermissions == input.BasePermissions ||
+                this.BasePermissions != null &&
+                input.BasePermissions != null &&
+                this.BasePermissions.SequenceEqual(input.BasePermissions)
+            ) &&
+            (
+                this.Description == input.Description ||
+                (this.Description != null &&
+                this.Description.Equals(input.Description))
+            ) &&
+            (
+                this.Name == input.Name ||
+                (this.Name != null &&
+                this.Name.Equals(input.Name))
+            ) &&
+            (
+                this.Roles == input.Roles ||
+                this.Roles != null &&
+                input.Roles != null &&
+                this.Roles.SequenceEqual(input.Roles)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.BasePermissions != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.BasePermissions);
+            }
+            if (this.Description != null)
+            {
+                hashCode = (hashCode * 59) + this.Description.GetHashCode();
+            }
+            if (this.Name != null)
+            {
+                hashCode = (hashCode * 59) + this.Name.GetHashCode();
+            }
+            if (this.Roles != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Roles);
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

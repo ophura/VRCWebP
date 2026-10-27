@@ -1,0 +1,125 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// RewardRedemption
+/// </summary>
+[DataContract(Name = "RewardRedemption")]
+public partial class RewardRedemption : IEquatable<RewardRedemption>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="RewardRedemption" /> class.
+    /// </summary>
+
+    protected RewardRedemption() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="RewardRedemption" /> class.
+    /// </summary>
+    /// <param name="data">data (required).</param>
+    /// <param name="type">One of &#x60;badge&#x60;, &#x60;item&#x60;, ... (required).</param>
+    public RewardRedemption(RewardRedemptionData data = default, string type = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Data = data;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Type = type;
+    }
+
+    /// <summary>
+    /// Gets or Sets Data
+    /// </summary>
+    [DataMember(Name = "data", IsRequired = true, EmitDefaultValue = true)]
+    public RewardRedemptionData Data { get; set; }
+
+    /// <summary>
+    /// One of &#x60;badge&#x60;, &#x60;item&#x60;, ...
+    /// </summary>
+    /// <value>One of &#x60;badge&#x60;, &#x60;item&#x60;, ...</value>
+    [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+    public string Type { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class RewardRedemption {\n");
+        sb.Append("  Data: ").Append(Data).Append('\n');
+        sb.Append("  Type: ").Append(Type).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as RewardRedemption);
+    }
+
+    /// <summary>
+    /// Returns true if RewardRedemption instances are equal
+    /// </summary>
+    /// <param name="input">Instance of RewardRedemption to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(RewardRedemption input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Data == input.Data ||
+                (this.Data != null &&
+                this.Data.Equals(input.Data))
+            ) &&
+            (
+                this.Type == input.Type ||
+                (this.Type != null &&
+                this.Type.Equals(input.Type))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.Data != null)
+            {
+                hashCode = (hashCode * 59) + this.Data.GetHashCode();
+            }
+            if (this.Type != null)
+            {
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

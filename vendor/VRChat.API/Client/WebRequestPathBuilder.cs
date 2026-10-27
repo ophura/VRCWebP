@@ -1,0 +1,55 @@
+
+using System;
+using System.Collections.Generic;
+
+namespace VRChat.API.Client;
+
+/// <summary>
+/// A URI builder
+/// </summary>
+class WebRequestPathBuilder
+{
+        private string _baseUrl;
+        private string _path;
+        private string _query = "?";
+        public WebRequestPathBuilder(string baseUrl, string path)
+        {
+            _baseUrl = baseUrl;
+            _path = path;
+        }
+
+        /// <summary>
+        /// Percent-encodes a value, then restores "(" and ")".
+        /// </summary>
+        /// <remarks>VRChat's API answers 400 "malformed url" when parentheses arrive
+        /// percent-encoded, and instance IDs contain them, for example
+        /// wrld_0000:12345~group(grp_0000)~groupAccessType(plus)~region(use).</remarks>
+        private static string Escape(string value)
+        {
+            return Uri.EscapeDataString(value).Replace("%28", "(").Replace("%29", ")");
+        }
+
+        public void AddPathParameters(Dictionary<string, string> parameters)
+        {
+            foreach (var parameter in parameters)
+            {
+                _path = _path.Replace("{" + parameter.Key + "}", Escape(parameter.Value));
+            }
+        }
+
+        public void AddQueryParameters(Multimap<string, string> parameters)
+        {
+            foreach (var parameter in parameters)
+            {
+                foreach (var value in parameter.Value)
+                {
+                    _query = _query + parameter.Key + "=" + Escape(value) + "&";
+                }
+            }
+        }
+
+        public string GetFullUri()
+        {
+            return _baseUrl + _path + _query.Substring(0, _query.Length - 1);
+        }
+}

@@ -1,0 +1,10 @@
+* text=auto eol=lf
+*.png binary
+*.gif binary
+*.mp4 binary
+*.ico binary
+*.ttf binary
+*.gz binary
+*.signature binary
+vendor/** linguist-vendored
+assets/*.ttf linguist-vendored

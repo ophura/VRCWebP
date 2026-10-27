@@ -1,0 +1,105 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// GroupTransferable
+/// </summary>
+[DataContract(Name = "GroupTransferable")]
+public partial class GroupTransferable : IEquatable<GroupTransferable>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GroupTransferable" /> class.
+    /// </summary>
+
+    protected GroupTransferable() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GroupTransferable" /> class.
+    /// </summary>
+    /// <param name="requirements">requirements (required).</param>
+    public GroupTransferable(GroupTransferableRequirements requirements = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Requirements = requirements;
+    }
+
+    /// <summary>
+    /// Gets or Sets Requirements
+    /// </summary>
+    [DataMember(Name = "requirements", IsRequired = true, EmitDefaultValue = true)]
+    public GroupTransferableRequirements Requirements { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class GroupTransferable {\n");
+        sb.Append("  Requirements: ").Append(Requirements).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as GroupTransferable);
+    }
+
+    /// <summary>
+    /// Returns true if GroupTransferable instances are equal
+    /// </summary>
+    /// <param name="input">Instance of GroupTransferable to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(GroupTransferable input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Requirements == input.Requirements ||
+                (this.Requirements != null &&
+                this.Requirements.Equals(input.Requirements))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.Requirements != null)
+            {
+                hashCode = (hashCode * 59) + this.Requirements.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

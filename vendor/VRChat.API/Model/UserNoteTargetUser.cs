@@ -1,0 +1,118 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// UserNoteTargetUser
+/// </summary>
+[DataContract(Name = "UserNoteTargetUser")]
+public partial class UserNoteTargetUser : IEquatable<UserNoteTargetUser>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UserNoteTargetUser" /> class.
+    /// </summary>
+    /// <param name="displayName">displayName.</param>
+    /// <param name="id">A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed..</param>
+    public UserNoteTargetUser(string displayName = default, string id = default)
+    {
+        this.DisplayName = displayName;
+        this.Id = id;
+    }
+
+    /// <summary>
+    /// Gets or Sets DisplayName
+    /// </summary>
+    [DataMember(Name = "displayName", EmitDefaultValue = false)]
+    public string DisplayName { get; set; }
+
+    /// <summary>
+    /// A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed.
+    /// </summary>
+    /// <value>A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed.</value>
+    [DataMember(Name = "id", EmitDefaultValue = false)]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class UserNoteTargetUser {\n");
+        sb.Append("  DisplayName: ").Append(DisplayName).Append('\n');
+        sb.Append("  Id: ").Append(Id).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as UserNoteTargetUser);
+    }
+
+    /// <summary>
+    /// Returns true if UserNoteTargetUser instances are equal
+    /// </summary>
+    /// <param name="input">Instance of UserNoteTargetUser to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(UserNoteTargetUser input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.DisplayName == input.DisplayName ||
+                (this.DisplayName != null &&
+                this.DisplayName.Equals(input.DisplayName))
+            ) &&
+            (
+                this.Id == input.Id ||
+                (this.Id != null &&
+                this.Id.Equals(input.Id))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.DisplayName != null)
+            {
+                hashCode = (hashCode * 59) + this.DisplayName.GetHashCode();
+            }
+            if (this.Id != null)
+            {
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

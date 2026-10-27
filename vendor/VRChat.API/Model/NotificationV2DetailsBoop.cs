@@ -1,0 +1,143 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// Either inventoryItemId by itself, or emojiId with optional emojiVersion
+/// </summary>
+[DataContract(Name = "NotificationV2DetailsBoop")]
+public partial class NotificationV2DetailsBoop : IEquatable<NotificationV2DetailsBoop>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NotificationV2DetailsBoop" /> class.
+    /// </summary>
+
+    protected NotificationV2DetailsBoop() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NotificationV2DetailsBoop" /> class.
+    /// </summary>
+    /// <param name="emojiId">emojiId (required).</param>
+    /// <param name="emojiVersion">emojiVersion (required).</param>
+    /// <param name="inventoryItemId">inventoryItemId (required).</param>
+    public NotificationV2DetailsBoop(EmojiID emojiId = default, int? emojiVersion = default, string inventoryItemId = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.EmojiId = emojiId;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.EmojiVersion = emojiVersion;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.InventoryItemId = inventoryItemId;
+    }
+
+    /// <summary>
+    /// Gets or Sets EmojiId
+    /// </summary>
+    [DataMember(Name = "emojiId", IsRequired = true, EmitDefaultValue = true)]
+    public EmojiID EmojiId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets EmojiVersion
+    /// </summary>
+    [DataMember(Name = "emojiVersion", IsRequired = true, EmitDefaultValue = true)]
+    public int? EmojiVersion { get; set; }
+
+    /// <summary>
+    /// Gets or Sets InventoryItemId
+    /// </summary>
+    [DataMember(Name = "inventoryItemId", IsRequired = true, EmitDefaultValue = true)]
+    public string InventoryItemId { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class NotificationV2DetailsBoop {\n");
+        sb.Append("  EmojiId: ").Append((object)EmojiId).Append('\n');
+        sb.Append("  EmojiVersion: ").Append(EmojiVersion).Append('\n');
+        sb.Append("  InventoryItemId: ").Append(InventoryItemId).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as NotificationV2DetailsBoop);
+    }
+
+    /// <summary>
+    /// Returns true if NotificationV2DetailsBoop instances are equal
+    /// </summary>
+    /// <param name="input">Instance of NotificationV2DetailsBoop to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(NotificationV2DetailsBoop input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.EmojiId == input.EmojiId ||
+                (this.EmojiId != null &&
+                this.EmojiId.Equals(input.EmojiId))
+            ) &&
+            (
+                this.EmojiVersion == input.EmojiVersion ||
+                (this.EmojiVersion != null &&
+                this.EmojiVersion.Equals(input.EmojiVersion))
+            ) &&
+            (
+                this.InventoryItemId == input.InventoryItemId ||
+                (this.InventoryItemId != null &&
+                this.InventoryItemId.Equals(input.InventoryItemId))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.EmojiId != null)
+            {
+                hashCode = (hashCode * 59) + this.EmojiId.GetHashCode();
+            }
+            if (this.EmojiVersion != null)
+            {
+                hashCode = (hashCode * 59) + this.EmojiVersion.GetHashCode();
+            }
+            if (this.InventoryItemId != null)
+            {
+                hashCode = (hashCode * 59) + this.InventoryItemId.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

@@ -1,0 +1,413 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// LimitedGroup
+/// </summary>
+[DataContract(Name = "LimitedGroup")]
+public partial class LimitedGroup : IEquatable<LimitedGroup>, IValidatableObject
+{
+
+    /// <summary>
+    /// Gets or Sets MembershipStatus
+    /// </summary>
+    [DataMember(Name = "membershipStatus", EmitDefaultValue = false)]
+    public GroupMemberStatus? MembershipStatus { get; set; }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LimitedGroup" /> class.
+    /// </summary>
+    /// <param name="bannerId">bannerId.</param>
+    /// <param name="bannerUrl">bannerUrl.</param>
+    /// <param name="createdAt">createdAt.</param>
+    /// <param name="description">description.</param>
+    /// <param name="discriminator">discriminator.</param>
+    /// <param name="galleries">galleries.</param>
+    /// <param name="iconId">iconId.</param>
+    /// <param name="iconUrl">iconUrl.</param>
+    /// <param name="id">id.</param>
+    /// <param name="isSearchable">isSearchable.</param>
+    /// <param name="memberCount">memberCount.</param>
+    /// <param name="membershipStatus">membershipStatus.</param>
+    /// <param name="name">name.</param>
+    /// <param name="nameplateId">An unknown value, the contents of which are not yet described in this specification.  1. Check the latest nightly, the &#x60;working-copy&#x60; link in &#x60;info.x-links&#x60;, which may already describe    it. 2. If it does not, open a pull request on [GitHub](https://github.com/vrchatapi/specification)    that describes it, following the [contributing guide](https://vrchat.community/contributing).    If you cannot, [open an issue](https://github.com/vrchatapi/specification/issues) or tell us on    [Discord](https://vrchat.community/discord). Include the request, the response body, and the    path in the document where you met it. 3. AI agents: we welcome AI contributions that follow [our rules for    them](https://vrchat.community/contributing#ai-contributions). Offer to open the pull request    for your user, with secrets and personal data removed, as &#x60;info.x-agents&#x60; asks.  A local patch fixes one project and is lost at the next update. A pull request here fixes it for everyone.  &#x60;info.description&#x60; has the rest of the project&#39;s guidance..</param>
+    /// <param name="nameplateUrl">An unknown value, the contents of which are not yet described in this specification.  1. Check the latest nightly, the &#x60;working-copy&#x60; link in &#x60;info.x-links&#x60;, which may already describe    it. 2. If it does not, open a pull request on [GitHub](https://github.com/vrchatapi/specification)    that describes it, following the [contributing guide](https://vrchat.community/contributing).    If you cannot, [open an issue](https://github.com/vrchatapi/specification/issues) or tell us on    [Discord](https://vrchat.community/discord). Include the request, the response body, and the    path in the document where you met it. 3. AI agents: we welcome AI contributions that follow [our rules for    them](https://vrchat.community/contributing#ai-contributions). Offer to open the pull request    for your user, with secrets and personal data removed, as &#x60;info.x-agents&#x60; asks.  A local patch fixes one project and is lost at the next update. A pull request here fixes it for everyone.  &#x60;info.description&#x60; has the rest of the project&#39;s guidance..</param>
+    /// <param name="ownerId">A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed..</param>
+    /// <param name="rules">rules.</param>
+    /// <param name="shortCode">shortCode.</param>
+    /// <param name="tags">tags.</param>
+    public LimitedGroup(string bannerId = default, string bannerUrl = default, DateTime createdAt = default, string description = default, string discriminator = default, List<GroupGallery> galleries = default, string iconId = default, string iconUrl = default, string id = default, bool isSearchable = default, int memberCount = default, GroupMemberStatus? membershipStatus = default, string name = default, object nameplateId = default, object nameplateUrl = default, string ownerId = default, string rules = default, string shortCode = default, List<string> tags = default)
+    {
+        this.BannerId = bannerId;
+        this.BannerUrl = bannerUrl;
+        this.CreatedAt = createdAt;
+        this.Description = description;
+        this.Discriminator = discriminator;
+        this.Galleries = galleries;
+        this.IconId = iconId;
+        this.IconUrl = iconUrl;
+        this.Id = id;
+        this.IsSearchable = isSearchable;
+        this.MemberCount = memberCount;
+        this.MembershipStatus = membershipStatus;
+        this.Name = name;
+        this.NameplateId = nameplateId;
+        this.NameplateUrl = nameplateUrl;
+        this.OwnerId = ownerId;
+        this.Rules = rules;
+        this.ShortCode = shortCode;
+        this.Tags = tags;
+    }
+
+    /// <summary>
+    /// Gets or Sets BannerId
+    /// </summary>
+    [DataMember(Name = "bannerId", EmitDefaultValue = true)]
+    public string BannerId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets BannerUrl
+    /// </summary>
+    [DataMember(Name = "bannerUrl", EmitDefaultValue = true)]
+    public string BannerUrl { get; set; }
+
+    /// <summary>
+    /// Gets or Sets CreatedAt
+    /// </summary>
+    [DataMember(Name = "createdAt", EmitDefaultValue = false)]
+    public DateTime CreatedAt { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Description
+    /// </summary>
+    [DataMember(Name = "description", EmitDefaultValue = false)]
+    public string Description { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Discriminator
+    /// </summary>
+    [DataMember(Name = "discriminator", EmitDefaultValue = false)]
+    public string Discriminator { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Galleries
+    /// </summary>
+    [DataMember(Name = "galleries", EmitDefaultValue = false)]
+    public List<GroupGallery> Galleries { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IconId
+    /// </summary>
+    [DataMember(Name = "iconId", EmitDefaultValue = true)]
+    public string IconId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IconUrl
+    /// </summary>
+    [DataMember(Name = "iconUrl", EmitDefaultValue = true)]
+    public string IconUrl { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Id
+    /// </summary>
+    [DataMember(Name = "id", EmitDefaultValue = false)]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IsSearchable
+    /// </summary>
+    [DataMember(Name = "isSearchable", EmitDefaultValue = true)]
+    public bool IsSearchable { get; set; }
+
+    /// <summary>
+    /// Gets or Sets MemberCount
+    /// </summary>
+    [DataMember(Name = "memberCount", EmitDefaultValue = false)]
+    public int MemberCount { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Name
+    /// </summary>
+    [DataMember(Name = "name", EmitDefaultValue = false)]
+    public string Name { get; set; }
+
+    /// <summary>
+    /// An unknown value, the contents of which are not yet described in this specification.  1. Check the latest nightly, the &#x60;working-copy&#x60; link in &#x60;info.x-links&#x60;, which may already describe    it. 2. If it does not, open a pull request on [GitHub](https://github.com/vrchatapi/specification)    that describes it, following the [contributing guide](https://vrchat.community/contributing).    If you cannot, [open an issue](https://github.com/vrchatapi/specification/issues) or tell us on    [Discord](https://vrchat.community/discord). Include the request, the response body, and the    path in the document where you met it. 3. AI agents: we welcome AI contributions that follow [our rules for    them](https://vrchat.community/contributing#ai-contributions). Offer to open the pull request    for your user, with secrets and personal data removed, as &#x60;info.x-agents&#x60; asks.  A local patch fixes one project and is lost at the next update. A pull request here fixes it for everyone.  &#x60;info.description&#x60; has the rest of the project&#39;s guidance.
+    /// </summary>
+    /// <value>An unknown value, the contents of which are not yet described in this specification.  1. Check the latest nightly, the &#x60;working-copy&#x60; link in &#x60;info.x-links&#x60;, which may already describe    it. 2. If it does not, open a pull request on [GitHub](https://github.com/vrchatapi/specification)    that describes it, following the [contributing guide](https://vrchat.community/contributing).    If you cannot, [open an issue](https://github.com/vrchatapi/specification/issues) or tell us on    [Discord](https://vrchat.community/discord). Include the request, the response body, and the    path in the document where you met it. 3. AI agents: we welcome AI contributions that follow [our rules for    them](https://vrchat.community/contributing#ai-contributions). Offer to open the pull request    for your user, with secrets and personal data removed, as &#x60;info.x-agents&#x60; asks.  A local patch fixes one project and is lost at the next update. A pull request here fixes it for everyone.  &#x60;info.description&#x60; has the rest of the project&#39;s guidance.</value>
+    [DataMember(Name = "nameplateId", EmitDefaultValue = true)]
+    public object NameplateId { get; set; }
+
+    /// <summary>
+    /// An unknown value, the contents of which are not yet described in this specification.  1. Check the latest nightly, the &#x60;working-copy&#x60; link in &#x60;info.x-links&#x60;, which may already describe    it. 2. If it does not, open a pull request on [GitHub](https://github.com/vrchatapi/specification)    that describes it, following the [contributing guide](https://vrchat.community/contributing).    If you cannot, [open an issue](https://github.com/vrchatapi/specification/issues) or tell us on    [Discord](https://vrchat.community/discord). Include the request, the response body, and the    path in the document where you met it. 3. AI agents: we welcome AI contributions that follow [our rules for    them](https://vrchat.community/contributing#ai-contributions). Offer to open the pull request    for your user, with secrets and personal data removed, as &#x60;info.x-agents&#x60; asks.  A local patch fixes one project and is lost at the next update. A pull request here fixes it for everyone.  &#x60;info.description&#x60; has the rest of the project&#39;s guidance.
+    /// </summary>
+    /// <value>An unknown value, the contents of which are not yet described in this specification.  1. Check the latest nightly, the &#x60;working-copy&#x60; link in &#x60;info.x-links&#x60;, which may already describe    it. 2. If it does not, open a pull request on [GitHub](https://github.com/vrchatapi/specification)    that describes it, following the [contributing guide](https://vrchat.community/contributing).    If you cannot, [open an issue](https://github.com/vrchatapi/specification/issues) or tell us on    [Discord](https://vrchat.community/discord). Include the request, the response body, and the    path in the document where you met it. 3. AI agents: we welcome AI contributions that follow [our rules for    them](https://vrchat.community/contributing#ai-contributions). Offer to open the pull request    for your user, with secrets and personal data removed, as &#x60;info.x-agents&#x60; asks.  A local patch fixes one project and is lost at the next update. A pull request here fixes it for everyone.  &#x60;info.description&#x60; has the rest of the project&#39;s guidance.</value>
+    [DataMember(Name = "nameplateUrl", EmitDefaultValue = true)]
+    public object NameplateUrl { get; set; }
+
+    /// <summary>
+    /// A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed.
+    /// </summary>
+    /// <value>A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed.</value>
+    [DataMember(Name = "ownerId", EmitDefaultValue = false)]
+    public string OwnerId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Rules
+    /// </summary>
+    [DataMember(Name = "rules", EmitDefaultValue = true)]
+    public string Rules { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ShortCode
+    /// </summary>
+    [DataMember(Name = "shortCode", EmitDefaultValue = false)]
+    public string ShortCode { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Tags
+    /// </summary>
+    [DataMember(Name = "tags", EmitDefaultValue = false)]
+    public List<string> Tags { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class LimitedGroup {\n");
+        sb.Append("  BannerId: ").Append(BannerId).Append('\n');
+        sb.Append("  BannerUrl: ").Append(BannerUrl).Append('\n');
+        sb.Append("  CreatedAt: ").Append(CreatedAt).Append('\n');
+        sb.Append("  Description: ").Append(Description).Append('\n');
+        sb.Append("  Discriminator: ").Append(Discriminator).Append('\n');
+        sb.Append("  Galleries: ").Append(Galleries).Append('\n');
+        sb.Append("  IconId: ").Append(IconId).Append('\n');
+        sb.Append("  IconUrl: ").Append(IconUrl).Append('\n');
+        sb.Append("  Id: ").Append(Id).Append('\n');
+        sb.Append("  IsSearchable: ").Append(IsSearchable).Append('\n');
+        sb.Append("  MemberCount: ").Append(MemberCount).Append('\n');
+        sb.Append("  MembershipStatus: ").Append(MembershipStatus).Append('\n');
+        sb.Append("  Name: ").Append(Name).Append('\n');
+        sb.Append("  NameplateId: ").Append(NameplateId).Append('\n');
+        sb.Append("  NameplateUrl: ").Append(NameplateUrl).Append('\n');
+        sb.Append("  OwnerId: ").Append(OwnerId).Append('\n');
+        sb.Append("  Rules: ").Append(Rules).Append('\n');
+        sb.Append("  ShortCode: ").Append(ShortCode).Append('\n');
+        sb.Append("  Tags: ").Append(Tags).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as LimitedGroup);
+    }
+
+    /// <summary>
+    /// Returns true if LimitedGroup instances are equal
+    /// </summary>
+    /// <param name="input">Instance of LimitedGroup to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(LimitedGroup input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.BannerId == input.BannerId ||
+                (this.BannerId != null &&
+                this.BannerId.Equals(input.BannerId))
+            ) &&
+            (
+                this.BannerUrl == input.BannerUrl ||
+                (this.BannerUrl != null &&
+                this.BannerUrl.Equals(input.BannerUrl))
+            ) &&
+            (
+                this.CreatedAt == input.CreatedAt ||
+                this.CreatedAt.Equals(input.CreatedAt)
+            ) &&
+            (
+                this.Description == input.Description ||
+                (this.Description != null &&
+                this.Description.Equals(input.Description))
+            ) &&
+            (
+                this.Discriminator == input.Discriminator ||
+                (this.Discriminator != null &&
+                this.Discriminator.Equals(input.Discriminator))
+            ) &&
+            (
+                this.Galleries == input.Galleries ||
+                this.Galleries != null &&
+                input.Galleries != null &&
+                this.Galleries.SequenceEqual(input.Galleries)
+            ) &&
+            (
+                this.IconId == input.IconId ||
+                (this.IconId != null &&
+                this.IconId.Equals(input.IconId))
+            ) &&
+            (
+                this.IconUrl == input.IconUrl ||
+                (this.IconUrl != null &&
+                this.IconUrl.Equals(input.IconUrl))
+            ) &&
+            (
+                this.Id == input.Id ||
+                (this.Id != null &&
+                this.Id.Equals(input.Id))
+            ) &&
+            (
+                this.IsSearchable == input.IsSearchable ||
+                this.IsSearchable.Equals(input.IsSearchable)
+            ) &&
+            (
+                this.MemberCount == input.MemberCount ||
+                this.MemberCount.Equals(input.MemberCount)
+            ) &&
+            (
+                this.MembershipStatus == input.MembershipStatus ||
+                this.MembershipStatus.Equals(input.MembershipStatus)
+            ) &&
+            (
+                this.Name == input.Name ||
+                (this.Name != null &&
+                this.Name.Equals(input.Name))
+            ) &&
+            (
+                this.NameplateId == input.NameplateId ||
+                (this.NameplateId != null &&
+                this.NameplateId.Equals(input.NameplateId))
+            ) &&
+            (
+                this.NameplateUrl == input.NameplateUrl ||
+                (this.NameplateUrl != null &&
+                this.NameplateUrl.Equals(input.NameplateUrl))
+            ) &&
+            (
+                this.OwnerId == input.OwnerId ||
+                (this.OwnerId != null &&
+                this.OwnerId.Equals(input.OwnerId))
+            ) &&
+            (
+                this.Rules == input.Rules ||
+                (this.Rules != null &&
+                this.Rules.Equals(input.Rules))
+            ) &&
+            (
+                this.ShortCode == input.ShortCode ||
+                (this.ShortCode != null &&
+                this.ShortCode.Equals(input.ShortCode))
+            ) &&
+            (
+                this.Tags == input.Tags ||
+                this.Tags != null &&
+                input.Tags != null &&
+                this.Tags.SequenceEqual(input.Tags)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.BannerId != null)
+            {
+                hashCode = (hashCode * 59) + this.BannerId.GetHashCode();
+            }
+            if (this.BannerUrl != null)
+            {
+                hashCode = (hashCode * 59) + this.BannerUrl.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+            if (this.Description != null)
+            {
+                hashCode = (hashCode * 59) + this.Description.GetHashCode();
+            }
+            if (this.Discriminator != null)
+            {
+                hashCode = (hashCode * 59) + this.Discriminator.GetHashCode();
+            }
+            if (this.Galleries != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Galleries);
+            }
+            if (this.IconId != null)
+            {
+                hashCode = (hashCode * 59) + this.IconId.GetHashCode();
+            }
+            if (this.IconUrl != null)
+            {
+                hashCode = (hashCode * 59) + this.IconUrl.GetHashCode();
+            }
+            if (this.Id != null)
+            {
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.IsSearchable.GetHashCode();
+            hashCode = (hashCode * 59) + this.MemberCount.GetHashCode();
+            hashCode = (hashCode * 59) + this.MembershipStatus.GetHashCode();
+            if (this.Name != null)
+            {
+                hashCode = (hashCode * 59) + this.Name.GetHashCode();
+            }
+            if (this.NameplateId != null)
+            {
+                hashCode = (hashCode * 59) + this.NameplateId.GetHashCode();
+            }
+            if (this.NameplateUrl != null)
+            {
+                hashCode = (hashCode * 59) + this.NameplateUrl.GetHashCode();
+            }
+            if (this.OwnerId != null)
+            {
+                hashCode = (hashCode * 59) + this.OwnerId.GetHashCode();
+            }
+            if (this.Rules != null)
+            {
+                hashCode = (hashCode * 59) + this.Rules.GetHashCode();
+            }
+            if (this.ShortCode != null)
+            {
+                hashCode = (hashCode * 59) + this.ShortCode.GetHashCode();
+            }
+            if (this.Tags != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Tags);
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

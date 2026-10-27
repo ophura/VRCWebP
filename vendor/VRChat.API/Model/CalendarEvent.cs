@@ -1,0 +1,597 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// An event scheduled on a group&#39;s calendar
+/// </summary>
+[DataContract(Name = "CalendarEvent")]
+public partial class CalendarEvent : IEquatable<CalendarEvent>, IValidatableObject
+{
+
+    /// <summary>
+    /// Gets or Sets AccessType
+    /// </summary>
+    [DataMember(Name = "accessType", IsRequired = true, EmitDefaultValue = true)]
+    public CalendarEventAccess AccessType { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Category
+    /// </summary>
+    [DataMember(Name = "category", IsRequired = true, EmitDefaultValue = true)]
+    public CalendarEventCategory Category { get; set; }
+
+    /// <summary>
+    /// Gets or Sets OccurrenceKind
+    /// </summary>
+    [DataMember(Name = "occurrenceKind", EmitDefaultValue = false)]
+    public CalendarEventOccurrenceKind? OccurrenceKind { get; set; }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CalendarEvent" /> class.
+    /// </summary>
+
+    protected CalendarEvent() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CalendarEvent" /> class.
+    /// </summary>
+    /// <param name="accessType">accessType (required).</param>
+    /// <param name="category">category (required).</param>
+    /// <param name="closeInstanceAfterEndMinutes">closeInstanceAfterEndMinutes.</param>
+    /// <param name="createdAt">createdAt.</param>
+    /// <param name="deletedAt">deletedAt.</param>
+    /// <param name="description">description (required).</param>
+    /// <param name="durationInMs">durationInMs.</param>
+    /// <param name="endsAt">endsAt (required).</param>
+    /// <param name="featured">featured.</param>
+    /// <param name="guestEarlyJoinMinutes">guestEarlyJoinMinutes.</param>
+    /// <param name="hostEarlyJoinMinutes">hostEarlyJoinMinutes.</param>
+    /// <param name="id">id (required).</param>
+    /// <param name="imageId">imageId.</param>
+    /// <param name="imageUrl">imageUrl.</param>
+    /// <param name="interestedUserCount">interestedUserCount.</param>
+    /// <param name="isDraft">isDraft.</param>
+    /// <param name="languages">Languages that might be spoken at this event.</param>
+    /// <param name="occurrenceKind">occurrenceKind.</param>
+    /// <param name="occurrenceModified">occurrenceModified.</param>
+    /// <param name="ownerId">ownerId.</param>
+    /// <param name="platforms">platforms.</param>
+    /// <param name="recurrence">recurrence.</param>
+    /// <param name="roleIds">Group roles that may join this event.</param>
+    /// <param name="seriesId">seriesId.</param>
+    /// <param name="startsAt">startsAt (required).</param>
+    /// <param name="tags">Custom tags for this event.</param>
+    /// <param name="title">title (required).</param>
+    /// <param name="type">type.</param>
+    /// <param name="updatedAt">updatedAt.</param>
+    /// <param name="userInterest">userInterest.</param>
+    /// <param name="usesInstanceOverflow">usesInstanceOverflow.</param>
+    public CalendarEvent(CalendarEventAccess accessType = default, CalendarEventCategory category = default, int closeInstanceAfterEndMinutes = default, DateTime createdAt = default, DateTime? deletedAt = default, string description = default, long durationInMs = default, DateTime endsAt = default, bool featured = default, int guestEarlyJoinMinutes = default, int hostEarlyJoinMinutes = default, string id = default, string imageId = default, string imageUrl = default, int interestedUserCount = default, bool isDraft = default, List<string> languages = default, CalendarEventOccurrenceKind? occurrenceKind = default, bool occurrenceModified = default, string ownerId = default, List<CalendarEventPlatform> platforms = default, CalendarEventRecurrence recurrence = default, List<string> roleIds = default, string seriesId = default, DateTime startsAt = default, List<string> tags = default, string title = default, string type = default, DateTime updatedAt = default, CalendarEventUserInterest userInterest = default, bool usesInstanceOverflow = default)
+    {
+        this.AccessType = accessType;
+        this.Category = category;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Description = description;
+        this.EndsAt = endsAt;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Id = id;
+        this.StartsAt = startsAt;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Title = title;
+        this.CloseInstanceAfterEndMinutes = closeInstanceAfterEndMinutes;
+        this.CreatedAt = createdAt;
+        this.DeletedAt = deletedAt;
+        this.DurationInMs = durationInMs;
+        this.Featured = featured;
+        this.GuestEarlyJoinMinutes = guestEarlyJoinMinutes;
+        this.HostEarlyJoinMinutes = hostEarlyJoinMinutes;
+        this.ImageId = imageId;
+        this.ImageUrl = imageUrl;
+        this.InterestedUserCount = interestedUserCount;
+        this.IsDraft = isDraft;
+        this.Languages = languages;
+        this.OccurrenceKind = occurrenceKind;
+        this.OccurrenceModified = occurrenceModified;
+        this.OwnerId = ownerId;
+        this.Platforms = platforms;
+        this.Recurrence = recurrence;
+        this.RoleIds = roleIds;
+        this.SeriesId = seriesId;
+        this.Tags = tags;
+        this.Type = type;
+        this.UpdatedAt = updatedAt;
+        this.UserInterest = userInterest;
+        this.UsesInstanceOverflow = usesInstanceOverflow;
+    }
+
+    /// <summary>
+    /// Gets or Sets CloseInstanceAfterEndMinutes
+    /// </summary>
+    [DataMember(Name = "closeInstanceAfterEndMinutes", EmitDefaultValue = false)]
+    public int CloseInstanceAfterEndMinutes { get; set; }
+
+    /// <summary>
+    /// Gets or Sets CreatedAt
+    /// </summary>
+    [DataMember(Name = "createdAt", EmitDefaultValue = false)]
+    public DateTime CreatedAt { get; set; }
+
+    /// <summary>
+    /// Gets or Sets DeletedAt
+    /// </summary>
+    [DataMember(Name = "deletedAt", EmitDefaultValue = true)]
+    public DateTime? DeletedAt { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Description
+    /// </summary>
+    [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
+    public string Description { get; set; }
+
+    /// <summary>
+    /// Gets or Sets DurationInMs
+    /// </summary>
+    [DataMember(Name = "durationInMs", EmitDefaultValue = false)]
+    public long DurationInMs { get; set; }
+
+    /// <summary>
+    /// Gets or Sets EndsAt
+    /// </summary>
+    [DataMember(Name = "endsAt", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime EndsAt { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Featured
+    /// </summary>
+    [DataMember(Name = "featured", EmitDefaultValue = true)]
+    public bool Featured { get; set; }
+
+    /// <summary>
+    /// Gets or Sets GuestEarlyJoinMinutes
+    /// </summary>
+    [DataMember(Name = "guestEarlyJoinMinutes", EmitDefaultValue = false)]
+    public int GuestEarlyJoinMinutes { get; set; }
+
+    /// <summary>
+    /// Gets or Sets HostEarlyJoinMinutes
+    /// </summary>
+    [DataMember(Name = "hostEarlyJoinMinutes", EmitDefaultValue = false)]
+    public int HostEarlyJoinMinutes { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Id
+    /// </summary>
+    [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ImageId
+    /// </summary>
+    [DataMember(Name = "imageId", EmitDefaultValue = true)]
+    public string ImageId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ImageUrl
+    /// </summary>
+    [DataMember(Name = "imageUrl", EmitDefaultValue = false)]
+    public string ImageUrl { get; set; }
+
+    /// <summary>
+    /// Gets or Sets InterestedUserCount
+    /// </summary>
+    [DataMember(Name = "interestedUserCount", EmitDefaultValue = false)]
+    public int InterestedUserCount { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IsDraft
+    /// </summary>
+    [DataMember(Name = "isDraft", EmitDefaultValue = true)]
+    public bool IsDraft { get; set; }
+
+    /// <summary>
+    /// Languages that might be spoken at this event
+    /// </summary>
+    /// <value>Languages that might be spoken at this event</value>
+    [DataMember(Name = "languages", EmitDefaultValue = false)]
+    public List<string> Languages { get; set; }
+
+    /// <summary>
+    /// Gets or Sets OccurrenceModified
+    /// </summary>
+    [DataMember(Name = "occurrenceModified", EmitDefaultValue = true)]
+    public bool OccurrenceModified { get; set; }
+
+    /// <summary>
+    /// Gets or Sets OwnerId
+    /// </summary>
+    [DataMember(Name = "ownerId", EmitDefaultValue = false)]
+    public string OwnerId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Platforms
+    /// </summary>
+    [DataMember(Name = "platforms", EmitDefaultValue = false)]
+    public List<CalendarEventPlatform> Platforms { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Recurrence
+    /// </summary>
+    [DataMember(Name = "recurrence", EmitDefaultValue = true)]
+    public CalendarEventRecurrence Recurrence { get; set; }
+
+    /// <summary>
+    /// Group roles that may join this event
+    /// </summary>
+    /// <value>Group roles that may join this event</value>
+    [DataMember(Name = "roleIds", EmitDefaultValue = true)]
+    public List<string> RoleIds { get; set; }
+
+    /// <summary>
+    /// Gets or Sets SeriesId
+    /// </summary>
+    [DataMember(Name = "seriesId", EmitDefaultValue = true)]
+    public string SeriesId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets StartsAt
+    /// </summary>
+    [DataMember(Name = "startsAt", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime StartsAt { get; set; }
+
+    /// <summary>
+    /// Custom tags for this event
+    /// </summary>
+    /// <value>Custom tags for this event</value>
+    [DataMember(Name = "tags", EmitDefaultValue = false)]
+    public List<string> Tags { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Title
+    /// </summary>
+    [DataMember(Name = "title", IsRequired = true, EmitDefaultValue = true)]
+    public string Title { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Type
+    /// </summary>
+    [DataMember(Name = "type", EmitDefaultValue = false)]
+    public string Type { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UpdatedAt
+    /// </summary>
+    [DataMember(Name = "updatedAt", EmitDefaultValue = false)]
+    public DateTime UpdatedAt { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UserInterest
+    /// </summary>
+    [DataMember(Name = "userInterest", EmitDefaultValue = false)]
+    public CalendarEventUserInterest UserInterest { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UsesInstanceOverflow
+    /// </summary>
+    [DataMember(Name = "usesInstanceOverflow", EmitDefaultValue = true)]
+    public bool UsesInstanceOverflow { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class CalendarEvent {\n");
+        sb.Append("  AccessType: ").Append(AccessType).Append('\n');
+        sb.Append("  Category: ").Append(Category).Append('\n');
+        sb.Append("  CloseInstanceAfterEndMinutes: ").Append(CloseInstanceAfterEndMinutes).Append('\n');
+        sb.Append("  CreatedAt: ").Append(CreatedAt).Append('\n');
+        sb.Append("  DeletedAt: ").Append(DeletedAt).Append('\n');
+        sb.Append("  Description: ").Append(Description).Append('\n');
+        sb.Append("  DurationInMs: ").Append(DurationInMs).Append('\n');
+        sb.Append("  EndsAt: ").Append(EndsAt).Append('\n');
+        sb.Append("  Featured: ").Append(Featured).Append('\n');
+        sb.Append("  GuestEarlyJoinMinutes: ").Append(GuestEarlyJoinMinutes).Append('\n');
+        sb.Append("  HostEarlyJoinMinutes: ").Append(HostEarlyJoinMinutes).Append('\n');
+        sb.Append("  Id: ").Append(Id).Append('\n');
+        sb.Append("  ImageId: ").Append(ImageId).Append('\n');
+        sb.Append("  ImageUrl: ").Append(ImageUrl).Append('\n');
+        sb.Append("  InterestedUserCount: ").Append(InterestedUserCount).Append('\n');
+        sb.Append("  IsDraft: ").Append(IsDraft).Append('\n');
+        sb.Append("  Languages: ").Append(Languages).Append('\n');
+        sb.Append("  OccurrenceKind: ").Append(OccurrenceKind).Append('\n');
+        sb.Append("  OccurrenceModified: ").Append(OccurrenceModified).Append('\n');
+        sb.Append("  OwnerId: ").Append(OwnerId).Append('\n');
+        sb.Append("  Platforms: ").Append(Platforms).Append('\n');
+        sb.Append("  Recurrence: ").Append(Recurrence).Append('\n');
+        sb.Append("  RoleIds: ").Append(RoleIds).Append('\n');
+        sb.Append("  SeriesId: ").Append(SeriesId).Append('\n');
+        sb.Append("  StartsAt: ").Append(StartsAt).Append('\n');
+        sb.Append("  Tags: ").Append(Tags).Append('\n');
+        sb.Append("  Title: ").Append(Title).Append('\n');
+        sb.Append("  Type: ").Append(Type).Append('\n');
+        sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append('\n');
+        sb.Append("  UserInterest: ").Append(UserInterest).Append('\n');
+        sb.Append("  UsesInstanceOverflow: ").Append(UsesInstanceOverflow).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as CalendarEvent);
+    }
+
+    /// <summary>
+    /// Returns true if CalendarEvent instances are equal
+    /// </summary>
+    /// <param name="input">Instance of CalendarEvent to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(CalendarEvent input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.AccessType == input.AccessType ||
+                this.AccessType.Equals(input.AccessType)
+            ) &&
+            (
+                this.Category == input.Category ||
+                this.Category.Equals(input.Category)
+            ) &&
+            (
+                this.CloseInstanceAfterEndMinutes == input.CloseInstanceAfterEndMinutes ||
+                this.CloseInstanceAfterEndMinutes.Equals(input.CloseInstanceAfterEndMinutes)
+            ) &&
+            (
+                this.CreatedAt == input.CreatedAt ||
+                this.CreatedAt.Equals(input.CreatedAt)
+            ) &&
+            (
+                this.DeletedAt == input.DeletedAt ||
+                (this.DeletedAt != null &&
+                this.DeletedAt.Equals(input.DeletedAt))
+            ) &&
+            (
+                this.Description == input.Description ||
+                (this.Description != null &&
+                this.Description.Equals(input.Description))
+            ) &&
+            (
+                this.DurationInMs == input.DurationInMs ||
+                this.DurationInMs.Equals(input.DurationInMs)
+            ) &&
+            (
+                this.EndsAt == input.EndsAt ||
+                this.EndsAt.Equals(input.EndsAt)
+            ) &&
+            (
+                this.Featured == input.Featured ||
+                this.Featured.Equals(input.Featured)
+            ) &&
+            (
+                this.GuestEarlyJoinMinutes == input.GuestEarlyJoinMinutes ||
+                this.GuestEarlyJoinMinutes.Equals(input.GuestEarlyJoinMinutes)
+            ) &&
+            (
+                this.HostEarlyJoinMinutes == input.HostEarlyJoinMinutes ||
+                this.HostEarlyJoinMinutes.Equals(input.HostEarlyJoinMinutes)
+            ) &&
+            (
+                this.Id == input.Id ||
+                (this.Id != null &&
+                this.Id.Equals(input.Id))
+            ) &&
+            (
+                this.ImageId == input.ImageId ||
+                (this.ImageId != null &&
+                this.ImageId.Equals(input.ImageId))
+            ) &&
+            (
+                this.ImageUrl == input.ImageUrl ||
+                (this.ImageUrl != null &&
+                this.ImageUrl.Equals(input.ImageUrl))
+            ) &&
+            (
+                this.InterestedUserCount == input.InterestedUserCount ||
+                this.InterestedUserCount.Equals(input.InterestedUserCount)
+            ) &&
+            (
+                this.IsDraft == input.IsDraft ||
+                this.IsDraft.Equals(input.IsDraft)
+            ) &&
+            (
+                this.Languages == input.Languages ||
+                this.Languages != null &&
+                input.Languages != null &&
+                this.Languages.SequenceEqual(input.Languages)
+            ) &&
+            (
+                this.OccurrenceKind == input.OccurrenceKind ||
+                this.OccurrenceKind.Equals(input.OccurrenceKind)
+            ) &&
+            (
+                this.OccurrenceModified == input.OccurrenceModified ||
+                this.OccurrenceModified.Equals(input.OccurrenceModified)
+            ) &&
+            (
+                this.OwnerId == input.OwnerId ||
+                (this.OwnerId != null &&
+                this.OwnerId.Equals(input.OwnerId))
+            ) &&
+            (
+                this.Platforms == input.Platforms ||
+                this.Platforms != null &&
+                input.Platforms != null &&
+                this.Platforms.SequenceEqual(input.Platforms)
+            ) &&
+            (
+                this.Recurrence == input.Recurrence ||
+                (this.Recurrence != null &&
+                this.Recurrence.Equals(input.Recurrence))
+            ) &&
+            (
+                this.RoleIds == input.RoleIds ||
+                this.RoleIds != null &&
+                input.RoleIds != null &&
+                this.RoleIds.SequenceEqual(input.RoleIds)
+            ) &&
+            (
+                this.SeriesId == input.SeriesId ||
+                (this.SeriesId != null &&
+                this.SeriesId.Equals(input.SeriesId))
+            ) &&
+            (
+                this.StartsAt == input.StartsAt ||
+                this.StartsAt.Equals(input.StartsAt)
+            ) &&
+            (
+                this.Tags == input.Tags ||
+                this.Tags != null &&
+                input.Tags != null &&
+                this.Tags.SequenceEqual(input.Tags)
+            ) &&
+            (
+                this.Title == input.Title ||
+                (this.Title != null &&
+                this.Title.Equals(input.Title))
+            ) &&
+            (
+                this.Type == input.Type ||
+                (this.Type != null &&
+                this.Type.Equals(input.Type))
+            ) &&
+            (
+                this.UpdatedAt == input.UpdatedAt ||
+                this.UpdatedAt.Equals(input.UpdatedAt)
+            ) &&
+            (
+                this.UserInterest == input.UserInterest ||
+                (this.UserInterest != null &&
+                this.UserInterest.Equals(input.UserInterest))
+            ) &&
+            (
+                this.UsesInstanceOverflow == input.UsesInstanceOverflow ||
+                this.UsesInstanceOverflow.Equals(input.UsesInstanceOverflow)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.AccessType.GetHashCode();
+            hashCode = (hashCode * 59) + this.Category.GetHashCode();
+            hashCode = (hashCode * 59) + this.CloseInstanceAfterEndMinutes.GetHashCode();
+            hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+            if (this.DeletedAt != null)
+            {
+                hashCode = (hashCode * 59) + this.DeletedAt.GetHashCode();
+            }
+            if (this.Description != null)
+            {
+                hashCode = (hashCode * 59) + this.Description.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.DurationInMs.GetHashCode();
+            hashCode = (hashCode * 59) + this.EndsAt.GetHashCode();
+            hashCode = (hashCode * 59) + this.Featured.GetHashCode();
+            hashCode = (hashCode * 59) + this.GuestEarlyJoinMinutes.GetHashCode();
+            hashCode = (hashCode * 59) + this.HostEarlyJoinMinutes.GetHashCode();
+            if (this.Id != null)
+            {
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
+            }
+            if (this.ImageId != null)
+            {
+                hashCode = (hashCode * 59) + this.ImageId.GetHashCode();
+            }
+            if (this.ImageUrl != null)
+            {
+                hashCode = (hashCode * 59) + this.ImageUrl.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.InterestedUserCount.GetHashCode();
+            hashCode = (hashCode * 59) + this.IsDraft.GetHashCode();
+            if (this.Languages != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Languages);
+            }
+            hashCode = (hashCode * 59) + this.OccurrenceKind.GetHashCode();
+            hashCode = (hashCode * 59) + this.OccurrenceModified.GetHashCode();
+            if (this.OwnerId != null)
+            {
+                hashCode = (hashCode * 59) + this.OwnerId.GetHashCode();
+            }
+            if (this.Platforms != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Platforms);
+            }
+            if (this.Recurrence != null)
+            {
+                hashCode = (hashCode * 59) + this.Recurrence.GetHashCode();
+            }
+            if (this.RoleIds != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.RoleIds);
+            }
+            if (this.SeriesId != null)
+            {
+                hashCode = (hashCode * 59) + this.SeriesId.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.StartsAt.GetHashCode();
+            if (this.Tags != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Tags);
+            }
+            if (this.Title != null)
+            {
+                hashCode = (hashCode * 59) + this.Title.GetHashCode();
+            }
+            if (this.Type != null)
+            {
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
+            if (this.UserInterest != null)
+            {
+                hashCode = (hashCode * 59) + this.UserInterest.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.UsesInstanceOverflow.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        // Title (string) minLength
+        if (this.Title != null && this.Title.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for Title, length must be greater than 1.", new [] { "Title" });
+        }
+
+        yield break;
+    }
+}

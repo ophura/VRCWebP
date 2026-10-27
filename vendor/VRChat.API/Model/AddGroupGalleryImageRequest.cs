@@ -1,0 +1,105 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// AddGroupGalleryImageRequest
+/// </summary>
+[DataContract(Name = "AddGroupGalleryImageRequest")]
+public partial class AddGroupGalleryImageRequest : IEquatable<AddGroupGalleryImageRequest>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AddGroupGalleryImageRequest" /> class.
+    /// </summary>
+
+    protected AddGroupGalleryImageRequest() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AddGroupGalleryImageRequest" /> class.
+    /// </summary>
+    /// <param name="fileId">fileId (required).</param>
+    public AddGroupGalleryImageRequest(string fileId = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.FileId = fileId;
+    }
+
+    /// <summary>
+    /// Gets or Sets FileId
+    /// </summary>
+    [DataMember(Name = "fileId", IsRequired = true, EmitDefaultValue = true)]
+    public string FileId { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class AddGroupGalleryImageRequest {\n");
+        sb.Append("  FileId: ").Append(FileId).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as AddGroupGalleryImageRequest);
+    }
+
+    /// <summary>
+    /// Returns true if AddGroupGalleryImageRequest instances are equal
+    /// </summary>
+    /// <param name="input">Instance of AddGroupGalleryImageRequest to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(AddGroupGalleryImageRequest input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.FileId == input.FileId ||
+                (this.FileId != null &&
+                this.FileId.Equals(input.FileId))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.FileId != null)
+            {
+                hashCode = (hashCode * 59) + this.FileId.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

@@ -1,0 +1,456 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="VRCWebP.App"
+             RequestedThemeVariant="Dark">
+  <Application.Resources>
+    <SolidColorBrush x:Key="ButtonBorderBrushPointerOver">#505050</SolidColorBrush>
+    <SolidColorBrush x:Key="TextControlBorderBrushPointerOver">#555555</SolidColorBrush>
+    <SolidColorBrush x:Key="TextControlBorderBrushDisabled">#353535</SolidColorBrush>
+    <SolidColorBrush x:Key="TextControlBackgroundDisabled">#1C1C1C</SolidColorBrush>
+    <SolidColorBrush x:Key="ComboBoxBackgroundPressed">#373737</SolidColorBrush>
+    <SolidColorBrush x:Key="ComboBoxBorderBrushPressed">#666666</SolidColorBrush>
+    <SolidColorBrush x:Key="ComboBoxBackgroundDisabled">#222222</SolidColorBrush>
+    <SolidColorBrush x:Key="ComboBoxBorderBrushDisabled">#353535</SolidColorBrush>
+    <SolidColorBrush x:Key="ComboBoxBackgroundBorderBrushUnfocused">#888888</SolidColorBrush>
+    <SolidColorBrush x:Key="ComboBoxBackgroundBorderBrushFocused">#888888</SolidColorBrush>
+    <SolidColorBrush x:Key="ComboBoxDropDownBackground">#242424</SolidColorBrush>
+    <SolidColorBrush x:Key="ComboBoxDropDownBorderBrush">#484848</SolidColorBrush>
+    <CornerRadius x:Key="OverlayCornerRadius">10</CornerRadius>
+    <Thickness x:Key="ComboBoxDropdownBorderPadding">5</Thickness>
+    <FontFamily x:Key="ContentControlThemeFontFamily">avares://VRCWebP/Assets/Fonts#Cascadia Code</FontFamily>
+    <ControlTheme x:Key="UnbrandedWindowDecorations" TargetType="WindowDrawnDecorations">
+      <Setter Property="DefaultTitleBarHeight" Value="0" />
+      <Setter Property="DefaultFrameThickness" Value="0" />
+      <Setter Property="DefaultShadowThickness" Value="0" />
+      <Setter Property="Template">
+        <WindowDrawnDecorationsTemplate>
+          <WindowDrawnDecorationsContent />
+        </WindowDrawnDecorationsTemplate>
+      </Setter>
+    </ControlTheme>
+    <ControlTheme x:Key="ImageUseHeader" TargetType="ToggleButton">
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border Name="HeaderSurface" Background="#2A2A2A" BorderBrush="#404040" BorderThickness="1" CornerRadius="9" Padding="12,9">
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+              <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}" Foreground="#EBEBEB" VerticalAlignment="Center" />
+              <PathIcon Name="Chevron" Grid.Column="1" Width="12" Height="8" Foreground="#BFBFBF" Data="M0,0 L6,6 12,0 11,0 6,5 1,0 Z" RenderTransform="rotate(0deg)" RenderTransformOrigin="50%,50%">
+                <PathIcon.Transitions>
+                  <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+                  </Transitions>
+                </PathIcon.Transitions>
+              </PathIcon>
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter>
+      <Style Selector="^:pointerover /template/ Border#HeaderSurface">
+        <Setter Property="Background" Value="#414141" />
+        <Setter Property="BorderBrush" Value="#505050" />
+      </Style>
+      <Style Selector="^:pressed /template/ Border#HeaderSurface">
+        <Setter Property="Background" Value="#505050" />
+      </Style>
+      <Style Selector="^:checked /template/ PathIcon#Chevron">
+        <Setter Property="RenderTransform" Value="rotate(180deg)" />
+      </Style>
+      <Style Selector="^:disabled /template/ PathIcon#Chevron">
+        <Setter Property="Opacity" Value="0.5" />
+      </Style>
+    </ControlTheme>
+    <ControlTheme x:Key="ImageUseExpander" TargetType="Expander">
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border Background="#242424" BorderBrush="#3B3B3B" BorderThickness="1" CornerRadius="12" Padding="8">
+            <StackPanel>
+              <ToggleButton Name="ExpanderHeader" Theme="{StaticResource ImageUseHeader}" Content="{TemplateBinding Header}" IsChecked="{TemplateBinding IsExpanded, Mode=TwoWay}" ToolTip.Tip="Choose where to use the uploaded image" />
+              <Border Name="ExpanderContent" ClipToBounds="True" Padding="4,12,4,4">
+                <Border.Transitions>
+                  <Transitions>
+                    <DoubleTransition Property="MaxHeight" Duration="0:0:0.2" />
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+                  </Transitions>
+                </Border.Transitions>
+                <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}" />
+              </Border>
+            </StackPanel>
+          </Border>
+        </ControlTemplate>
+      </Setter>
+    </ControlTheme>
+    <ControlTheme x:Key="NumberSpinButton" TargetType="RepeatButton">
+      <Setter Property="Template">
+        <ControlTemplate>
+          <ContentPresenter Name="PART_ContentPresenter"
+                            Background="{TemplateBinding Background}"
+                            Foreground="{TemplateBinding Foreground}" CornerRadius="{TemplateBinding CornerRadius}"
+                            BorderBrush="#404040" BorderThickness="1,0,0,0"
+                            Content="{TemplateBinding Content}"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        </ControlTemplate>
+      </Setter>
+    </ControlTheme>
+    <ControlTheme x:Key="NumberSpinner" TargetType="ButtonSpinner">
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Grid>
+            <Border Background="{TemplateBinding Background}" CornerRadius="9" />
+            <Grid ColumnDefinitions="*,32,32" Margin="1">
+              <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}"
+                                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+              <RepeatButton Name="PART_IncreaseButton" Grid.Column="1" CornerRadius="0" Theme="{StaticResource NumberSpinButton}" Classes="number-spin"
+                            Background="#1C1C1C" Foreground="{TemplateBinding Foreground}"
+                            Focusable="False" IsTabStop="False">
+                <PathIcon Width="14" Height="7" Data="M0,7 L7,0 14,7 13,8 7,2 1,8 Z" />
+              </RepeatButton>
+              <RepeatButton Name="PART_DecreaseButton" Grid.Column="2" CornerRadius="0,8,8,0" Theme="{StaticResource NumberSpinButton}" Classes="number-spin"
+                            Background="#1C1C1C" Foreground="{TemplateBinding Foreground}"
+                            Focusable="False" IsTabStop="False">
+                <PathIcon Width="14" Height="7" Data="M0,1 L7,8 14,1 13,0 7,6 1,0 Z" />
+              </RepeatButton>
+            </Grid>
+            <Border Name="NumberOutline" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="9"
+                    IsHitTestVisible="False" />
+          </Grid>
+        </ControlTemplate>
+      </Setter>
+    </ControlTheme>
+  </Application.Resources>
+  <Application.Styles>
+    <Style Selector=":is(Control)">
+      <Setter Property="ToolTip.ServiceEnabled" Value="False" />
+    </Style>
+    <FluentTheme>
+      <FluentTheme.Palettes>
+        <ColorPaletteResources x:Key="Dark" Accent="#BBBBBB" ErrorText="#CCCCCC" />
+      </FluentTheme.Palettes>
+    </FluentTheme>
+    <Style Selector="Window">
+      <Setter Property="WindowDecorationsTheme" Value="{StaticResource UnbrandedWindowDecorations}" />
+      <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}" />
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="Foreground" Value="#EBEBEB" />
+    </Style>
+    <Style Selector="ToolTip">
+      <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}" />
+    </Style>
+    <Style Selector="NumericUpDown, ComboBox, TextBox, Slider">
+      <Setter Property="ToolTip.ShowOnDisabled" Value="True" />
+    </Style>
+    <Style Selector="Border">
+      <Setter Property="Transitions">
+        <Transitions>
+          <BrushTransition Property="Background" Duration="0:0:0.2" />
+          <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
+          <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+        </Transitions>
+      </Setter>
+    </Style>
+    <Style Selector="ContentPresenter">
+      <Setter Property="Transitions">
+        <Transitions>
+          <BrushTransition Property="Background" Duration="0:0:0.2" />
+          <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
+        </Transitions>
+      </Setter>
+    </Style>
+    <Style Selector="Button /template/ ContentPresenter#PART_ContentPresenter, RepeatButton /template/ ContentPresenter#PART_ContentPresenter, ToggleButton /template/ ContentPresenter#PART_ContentPresenter, ComboBoxItem /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Transitions">
+        <Transitions>
+          <BrushTransition Property="Background" Duration="0:0:0.2" />
+          <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
+          <BrushTransition Property="Foreground" Duration="0:0:0.2" />
+        </Transitions>
+      </Setter>
+    </Style>
+    <Style Selector="Button">
+      <Setter Property="CornerRadius" Value="10" />
+      <Setter Property="MinHeight" Value="38" />
+      <Setter Property="Padding" Value="14,8" />
+      <Setter Property="Background" Value="#2A2A2A" />
+      <Setter Property="BorderBrush" Value="#404040" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+    <Style Selector="Button:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="#414141" />
+    </Style>
+    <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="BorderBrush" Value="#505050" />
+    </Style>
+    <Style Selector="Button:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#505050" />
+      <Setter Property="BorderBrush" Value="#606060" />
+    </Style>
+    <Style Selector="Button:disabled /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#262626" />
+      <Setter Property="BorderBrush" Value="#353535" />
+      <Setter Property="Foreground" Value="#717171" />
+    </Style>
+    <Style Selector="Button.primary">
+      <Setter Property="Background" Value="#AAAAAA" />
+      <Setter Property="Foreground" Value="#151515" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style Selector="Button.primary:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="#C4C4C4" />
+      <Setter Property="Foreground" Value="#151515" />
+    </Style>
+    <Style Selector="Button.primary /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Foreground" Value="#151515" />
+    </Style>
+    <Style Selector="Button.primary:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#909090" />
+      <Setter Property="Foreground" Value="#151515" />
+    </Style>
+    <Style Selector="Button.primary:disabled /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#424242" />
+      <Setter Property="Foreground" Value="#888888" />
+    </Style>
+    <Style Selector="Button.icon">
+      <Setter Property="Width" Value="40" />
+      <Setter Property="Height" Value="40" />
+      <Setter Property="Padding" Value="10" />
+    </Style>
+    <Style Selector="Button.chrome">
+      <Setter Property="Width" Value="44" />
+      <Setter Property="Height" Value="40" />
+      <Setter Property="MinHeight" Value="0" />
+      <Setter Property="Padding" Value="13" />
+      <Setter Property="Background" Value="#151515" />
+      <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    <Style Selector="Button.close:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="#565656" />
+    </Style>
+    <Style Selector="TextBox">
+      <Setter Property="Transitions">
+        <Transitions>
+          <BrushTransition Property="Foreground" Duration="0:0:0.2" />
+          <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+        </Transitions>
+      </Setter>
+      <Setter Property="CornerRadius" Value="9" />
+      <Setter Property="Background" Value="#1C1C1C" />
+      <Setter Property="BorderBrush" Value="#404040" />
+      <Setter Property="MinHeight" Value="38" />
+      <Setter Property="SelectionBrush" Value="#666666" />
+      <Setter Property="SelectionForegroundBrush" Value="#FFFFFF" />
+    </Style>
+    <Style Selector="TextBlock.announcement">
+      <Setter Property="Transitions">
+        <Transitions>
+          <BrushTransition Property="Foreground" Duration="0:0:0.2" />
+        </Transitions>
+      </Setter>
+    </Style>
+    <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+      <Setter Property="BorderBrush" Value="#555555" />
+    </Style>
+    <Style Selector="TextBox:disabled /template/ Border#PART_BorderElement">
+      <Setter Property="Background" Value="#1C1C1C" />
+      <Setter Property="BorderBrush" Value="#353535" />
+    </Style>
+    <Style Selector="NumericUpDown">
+      <Setter Property="CornerRadius" Value="9" />
+      <Setter Property="Background" Value="#1C1C1C" />
+      <Setter Property="BorderBrush" Value="#404040" />
+      <Setter Property="MinHeight" Value="38" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <DataValidationErrors>
+            <ButtonSpinner Name="PART_Spinner" Theme="{StaticResource NumberSpinner}" IsTabStop="False"
+                           Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                           Foreground="{TemplateBinding Foreground}" AllowSpin="{TemplateBinding AllowSpin}">
+              <TextBox Name="PART_TextBox" Background="#001C1C1C" BorderThickness="0"
+                       MinWidth="0" MinHeight="0" Padding="10,0" VerticalContentAlignment="Center"
+                       Foreground="{TemplateBinding Foreground}" IsReadOnly="{TemplateBinding IsReadOnly}"
+                       Text="{TemplateBinding Text}" AcceptsReturn="False" TextWrapping="NoWrap" />
+            </ButtonSpinner>
+          </DataValidationErrors>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+    <Style Selector="NumericUpDown /template/ TextBox#PART_TextBox">
+      <Setter Property="Margin" Value="0" />
+      <Setter Property="MinHeight" Value="0" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="Background" Value="#001C1C1C" />
+      <Setter Property="FocusAdorner" Value="{x:Null}" />
+    </Style>
+    <Style Selector="NumericUpDown /template/ TextBox#PART_TextBox /template/ Border#PART_BorderElement">
+      <Setter Property="Background" Value="#001C1C1C" />
+      <Setter Property="BorderBrush" Value="#001C1C1C" />
+      <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    <Style Selector="NumericUpDown /template/ TextBox#PART_TextBox:focus /template/ Border#PART_BorderElement">
+      <Setter Property="Background" Value="#001C1C1C" />
+      <Setter Property="BorderBrush" Value="#001C1C1C" />
+      <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    <Style Selector="NumericUpDown /template/ TextBox#PART_TextBox:pointerover /template/ Border#PART_BorderElement">
+      <Setter Property="Background" Value="#001C1C1C" />
+      <Setter Property="BorderBrush" Value="#001C1C1C" />
+    </Style>
+    <Style Selector="NumericUpDown /template/ TextBox#PART_TextBox:disabled /template/ Border#PART_BorderElement">
+      <Setter Property="Background" Value="#001C1C1C" />
+      <Setter Property="BorderBrush" Value="#001C1C1C" />
+    </Style>
+    <Style Selector=":is(Button).number-spin /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#1C1C1C" />
+    </Style>
+    <Style Selector=":is(Button).number-spin:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#353535" />
+    </Style>
+    <Style Selector=":is(Button).number-spin:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#484848" />
+    </Style>
+    <Style Selector=":is(Button).number-spin:disabled /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#1C1C1C" />
+      <Setter Property="Foreground" Value="#606060" />
+    </Style>
+    <Style Selector="ComboBox">
+      <Setter Property="CornerRadius" Value="9" />
+      <Setter Property="Background" Value="#1C1C1C" />
+      <Setter Property="BorderBrush" Value="#404040" />
+      <Setter Property="MinHeight" Value="38" />
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+    </Style>
+    <Style Selector="ComboBox /template/ ContentControl#ContentPresenter, ComboBox /template/ TextBlock#PlaceholderTextBlock, ComboBox /template/ PathIcon#DropDownGlyph">
+      <Setter Property="Transitions">
+        <Transitions>
+          <BrushTransition Property="TextElement.Foreground" Duration="0:0:0.2" />
+        </Transitions>
+      </Setter>
+    </Style>
+    <!-- Animate rendered parts once. Animating inherited text or its parent as well
+         restarts descendant transitions on every frame. -->
+    <Style Selector="ComboBox /template/ Border#HighlightBackground">
+      <Setter Property="IsVisible" Value="True" />
+      <Setter Property="IsHitTestVisible" Value="False" />
+      <Setter Property="Background" Value="#001C1C1C" />
+      <Setter Property="Opacity" Value="0" />
+    </Style>
+    <Style Selector="ComboBox:focus-visible /template/ Border#HighlightBackground">
+      <Setter Property="Opacity" Value="1" />
+      <Setter Property="BorderBrush" Value="#888888" />
+    </Style>
+    <Style Selector="ComboBox /template/ Border#HighlightBackground">
+      <Setter Property="BorderBrush" Value="#888888" />
+    </Style>
+    <Style Selector="ComboBox:pressed /template/ Border#Background">
+      <Setter Property="Background" Value="#373737" />
+      <Setter Property="BorderBrush" Value="#666666" />
+    </Style>
+    <Style Selector="ComboBox:disabled /template/ Border#Background">
+      <Setter Property="Background" Value="#222222" />
+      <Setter Property="BorderBrush" Value="#353535" />
+    </Style>
+    <Style Selector="Border#PopupBorder">
+      <Setter Property="Background" Value="#242424" />
+      <Setter Property="BorderBrush" Value="#484848" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="10" />
+      <Setter Property="Padding" Value="5" />
+      <Setter Property="ClipToBounds" Value="True" />
+    </Style>
+    <Style Selector="ComboBoxItem">
+      <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}" />
+      <Setter Property="CornerRadius" Value="7" />
+      <Setter Property="MinHeight" Value="36" />
+      <Setter Property="Padding" Value="10,8" />
+      <Setter Property="Background" Value="#242424" />
+      <Setter Property="Foreground" Value="#EBEBEB" />
+    </Style>
+    <Style Selector="ComboBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#3B3B3B" />
+    </Style>
+    <Style Selector="ComboBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#444444" />
+    </Style>
+    <Style Selector="ComboBoxItem:selected:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#505050" />
+    </Style>
+    <Style Selector="ComboBoxItem:pressed /template/ ContentPresenter#PART_ContentPresenter, ComboBoxItem:selected:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#585858" />
+    </Style>
+    <Style Selector="ComboBoxItem:disabled /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#242424" />
+      <Setter Property="Foreground" Value="#717171" />
+    </Style>
+    <Style Selector="TabItem /template/ Border#PART_SelectedPipe">
+      <Setter Property="IsVisible" Value="True" />
+      <Setter Property="Opacity" Value="0" />
+    </Style>
+    <Style Selector="TabItem /template/ Border#PART_LayoutRoot">
+      <Setter Property="Transitions">
+        <Transitions>
+          <BrushTransition Property="Background" Duration="0:0:0.2" />
+          <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
+        </Transitions>
+      </Setter>
+    </Style>
+    <Style Selector="TabItem /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Foreground" Value="#BFBFBF" />
+      <Setter Property="Transitions">
+        <Transitions>
+          <BrushTransition Property="Foreground" Duration="0:0:0.2" />
+        </Transitions>
+      </Setter>
+    </Style>
+    <Style Selector="TabItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Foreground" Value="#EBEBEB" />
+    </Style>
+    <Style Selector="TabItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Foreground" Value="#FFFFFF" />
+    </Style>
+    <Style Selector="TabItem:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Foreground" Value="#CCCCCC" />
+    </Style>
+    <Style Selector="TabItem:disabled /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Foreground" Value="#717171" />
+    </Style>
+    <Style Selector="TabItem:selected /template/ Border#PART_SelectedPipe">
+      <Setter Property="Opacity" Value="1" />
+    </Style>
+    <Style Selector="ToolTip">
+      <Setter Property="Background" Value="#2D2D2D" />
+      <Setter Property="Foreground" Value="#F2F2F2" />
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="IsHitTestVisible" Value="False" />
+      <Setter Property="MaxWidth" Value="360" />
+    </Style>
+    <Style Selector="Expander">
+      <Setter Property="Theme" Value="{StaticResource ImageUseExpander}" />
+    </Style>
+    <Style Selector="TabControl">
+      <Setter Property="PageTransition">
+        <CrossFade Duration="0:0:0.2" />
+      </Setter>
+    </Style>
+    <Style Selector="Slider /template/ Thumb, :is(Button), ComboBox, NumericUpDown">
+      <Setter Property="Transitions">
+        <Transitions>
+          <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+          <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+        </Transitions>
+      </Setter>
+    </Style>
+    <Style Selector="ProgressBar">
+      <Setter Property="Foreground" Value="#AAAAAA" />
+      <Setter Property="Background" Value="#373737" />
+      <Setter Property="Height" Value="4" />
+      <Setter Property="CornerRadius" Value="2" />
+    </Style>
+    <Style Selector="ProgressBar /template/ Panel#DeterminateRoot, ProgressBar /template/ Panel#IndeterminateRoot, ScrollViewer /template/ Panel#PART_ScrollBarsSeparator">
+      <Setter Property="Transitions">
+        <Transitions>
+          <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+        </Transitions>
+      </Setter>
+    </Style>
+  </Application.Styles>
+</Application>

@@ -1,0 +1,218 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// FileVersionUploadStatus
+/// </summary>
+[DataContract(Name = "FileVersionUploadStatus")]
+public partial class FileVersionUploadStatus : IEquatable<FileVersionUploadStatus>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="FileVersionUploadStatus" /> class.
+    /// </summary>
+
+    protected FileVersionUploadStatus() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="FileVersionUploadStatus" /> class.
+    /// </summary>
+    /// <param name="etags">Unknown (required).</param>
+    /// <param name="fileName">fileName (required).</param>
+    /// <param name="maxParts">maxParts (required).</param>
+    /// <param name="nextPartNumber">nextPartNumber (required).</param>
+    /// <param name="parts">parts (required).</param>
+    /// <param name="uploadId">uploadId (required).</param>
+    public FileVersionUploadStatus(List<object> etags = default, string fileName = default, int maxParts = default, int nextPartNumber = default, List<object> parts = default, string uploadId = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Etags = etags;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.FileName = fileName;
+        this.MaxParts = maxParts;
+        this.NextPartNumber = nextPartNumber;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Parts = parts;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.UploadId = uploadId;
+    }
+
+    /// <summary>
+    /// Unknown
+    /// </summary>
+    /// <value>Unknown</value>
+    [DataMember(Name = "etags", IsRequired = true, EmitDefaultValue = true)]
+    public List<object> Etags { get; set; }
+
+    /// <summary>
+    /// Gets or Sets FileName
+    /// </summary>
+    [DataMember(Name = "fileName", IsRequired = true, EmitDefaultValue = true)]
+    public string FileName { get; set; }
+
+    /// <summary>
+    /// Gets or Sets MaxParts
+    /// </summary>
+    [DataMember(Name = "maxParts", IsRequired = true, EmitDefaultValue = true)]
+    public int MaxParts { get; set; }
+
+    /// <summary>
+    /// Gets or Sets NextPartNumber
+    /// </summary>
+    [DataMember(Name = "nextPartNumber", IsRequired = true, EmitDefaultValue = true)]
+    public int NextPartNumber { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Parts
+    /// </summary>
+    [DataMember(Name = "parts", IsRequired = true, EmitDefaultValue = true)]
+    public List<object> Parts { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UploadId
+    /// </summary>
+    [DataMember(Name = "uploadId", IsRequired = true, EmitDefaultValue = true)]
+    public string UploadId { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class FileVersionUploadStatus {\n");
+        sb.Append("  Etags: ").Append(Etags).Append('\n');
+        sb.Append("  FileName: ").Append(FileName).Append('\n');
+        sb.Append("  MaxParts: ").Append(MaxParts).Append('\n');
+        sb.Append("  NextPartNumber: ").Append(NextPartNumber).Append('\n');
+        sb.Append("  Parts: ").Append(Parts).Append('\n');
+        sb.Append("  UploadId: ").Append(UploadId).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as FileVersionUploadStatus);
+    }
+
+    /// <summary>
+    /// Returns true if FileVersionUploadStatus instances are equal
+    /// </summary>
+    /// <param name="input">Instance of FileVersionUploadStatus to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(FileVersionUploadStatus input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Etags == input.Etags ||
+                this.Etags != null &&
+                input.Etags != null &&
+                this.Etags.SequenceEqual(input.Etags)
+            ) &&
+            (
+                this.FileName == input.FileName ||
+                (this.FileName != null &&
+                this.FileName.Equals(input.FileName))
+            ) &&
+            (
+                this.MaxParts == input.MaxParts ||
+                this.MaxParts.Equals(input.MaxParts)
+            ) &&
+            (
+                this.NextPartNumber == input.NextPartNumber ||
+                this.NextPartNumber.Equals(input.NextPartNumber)
+            ) &&
+            (
+                this.Parts == input.Parts ||
+                this.Parts != null &&
+                input.Parts != null &&
+                this.Parts.SequenceEqual(input.Parts)
+            ) &&
+            (
+                this.UploadId == input.UploadId ||
+                (this.UploadId != null &&
+                this.UploadId.Equals(input.UploadId))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.Etags != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Etags);
+            }
+            if (this.FileName != null)
+            {
+                hashCode = (hashCode * 59) + this.FileName.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.MaxParts.GetHashCode();
+            hashCode = (hashCode * 59) + this.NextPartNumber.GetHashCode();
+            if (this.Parts != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Parts);
+            }
+            if (this.UploadId != null)
+            {
+                hashCode = (hashCode * 59) + this.UploadId.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        // FileName (string) minLength
+        if (this.FileName != null && this.FileName.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for FileName, length must be greater than 1.", new [] { "FileName" });
+        }
+
+        // MaxParts (int) minimum
+        if (this.MaxParts < (int)1)
+        {
+            yield return new ValidationResult("Invalid value for MaxParts, must be a value greater than or equal to 1.", new [] { "MaxParts" });
+        }
+
+        // NextPartNumber (int) minimum
+        if (this.NextPartNumber < (int)0)
+        {
+            yield return new ValidationResult("Invalid value for NextPartNumber, must be a value greater than or equal to 0.", new [] { "NextPartNumber" });
+        }
+
+        // UploadId (string) minLength
+        if (this.UploadId != null && this.UploadId.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for UploadId, length must be greater than 1.", new [] { "UploadId" });
+        }
+
+        yield break;
+    }
+}

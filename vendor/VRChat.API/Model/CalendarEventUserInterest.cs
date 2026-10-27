@@ -1,0 +1,123 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// The currently logged in user&#39;s interest in an event.
+/// </summary>
+[DataContract(Name = "CalendarEventUserInterest")]
+public partial class CalendarEventUserInterest : IEquatable<CalendarEventUserInterest>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CalendarEventUserInterest" /> class.
+    /// </summary>
+    /// <param name="createdAt">createdAt.</param>
+    /// <param name="isFollowing">isFollowing.</param>
+    /// <param name="updatedAt">updatedAt.</param>
+    public CalendarEventUserInterest(DateTime createdAt = default, bool isFollowing = default, DateTime updatedAt = default)
+    {
+        this.CreatedAt = createdAt;
+        this.IsFollowing = isFollowing;
+        this.UpdatedAt = updatedAt;
+    }
+
+    /// <summary>
+    /// Gets or Sets CreatedAt
+    /// </summary>
+    [DataMember(Name = "createdAt", EmitDefaultValue = false)]
+    public DateTime CreatedAt { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IsFollowing
+    /// </summary>
+    [DataMember(Name = "isFollowing", EmitDefaultValue = true)]
+    public bool IsFollowing { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UpdatedAt
+    /// </summary>
+    [DataMember(Name = "updatedAt", EmitDefaultValue = false)]
+    public DateTime UpdatedAt { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class CalendarEventUserInterest {\n");
+        sb.Append("  CreatedAt: ").Append(CreatedAt).Append('\n');
+        sb.Append("  IsFollowing: ").Append(IsFollowing).Append('\n');
+        sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as CalendarEventUserInterest);
+    }
+
+    /// <summary>
+    /// Returns true if CalendarEventUserInterest instances are equal
+    /// </summary>
+    /// <param name="input">Instance of CalendarEventUserInterest to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(CalendarEventUserInterest input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.CreatedAt == input.CreatedAt ||
+                this.CreatedAt.Equals(input.CreatedAt)
+            ) &&
+            (
+                this.IsFollowing == input.IsFollowing ||
+                this.IsFollowing.Equals(input.IsFollowing)
+            ) &&
+            (
+                this.UpdatedAt == input.UpdatedAt ||
+                this.UpdatedAt.Equals(input.UpdatedAt)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+            hashCode = (hashCode * 59) + this.IsFollowing.GetHashCode();
+            hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

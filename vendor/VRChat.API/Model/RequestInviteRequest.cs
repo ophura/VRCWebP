@@ -1,0 +1,107 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// RequestInviteRequest
+/// </summary>
+[DataContract(Name = "RequestInviteRequest")]
+public partial class RequestInviteRequest : IEquatable<RequestInviteRequest>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="RequestInviteRequest" /> class.
+    /// </summary>
+    /// <param name="requestSlot">requestSlot.</param>
+    public RequestInviteRequest(int requestSlot = default)
+    {
+        this.RequestSlot = requestSlot;
+    }
+
+    /// <summary>
+    /// Gets or Sets RequestSlot
+    /// </summary>
+    [DataMember(Name = "requestSlot", EmitDefaultValue = false)]
+    public int RequestSlot { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class RequestInviteRequest {\n");
+        sb.Append("  RequestSlot: ").Append(RequestSlot).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as RequestInviteRequest);
+    }
+
+    /// <summary>
+    /// Returns true if RequestInviteRequest instances are equal
+    /// </summary>
+    /// <param name="input">Instance of RequestInviteRequest to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(RequestInviteRequest input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.RequestSlot == input.RequestSlot ||
+                this.RequestSlot.Equals(input.RequestSlot)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.RequestSlot.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        // RequestSlot (int) maximum
+        if (this.RequestSlot > (int)11)
+        {
+            yield return new ValidationResult("Invalid value for RequestSlot, must be a value less than or equal to 11.", new [] { "RequestSlot" });
+        }
+
+        // RequestSlot (int) minimum
+        if (this.RequestSlot < (int)0)
+        {
+            yield return new ValidationResult("Invalid value for RequestSlot, must be a value greater than or equal to 0.", new [] { "RequestSlot" });
+        }
+
+        yield break;
+    }
+}

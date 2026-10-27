@@ -1,0 +1,127 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// UpdateInventoryItemRequest
+/// </summary>
+[DataContract(Name = "UpdateInventoryItemRequest")]
+public partial class UpdateInventoryItemRequest : IEquatable<UpdateInventoryItemRequest>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UpdateInventoryItemRequest" /> class.
+    /// </summary>
+    /// <param name="isArchived">isArchived.</param>
+    /// <param name="isSeen">isSeen.</param>
+    /// <param name="userAttributes">userAttributes.</param>
+    public UpdateInventoryItemRequest(bool isArchived = default, bool isSeen = default, InventoryUserAttributes userAttributes = default)
+    {
+        this.IsArchived = isArchived;
+        this.IsSeen = isSeen;
+        this.UserAttributes = userAttributes;
+    }
+
+    /// <summary>
+    /// Gets or Sets IsArchived
+    /// </summary>
+    [DataMember(Name = "isArchived", EmitDefaultValue = true)]
+    public bool IsArchived { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IsSeen
+    /// </summary>
+    [DataMember(Name = "isSeen", EmitDefaultValue = true)]
+    public bool IsSeen { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UserAttributes
+    /// </summary>
+    [DataMember(Name = "userAttributes", EmitDefaultValue = false)]
+    public InventoryUserAttributes UserAttributes { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class UpdateInventoryItemRequest {\n");
+        sb.Append("  IsArchived: ").Append(IsArchived).Append('\n');
+        sb.Append("  IsSeen: ").Append(IsSeen).Append('\n');
+        sb.Append("  UserAttributes: ").Append(UserAttributes).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as UpdateInventoryItemRequest);
+    }
+
+    /// <summary>
+    /// Returns true if UpdateInventoryItemRequest instances are equal
+    /// </summary>
+    /// <param name="input">Instance of UpdateInventoryItemRequest to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(UpdateInventoryItemRequest input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.IsArchived == input.IsArchived ||
+                this.IsArchived.Equals(input.IsArchived)
+            ) &&
+            (
+                this.IsSeen == input.IsSeen ||
+                this.IsSeen.Equals(input.IsSeen)
+            ) &&
+            (
+                this.UserAttributes == input.UserAttributes ||
+                (this.UserAttributes != null &&
+                this.UserAttributes.Equals(input.UserAttributes))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.IsArchived.GetHashCode();
+            hashCode = (hashCode * 59) + this.IsSeen.GetHashCode();
+            if (this.UserAttributes != null)
+            {
+                hashCode = (hashCode * 59) + this.UserAttributes.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

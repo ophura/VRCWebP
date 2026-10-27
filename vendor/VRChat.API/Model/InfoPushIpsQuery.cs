@@ -1,0 +1,117 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// InfoPushIpsQuery
+/// </summary>
+[DataContract(Name = "InfoPushIpsQuery")]
+public partial class InfoPushIpsQuery : IEquatable<InfoPushIpsQuery>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InfoPushIpsQuery" /> class.
+    /// </summary>
+    /// <param name="include">include.</param>
+    /// <param name="require">require.</param>
+    public InfoPushIpsQuery(string include = default, string require = default)
+    {
+        this.Include = include;
+        this.Require = require;
+    }
+
+    /// <summary>
+    /// Gets or Sets Include
+    /// </summary>
+    [DataMember(Name = "include", EmitDefaultValue = false)]
+    public string Include { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Require
+    /// </summary>
+    [DataMember(Name = "require", EmitDefaultValue = false)]
+    public string Require { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class InfoPushIpsQuery {\n");
+        sb.Append("  Include: ").Append(Include).Append('\n');
+        sb.Append("  Require: ").Append(Require).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as InfoPushIpsQuery);
+    }
+
+    /// <summary>
+    /// Returns true if InfoPushIpsQuery instances are equal
+    /// </summary>
+    /// <param name="input">Instance of InfoPushIpsQuery to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(InfoPushIpsQuery input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Include == input.Include ||
+                (this.Include != null &&
+                this.Include.Equals(input.Include))
+            ) &&
+            (
+                this.Require == input.Require ||
+                (this.Require != null &&
+                this.Require.Equals(input.Require))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.Include != null)
+            {
+                hashCode = (hashCode * 59) + this.Include.GetHashCode();
+            }
+            if (this.Require != null)
+            {
+                hashCode = (hashCode * 59) + this.Require.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

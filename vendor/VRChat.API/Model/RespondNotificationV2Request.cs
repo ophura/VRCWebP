@@ -1,0 +1,124 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// RespondNotificationV2Request
+/// </summary>
+[DataContract(Name = "RespondNotificationV2Request")]
+public partial class RespondNotificationV2Request : IEquatable<RespondNotificationV2Request>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="RespondNotificationV2Request" /> class.
+    /// </summary>
+
+    protected RespondNotificationV2Request() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="RespondNotificationV2Request" /> class.
+    /// </summary>
+    /// <param name="responseData">responseData (default to &quot;&quot;).</param>
+    /// <param name="responseType">responseType (required).</param>
+    public RespondNotificationV2Request(string responseData = @"", string responseType = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ResponseType = responseType;
+        // use default value if no "responseData" provided
+        this.ResponseData = responseData ?? @"";
+    }
+
+    /// <summary>
+    /// Gets or Sets ResponseData
+    /// </summary>
+    [DataMember(Name = "responseData", EmitDefaultValue = false)]
+    public string ResponseData { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ResponseType
+    /// </summary>
+    [DataMember(Name = "responseType", IsRequired = true, EmitDefaultValue = true)]
+    public string ResponseType { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class RespondNotificationV2Request {\n");
+        sb.Append("  ResponseData: ").Append(ResponseData).Append('\n');
+        sb.Append("  ResponseType: ").Append(ResponseType).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as RespondNotificationV2Request);
+    }
+
+    /// <summary>
+    /// Returns true if RespondNotificationV2Request instances are equal
+    /// </summary>
+    /// <param name="input">Instance of RespondNotificationV2Request to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(RespondNotificationV2Request input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.ResponseData == input.ResponseData ||
+                (this.ResponseData != null &&
+                this.ResponseData.Equals(input.ResponseData))
+            ) &&
+            (
+                this.ResponseType == input.ResponseType ||
+                (this.ResponseType != null &&
+                this.ResponseType.Equals(input.ResponseType))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.ResponseData != null)
+            {
+                hashCode = (hashCode * 59) + this.ResponseData.GetHashCode();
+            }
+            if (this.ResponseType != null)
+            {
+                hashCode = (hashCode * 59) + this.ResponseType.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

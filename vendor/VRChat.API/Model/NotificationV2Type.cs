@@ -1,0 +1,149 @@
+
+using System.Runtime.Serialization;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// Defines NotificationV2Type
+/// </summary>
+
+public enum NotificationV2Type
+{
+    /// <summary>
+    /// Enum AvatarreviewFailure for value: avatarreview.failure
+    /// </summary>
+    [EnumMember(Value = "avatarreview.failure")]
+    AvatarreviewFailure = 1,
+
+    /// <summary>
+    /// Enum AvatarreviewSuccess for value: avatarreview.success
+    /// </summary>
+    [EnumMember(Value = "avatarreview.success")]
+    AvatarreviewSuccess = 2,
+
+    /// <summary>
+    /// Enum BadgeEarned for value: badge.earned
+    /// </summary>
+    [EnumMember(Value = "badge.earned")]
+    BadgeEarned = 3,
+
+    /// <summary>
+    /// Enum Boop for value: boop
+    /// </summary>
+    [EnumMember(Value = "boop")]
+    Boop = 4,
+
+    /// <summary>
+    /// Enum EconomyAlert for value: economy.alert
+    /// </summary>
+    [EnumMember(Value = "economy.alert")]
+    EconomyAlert = 5,
+
+    /// <summary>
+    /// Enum EconomyReceivedGift for value: economy.received.gift
+    /// </summary>
+    [EnumMember(Value = "economy.received.gift")]
+    EconomyReceivedGift = 6,
+
+    /// <summary>
+    /// Enum EventAnnouncement for value: event.announcement
+    /// </summary>
+    [EnumMember(Value = "event.announcement")]
+    EventAnnouncement = 7,
+
+    /// <summary>
+    /// Enum GroupAnnouncement for value: group.announcement
+    /// </summary>
+    [EnumMember(Value = "group.announcement")]
+    GroupAnnouncement = 8,
+
+    /// <summary>
+    /// Enum GroupEventCreated for value: group.event.created
+    /// </summary>
+    [EnumMember(Value = "group.event.created")]
+    GroupEventCreated = 9,
+
+    /// <summary>
+    /// Enum GroupEventStarting for value: group.event.starting
+    /// </summary>
+    [EnumMember(Value = "group.event.starting")]
+    GroupEventStarting = 10,
+
+    /// <summary>
+    /// Enum GroupInformative for value: group.informative
+    /// </summary>
+    [EnumMember(Value = "group.informative")]
+    GroupInformative = 11,
+
+    /// <summary>
+    /// Enum GroupInvite for value: group.invite
+    /// </summary>
+    [EnumMember(Value = "group.invite")]
+    GroupInvite = 12,
+
+    /// <summary>
+    /// Enum GroupJoinRequest for value: group.joinRequest
+    /// </summary>
+    [EnumMember(Value = "group.joinRequest")]
+    GroupJoinRequest = 13,
+
+    /// <summary>
+    /// Enum GroupPost for value: group.post
+    /// </summary>
+    [EnumMember(Value = "group.post")]
+    GroupPost = 14,
+
+    /// <summary>
+    /// Enum GroupTransfer for value: group.transfer
+    /// </summary>
+    [EnumMember(Value = "group.transfer")]
+    GroupTransfer = 15,
+
+    /// <summary>
+    /// Enum InviteInstanceContentGated for value: invite.instance.contentGated
+    /// </summary>
+    [EnumMember(Value = "invite.instance.contentGated")]
+    InviteInstanceContentGated = 16,
+
+    /// <summary>
+    /// Enum ModerationContentrestriction for value: moderation.contentrestriction
+    /// </summary>
+    [EnumMember(Value = "moderation.contentrestriction")]
+    ModerationContentrestriction = 17,
+
+    /// <summary>
+    /// Enum ModerationNotice for value: moderation.notice
+    /// </summary>
+    [EnumMember(Value = "moderation.notice")]
+    ModerationNotice = 18,
+
+    /// <summary>
+    /// Enum ModerationReportClosed for value: moderation.report.closed
+    /// </summary>
+    [EnumMember(Value = "moderation.report.closed")]
+    ModerationReportClosed = 19,
+
+    /// <summary>
+    /// Enum ModerationWarningGroup for value: moderation.warning.group
+    /// </summary>
+    [EnumMember(Value = "moderation.warning.group")]
+    ModerationWarningGroup = 20,
+
+    /// <summary>
+    /// Enum PromoRedeem for value: promo.redeem
+    /// </summary>
+    [EnumMember(Value = "promo.redeem")]
+    PromoRedeem = 21,
+
+    /// <summary>
+    /// Enum TextAdventure for value: text.adventure
+    /// </summary>
+    [EnumMember(Value = "text.adventure")]
+    TextAdventure = 22,
+
+    /// <summary>
+    /// Enum VrcplusGift for value: vrcplus.gift
+    /// </summary>
+    [EnumMember(Value = "vrcplus.gift")]
+    VrcplusGift = 23
+}

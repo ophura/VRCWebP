@@ -1,0 +1,189 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// AdminUnityPackage
+/// </summary>
+[DataContract(Name = "AdminUnityPackage")]
+public partial class AdminUnityPackage : IEquatable<AdminUnityPackage>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AdminUnityPackage" /> class.
+    /// </summary>
+
+    protected AdminUnityPackage() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AdminUnityPackage" /> class.
+    /// </summary>
+    /// <param name="assetUrl">assetUrl (required).</param>
+    /// <param name="assetVersion">assetVersion (required).</param>
+    /// <param name="platform">This is normally &#x60;android&#x60;, &#x60;ios&#x60;, &#x60;standalonewindows&#x60;, &#x60;web&#x60;, or the empty value &#x60;&#x60;, but also supposedly can be any random Unity version such as &#x60;2019.2.4-801-Release&#x60; or &#x60;2019.2.2-772-Release&#x60; or even &#x60;unknownplatform&#x60;. (required).</param>
+    /// <param name="unityVersion">unityVersion (required) (default to &quot;2022.3.22f1-DWR&quot;).</param>
+    /// <param name="variant">variant (required).</param>
+    public AdminUnityPackage(string assetUrl = default, int assetVersion = default, string platform = default, string unityVersion = @"2022.3.22f1-DWR", string variant = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.AssetUrl = assetUrl;
+        this.AssetVersion = assetVersion;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Platform = platform;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.UnityVersion = unityVersion;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Variant = variant;
+    }
+
+    /// <summary>
+    /// Gets or Sets AssetUrl
+    /// </summary>
+    [DataMember(Name = "assetUrl", IsRequired = true, EmitDefaultValue = true)]
+    public string AssetUrl { get; set; }
+
+    /// <summary>
+    /// Gets or Sets AssetVersion
+    /// </summary>
+    [DataMember(Name = "assetVersion", IsRequired = true, EmitDefaultValue = true)]
+    public int AssetVersion { get; set; }
+
+    /// <summary>
+    /// This is normally &#x60;android&#x60;, &#x60;ios&#x60;, &#x60;standalonewindows&#x60;, &#x60;web&#x60;, or the empty value &#x60;&#x60;, but also supposedly can be any random Unity version such as &#x60;2019.2.4-801-Release&#x60; or &#x60;2019.2.2-772-Release&#x60; or even &#x60;unknownplatform&#x60;.
+    /// </summary>
+    /// <value>This is normally &#x60;android&#x60;, &#x60;ios&#x60;, &#x60;standalonewindows&#x60;, &#x60;web&#x60;, or the empty value &#x60;&#x60;, but also supposedly can be any random Unity version such as &#x60;2019.2.4-801-Release&#x60; or &#x60;2019.2.2-772-Release&#x60; or even &#x60;unknownplatform&#x60;.</value>
+    [DataMember(Name = "platform", IsRequired = true, EmitDefaultValue = true)]
+    public string Platform { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UnityVersion
+    /// </summary>
+    [DataMember(Name = "unityVersion", IsRequired = true, EmitDefaultValue = true)]
+    public string UnityVersion { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Variant
+    /// </summary>
+    [DataMember(Name = "variant", IsRequired = true, EmitDefaultValue = true)]
+    public string Variant { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class AdminUnityPackage {\n");
+        sb.Append("  AssetUrl: ").Append(AssetUrl).Append('\n');
+        sb.Append("  AssetVersion: ").Append(AssetVersion).Append('\n');
+        sb.Append("  Platform: ").Append(Platform).Append('\n');
+        sb.Append("  UnityVersion: ").Append(UnityVersion).Append('\n');
+        sb.Append("  Variant: ").Append(Variant).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as AdminUnityPackage);
+    }
+
+    /// <summary>
+    /// Returns true if AdminUnityPackage instances are equal
+    /// </summary>
+    /// <param name="input">Instance of AdminUnityPackage to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(AdminUnityPackage input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.AssetUrl == input.AssetUrl ||
+                (this.AssetUrl != null &&
+                this.AssetUrl.Equals(input.AssetUrl))
+            ) &&
+            (
+                this.AssetVersion == input.AssetVersion ||
+                this.AssetVersion.Equals(input.AssetVersion)
+            ) &&
+            (
+                this.Platform == input.Platform ||
+                (this.Platform != null &&
+                this.Platform.Equals(input.Platform))
+            ) &&
+            (
+                this.UnityVersion == input.UnityVersion ||
+                (this.UnityVersion != null &&
+                this.UnityVersion.Equals(input.UnityVersion))
+            ) &&
+            (
+                this.Variant == input.Variant ||
+                (this.Variant != null &&
+                this.Variant.Equals(input.Variant))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.AssetUrl != null)
+            {
+                hashCode = (hashCode * 59) + this.AssetUrl.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.AssetVersion.GetHashCode();
+            if (this.Platform != null)
+            {
+                hashCode = (hashCode * 59) + this.Platform.GetHashCode();
+            }
+            if (this.UnityVersion != null)
+            {
+                hashCode = (hashCode * 59) + this.UnityVersion.GetHashCode();
+            }
+            if (this.Variant != null)
+            {
+                hashCode = (hashCode * 59) + this.Variant.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        // AssetVersion (int) minimum
+        if (this.AssetVersion < (int)0)
+        {
+            yield return new ValidationResult("Invalid value for AssetVersion, must be a value greater than or equal to 0.", new [] { "AssetVersion" });
+        }
+
+        // UnityVersion (string) minLength
+        if (this.UnityVersion != null && this.UnityVersion.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for UnityVersion, length must be greater than 1.", new [] { "UnityVersion" });
+        }
+
+        yield break;
+    }
+}

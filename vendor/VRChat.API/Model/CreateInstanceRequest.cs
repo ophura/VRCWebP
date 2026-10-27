@@ -1,0 +1,420 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// CreateInstanceRequest
+/// </summary>
+[DataContract(Name = "CreateInstanceRequest")]
+public partial class CreateInstanceRequest : IEquatable<CreateInstanceRequest>, IValidatableObject
+{
+
+    /// <summary>
+    /// Gets or Sets GroupAccessType
+    /// </summary>
+    [DataMember(Name = "groupAccessType", EmitDefaultValue = false)]
+    public GroupAccessType? GroupAccessType { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Region
+    /// </summary>
+    [DataMember(Name = "region", IsRequired = true, EmitDefaultValue = true)]
+    public CreateInstanceRequestRegion Region { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Type
+    /// </summary>
+    [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+    public InstanceType Type { get; set; }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CreateInstanceRequest" /> class.
+    /// </summary>
+
+    protected CreateInstanceRequest() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CreateInstanceRequest" /> class.
+    /// </summary>
+    /// <param name="ageGate">ageGate (default to false).</param>
+    /// <param name="calendarEntryId">calendarEntryId.</param>
+    /// <param name="canRequestInvite">Makes a private instance invite+. A friends instance is rejected. (default to false).</param>
+    /// <param name="categoryId">categoryId.</param>
+    /// <param name="closedAt">The time after which users won&#39;t be allowed to join the instance. This doesn&#39;t work for public instances..</param>
+    /// <param name="contentSettings">contentSettings.</param>
+    /// <param name="description">description.</param>
+    /// <param name="displayName">displayName.</param>
+    /// <param name="groupAccessType">groupAccessType.</param>
+    /// <param name="hardClose">Currently unused, but will eventually be a flag to set if the closing of the instance should kick people. (default to false).</param>
+    /// <param name="instancePersistenceEnabled">instancePersistenceEnabled.</param>
+    /// <param name="inviteOnly">inviteOnly (default to false).</param>
+    /// <param name="ownerId">A groupId if the instance type is \&quot;group\&quot;, null if instance type is public, or a userId otherwise.</param>
+    /// <param name="playerPersistenceEnabled">playerPersistenceEnabled.</param>
+    /// <param name="queueEnabled">queueEnabled (default to false).</param>
+    /// <param name="region">region (required).</param>
+    /// <param name="roleIds">Group roleIds that are allowed to join if the type is \&quot;group\&quot; and groupAccessType is \&quot;member\&quot;.</param>
+    /// <param name="type">type (required).</param>
+    /// <param name="vibeIds">vibeIds.</param>
+    /// <param name="worldId">WorldID be \&quot;offline\&quot; on User profiles if you are not friends with that user. (required).</param>
+    public CreateInstanceRequest(bool ageGate = false, string calendarEntryId = default, bool canRequestInvite = false, string categoryId = default, DateTime closedAt = default, InstanceContentSettings contentSettings = default, string description = default, string displayName = default, GroupAccessType? groupAccessType = default, bool hardClose = false, bool? instancePersistenceEnabled = default, bool inviteOnly = false, string ownerId = default, bool? playerPersistenceEnabled = default, bool queueEnabled = false, CreateInstanceRequestRegion region = default, List<string> roleIds = default, InstanceType type = default, List<string> vibeIds = default, string worldId = default)
+    {
+        this.Region = region;
+        this.Type = type;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.WorldId = worldId;
+        this.AgeGate = ageGate;
+        this.CalendarEntryId = calendarEntryId;
+        this.CanRequestInvite = canRequestInvite;
+        this.CategoryId = categoryId;
+        this.ClosedAt = closedAt;
+        this.ContentSettings = contentSettings;
+        this.Description = description;
+        this.DisplayName = displayName;
+        this.GroupAccessType = groupAccessType;
+        this.HardClose = hardClose;
+        this.InstancePersistenceEnabled = instancePersistenceEnabled;
+        this.InviteOnly = inviteOnly;
+        this.OwnerId = ownerId;
+        this.PlayerPersistenceEnabled = playerPersistenceEnabled;
+        this.QueueEnabled = queueEnabled;
+        this.RoleIds = roleIds;
+        this.VibeIds = vibeIds;
+    }
+
+    /// <summary>
+    /// Gets or Sets AgeGate
+    /// </summary>
+    [DataMember(Name = "ageGate", EmitDefaultValue = true)]
+    public bool AgeGate { get; set; }
+
+    /// <summary>
+    /// Gets or Sets CalendarEntryId
+    /// </summary>
+    [DataMember(Name = "calendarEntryId", EmitDefaultValue = false)]
+    public string CalendarEntryId { get; set; }
+
+    /// <summary>
+    /// Makes a private instance invite+. A friends instance is rejected.
+    /// </summary>
+    /// <value>Makes a private instance invite+. A friends instance is rejected.</value>
+    [DataMember(Name = "canRequestInvite", EmitDefaultValue = true)]
+    public bool CanRequestInvite { get; set; }
+
+    /// <summary>
+    /// Gets or Sets CategoryId
+    /// </summary>
+    [DataMember(Name = "categoryId", EmitDefaultValue = false)]
+    public string CategoryId { get; set; }
+
+    /// <summary>
+    /// The time after which users won&#39;t be allowed to join the instance. This doesn&#39;t work for public instances.
+    /// </summary>
+    /// <value>The time after which users won&#39;t be allowed to join the instance. This doesn&#39;t work for public instances.</value>
+    [DataMember(Name = "closedAt", EmitDefaultValue = false)]
+    public DateTime ClosedAt { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ContentSettings
+    /// </summary>
+    [DataMember(Name = "contentSettings", EmitDefaultValue = false)]
+    public InstanceContentSettings ContentSettings { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Description
+    /// </summary>
+    [DataMember(Name = "description", EmitDefaultValue = false)]
+    public string Description { get; set; }
+
+    /// <summary>
+    /// Gets or Sets DisplayName
+    /// </summary>
+    [DataMember(Name = "displayName", EmitDefaultValue = false)]
+    public string DisplayName { get; set; }
+
+    /// <summary>
+    /// Currently unused, but will eventually be a flag to set if the closing of the instance should kick people.
+    /// </summary>
+    /// <value>Currently unused, but will eventually be a flag to set if the closing of the instance should kick people.</value>
+    [DataMember(Name = "hardClose", EmitDefaultValue = true)]
+    public bool HardClose { get; set; }
+
+    /// <summary>
+    /// Gets or Sets InstancePersistenceEnabled
+    /// </summary>
+    [DataMember(Name = "instancePersistenceEnabled", EmitDefaultValue = true)]
+    public bool? InstancePersistenceEnabled { get; set; }
+
+    /// <summary>
+    /// Gets or Sets InviteOnly
+    /// </summary>
+    [DataMember(Name = "inviteOnly", EmitDefaultValue = true)]
+    public bool InviteOnly { get; set; }
+
+    /// <summary>
+    /// A groupId if the instance type is \&quot;group\&quot;, null if instance type is public, or a userId otherwise
+    /// </summary>
+    /// <value>A groupId if the instance type is \&quot;group\&quot;, null if instance type is public, or a userId otherwise</value>
+    [DataMember(Name = "ownerId", EmitDefaultValue = true)]
+    public string OwnerId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets PlayerPersistenceEnabled
+    /// </summary>
+    [DataMember(Name = "playerPersistenceEnabled", EmitDefaultValue = true)]
+    public bool? PlayerPersistenceEnabled { get; set; }
+
+    /// <summary>
+    /// Gets or Sets QueueEnabled
+    /// </summary>
+    [DataMember(Name = "queueEnabled", EmitDefaultValue = true)]
+    public bool QueueEnabled { get; set; }
+
+    /// <summary>
+    /// Group roleIds that are allowed to join if the type is \&quot;group\&quot; and groupAccessType is \&quot;member\&quot;
+    /// </summary>
+    /// <value>Group roleIds that are allowed to join if the type is \&quot;group\&quot; and groupAccessType is \&quot;member\&quot;</value>
+    [DataMember(Name = "roleIds", EmitDefaultValue = false)]
+    public List<string> RoleIds { get; set; }
+
+    /// <summary>
+    /// Gets or Sets VibeIds
+    /// </summary>
+    [DataMember(Name = "vibeIds", EmitDefaultValue = false)]
+    public List<string> VibeIds { get; set; }
+
+    /// <summary>
+    /// WorldID be \&quot;offline\&quot; on User profiles if you are not friends with that user.
+    /// </summary>
+    /// <value>WorldID be \&quot;offline\&quot; on User profiles if you are not friends with that user.</value>
+    [DataMember(Name = "worldId", IsRequired = true, EmitDefaultValue = true)]
+    public string WorldId { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class CreateInstanceRequest {\n");
+        sb.Append("  AgeGate: ").Append(AgeGate).Append('\n');
+        sb.Append("  CalendarEntryId: ").Append(CalendarEntryId).Append('\n');
+        sb.Append("  CanRequestInvite: ").Append(CanRequestInvite).Append('\n');
+        sb.Append("  CategoryId: ").Append(CategoryId).Append('\n');
+        sb.Append("  ClosedAt: ").Append(ClosedAt).Append('\n');
+        sb.Append("  ContentSettings: ").Append(ContentSettings).Append('\n');
+        sb.Append("  Description: ").Append(Description).Append('\n');
+        sb.Append("  DisplayName: ").Append(DisplayName).Append('\n');
+        sb.Append("  GroupAccessType: ").Append(GroupAccessType).Append('\n');
+        sb.Append("  HardClose: ").Append(HardClose).Append('\n');
+        sb.Append("  InstancePersistenceEnabled: ").Append(InstancePersistenceEnabled).Append('\n');
+        sb.Append("  InviteOnly: ").Append(InviteOnly).Append('\n');
+        sb.Append("  OwnerId: ").Append(OwnerId).Append('\n');
+        sb.Append("  PlayerPersistenceEnabled: ").Append(PlayerPersistenceEnabled).Append('\n');
+        sb.Append("  QueueEnabled: ").Append(QueueEnabled).Append('\n');
+        sb.Append("  Region: ").Append(Region).Append('\n');
+        sb.Append("  RoleIds: ").Append(RoleIds).Append('\n');
+        sb.Append("  Type: ").Append(Type).Append('\n');
+        sb.Append("  VibeIds: ").Append(VibeIds).Append('\n');
+        sb.Append("  WorldId: ").Append(WorldId).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as CreateInstanceRequest);
+    }
+
+    /// <summary>
+    /// Returns true if CreateInstanceRequest instances are equal
+    /// </summary>
+    /// <param name="input">Instance of CreateInstanceRequest to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(CreateInstanceRequest input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.AgeGate == input.AgeGate ||
+                this.AgeGate.Equals(input.AgeGate)
+            ) &&
+            (
+                this.CalendarEntryId == input.CalendarEntryId ||
+                (this.CalendarEntryId != null &&
+                this.CalendarEntryId.Equals(input.CalendarEntryId))
+            ) &&
+            (
+                this.CanRequestInvite == input.CanRequestInvite ||
+                this.CanRequestInvite.Equals(input.CanRequestInvite)
+            ) &&
+            (
+                this.CategoryId == input.CategoryId ||
+                (this.CategoryId != null &&
+                this.CategoryId.Equals(input.CategoryId))
+            ) &&
+            (
+                this.ClosedAt == input.ClosedAt ||
+                this.ClosedAt.Equals(input.ClosedAt)
+            ) &&
+            (
+                this.ContentSettings == input.ContentSettings ||
+                (this.ContentSettings != null &&
+                this.ContentSettings.Equals(input.ContentSettings))
+            ) &&
+            (
+                this.Description == input.Description ||
+                (this.Description != null &&
+                this.Description.Equals(input.Description))
+            ) &&
+            (
+                this.DisplayName == input.DisplayName ||
+                (this.DisplayName != null &&
+                this.DisplayName.Equals(input.DisplayName))
+            ) &&
+            (
+                this.GroupAccessType == input.GroupAccessType ||
+                this.GroupAccessType.Equals(input.GroupAccessType)
+            ) &&
+            (
+                this.HardClose == input.HardClose ||
+                this.HardClose.Equals(input.HardClose)
+            ) &&
+            (
+                this.InstancePersistenceEnabled == input.InstancePersistenceEnabled ||
+                (this.InstancePersistenceEnabled != null &&
+                this.InstancePersistenceEnabled.Equals(input.InstancePersistenceEnabled))
+            ) &&
+            (
+                this.InviteOnly == input.InviteOnly ||
+                this.InviteOnly.Equals(input.InviteOnly)
+            ) &&
+            (
+                this.OwnerId == input.OwnerId ||
+                (this.OwnerId != null &&
+                this.OwnerId.Equals(input.OwnerId))
+            ) &&
+            (
+                this.PlayerPersistenceEnabled == input.PlayerPersistenceEnabled ||
+                (this.PlayerPersistenceEnabled != null &&
+                this.PlayerPersistenceEnabled.Equals(input.PlayerPersistenceEnabled))
+            ) &&
+            (
+                this.QueueEnabled == input.QueueEnabled ||
+                this.QueueEnabled.Equals(input.QueueEnabled)
+            ) &&
+            (
+                this.Region == input.Region ||
+                this.Region.Equals(input.Region)
+            ) &&
+            (
+                this.RoleIds == input.RoleIds ||
+                this.RoleIds != null &&
+                input.RoleIds != null &&
+                this.RoleIds.SequenceEqual(input.RoleIds)
+            ) &&
+            (
+                this.Type == input.Type ||
+                this.Type.Equals(input.Type)
+            ) &&
+            (
+                this.VibeIds == input.VibeIds ||
+                this.VibeIds != null &&
+                input.VibeIds != null &&
+                this.VibeIds.SequenceEqual(input.VibeIds)
+            ) &&
+            (
+                this.WorldId == input.WorldId ||
+                (this.WorldId != null &&
+                this.WorldId.Equals(input.WorldId))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.AgeGate.GetHashCode();
+            if (this.CalendarEntryId != null)
+            {
+                hashCode = (hashCode * 59) + this.CalendarEntryId.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.CanRequestInvite.GetHashCode();
+            if (this.CategoryId != null)
+            {
+                hashCode = (hashCode * 59) + this.CategoryId.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.ClosedAt.GetHashCode();
+            if (this.ContentSettings != null)
+            {
+                hashCode = (hashCode * 59) + this.ContentSettings.GetHashCode();
+            }
+            if (this.Description != null)
+            {
+                hashCode = (hashCode * 59) + this.Description.GetHashCode();
+            }
+            if (this.DisplayName != null)
+            {
+                hashCode = (hashCode * 59) + this.DisplayName.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.GroupAccessType.GetHashCode();
+            hashCode = (hashCode * 59) + this.HardClose.GetHashCode();
+            if (this.InstancePersistenceEnabled != null)
+            {
+                hashCode = (hashCode * 59) + this.InstancePersistenceEnabled.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.InviteOnly.GetHashCode();
+            if (this.OwnerId != null)
+            {
+                hashCode = (hashCode * 59) + this.OwnerId.GetHashCode();
+            }
+            if (this.PlayerPersistenceEnabled != null)
+            {
+                hashCode = (hashCode * 59) + this.PlayerPersistenceEnabled.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.QueueEnabled.GetHashCode();
+            hashCode = (hashCode * 59) + this.Region.GetHashCode();
+            if (this.RoleIds != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.RoleIds);
+            }
+            hashCode = (hashCode * 59) + this.Type.GetHashCode();
+            if (this.VibeIds != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.VibeIds);
+            }
+            if (this.WorldId != null)
+            {
+                hashCode = (hashCode * 59) + this.WorldId.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

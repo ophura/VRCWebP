@@ -1,0 +1,30 @@
+
+using System.Runtime.Serialization;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// * \&quot;online\&quot; User is online in VRChat * \&quot;active\&quot; User is online, but not in VRChat * \&quot;offline\&quot; User is offline  Always offline when returned through &#x60;getCurrentUser&#x60; (/auth/user).
+/// </summary>
+/// <value>* \&quot;online\&quot; User is online in VRChat * \&quot;active\&quot; User is online, but not in VRChat * \&quot;offline\&quot; User is offline  Always offline when returned through &#x60;getCurrentUser&#x60; (/auth/user).</value>
+
+public enum UserState
+{
+    /// <summary>
+    /// Enum Active for value: active
+    /// </summary>
+    [EnumMember(Value = "active")]
+    Active = 1,
+
+    /// <summary>
+    /// Enum Offline for value: offline
+    /// </summary>
+    [EnumMember(Value = "offline")]
+    Offline = 2,
+
+    /// <summary>
+    /// Enum Online for value: online
+    /// </summary>
+    [EnumMember(Value = "online")]
+    Online = 3
+}

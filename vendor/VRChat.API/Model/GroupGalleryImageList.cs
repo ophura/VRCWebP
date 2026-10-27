@@ -1,0 +1,127 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// A page of a group gallery&#39;s images.
+/// </summary>
+[DataContract(Name = "GroupGalleryImageList")]
+public partial class GroupGalleryImageList : IEquatable<GroupGalleryImageList>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GroupGalleryImageList" /> class.
+    /// </summary>
+
+    protected GroupGalleryImageList() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GroupGalleryImageList" /> class.
+    /// </summary>
+    /// <param name="results">results (required).</param>
+    /// <param name="totalCount">totalCount (required).</param>
+    public GroupGalleryImageList(List<GroupGalleryImage> results = default, int totalCount = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Results = results;
+        this.TotalCount = totalCount;
+    }
+
+    /// <summary>
+    /// Gets or Sets Results
+    /// </summary>
+    [DataMember(Name = "results", IsRequired = true, EmitDefaultValue = true)]
+    public List<GroupGalleryImage> Results { get; set; }
+
+    /// <summary>
+    /// Gets or Sets TotalCount
+    /// </summary>
+    [DataMember(Name = "totalCount", IsRequired = true, EmitDefaultValue = true)]
+    public int TotalCount { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class GroupGalleryImageList {\n");
+        sb.Append("  Results: ").Append(Results).Append('\n');
+        sb.Append("  TotalCount: ").Append(TotalCount).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as GroupGalleryImageList);
+    }
+
+    /// <summary>
+    /// Returns true if GroupGalleryImageList instances are equal
+    /// </summary>
+    /// <param name="input">Instance of GroupGalleryImageList to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(GroupGalleryImageList input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Results == input.Results ||
+                this.Results != null &&
+                input.Results != null &&
+                this.Results.SequenceEqual(input.Results)
+            ) &&
+            (
+                this.TotalCount == input.TotalCount ||
+                this.TotalCount.Equals(input.TotalCount)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.Results != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Results);
+            }
+            hashCode = (hashCode * 59) + this.TotalCount.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        // TotalCount (int) minimum
+        if (this.TotalCount < (int)0)
+        {
+            yield return new ValidationResult("Invalid value for TotalCount, must be a value greater than or equal to 0.", new [] { "TotalCount" });
+        }
+
+        yield break;
+    }
+}

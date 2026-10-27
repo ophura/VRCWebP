@@ -1,0 +1,330 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// InventoryDrop
+/// </summary>
+[DataContract(Name = "InventoryDrop")]
+public partial class InventoryDrop : IEquatable<InventoryDrop>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InventoryDrop" /> class.
+    /// </summary>
+
+    protected InventoryDrop() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InventoryDrop" /> class.
+    /// </summary>
+    /// <param name="authorId">A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed. (required).</param>
+    /// <param name="createdAt">createdAt (required).</param>
+    /// <param name="dropExpiryDate">dropExpiryDate (required).</param>
+    /// <param name="dropStatus">dropStatus.</param>
+    /// <param name="endDropDate">endDropDate (required).</param>
+    /// <param name="id">id (required).</param>
+    /// <param name="isDisabled">isDisabled (required).</param>
+    /// <param name="name">name (required).</param>
+    /// <param name="notificationDetails">notificationDetails (required).</param>
+    /// <param name="startDropDate">startDropDate (required).</param>
+    /// <param name="tags">tags (required).</param>
+    /// <param name="targetGroup">targetGroup (required).</param>
+    /// <param name="templateIds">templateIds (required).</param>
+    /// <param name="updatedAt">updatedAt (required).</param>
+    public InventoryDrop(string authorId = default, DateTime createdAt = default, DateTime? dropExpiryDate = default, string dropStatus = default, DateTime endDropDate = default, string id = default, bool isDisabled = default, string name = default, InventoryNotificationDetails notificationDetails = default, DateTime startDropDate = default, List<string> tags = default, string targetGroup = default, List<string> templateIds = default, DateTime updatedAt = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.AuthorId = authorId;
+        this.CreatedAt = createdAt;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.DropExpiryDate = dropExpiryDate;
+        this.EndDropDate = endDropDate;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Id = id;
+        this.IsDisabled = isDisabled;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Name = name;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.NotificationDetails = notificationDetails;
+        this.StartDropDate = startDropDate;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Tags = tags;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.TargetGroup = targetGroup;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.TemplateIds = templateIds;
+        this.UpdatedAt = updatedAt;
+        this.DropStatus = dropStatus;
+    }
+
+    /// <summary>
+    /// A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed.
+    /// </summary>
+    /// <value>A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed.</value>
+    [DataMember(Name = "authorId", IsRequired = true, EmitDefaultValue = true)]
+    public string AuthorId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets CreatedAt
+    /// </summary>
+    [DataMember(Name = "created_at", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime CreatedAt { get; set; }
+
+    /// <summary>
+    /// Gets or Sets DropExpiryDate
+    /// </summary>
+    [DataMember(Name = "dropExpiryDate", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime? DropExpiryDate { get; set; }
+
+    /// <summary>
+    /// Gets or Sets DropStatus
+    /// </summary>
+    [DataMember(Name = "dropStatus", EmitDefaultValue = false)]
+    public string DropStatus { get; set; }
+
+    /// <summary>
+    /// Gets or Sets EndDropDate
+    /// </summary>
+    [DataMember(Name = "endDropDate", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime EndDropDate { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Id
+    /// </summary>
+    [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IsDisabled
+    /// </summary>
+    [DataMember(Name = "isDisabled", IsRequired = true, EmitDefaultValue = true)]
+    public bool IsDisabled { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Name
+    /// </summary>
+    [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
+    public string Name { get; set; }
+
+    /// <summary>
+    /// Gets or Sets NotificationDetails
+    /// </summary>
+    [DataMember(Name = "notificationDetails", IsRequired = true, EmitDefaultValue = true)]
+    public InventoryNotificationDetails NotificationDetails { get; set; }
+
+    /// <summary>
+    /// Gets or Sets StartDropDate
+    /// </summary>
+    [DataMember(Name = "startDropDate", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime StartDropDate { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Tags
+    /// </summary>
+    [DataMember(Name = "tags", IsRequired = true, EmitDefaultValue = true)]
+    public List<string> Tags { get; set; }
+
+    /// <summary>
+    /// Gets or Sets TargetGroup
+    /// </summary>
+    [DataMember(Name = "targetGroup", IsRequired = true, EmitDefaultValue = true)]
+    public string TargetGroup { get; set; }
+
+    /// <summary>
+    /// Gets or Sets TemplateIds
+    /// </summary>
+    [DataMember(Name = "templateIds", IsRequired = true, EmitDefaultValue = true)]
+    public List<string> TemplateIds { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UpdatedAt
+    /// </summary>
+    [DataMember(Name = "updated_at", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime UpdatedAt { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class InventoryDrop {\n");
+        sb.Append("  AuthorId: ").Append(AuthorId).Append('\n');
+        sb.Append("  CreatedAt: ").Append(CreatedAt).Append('\n');
+        sb.Append("  DropExpiryDate: ").Append(DropExpiryDate).Append('\n');
+        sb.Append("  DropStatus: ").Append(DropStatus).Append('\n');
+        sb.Append("  EndDropDate: ").Append(EndDropDate).Append('\n');
+        sb.Append("  Id: ").Append(Id).Append('\n');
+        sb.Append("  IsDisabled: ").Append(IsDisabled).Append('\n');
+        sb.Append("  Name: ").Append(Name).Append('\n');
+        sb.Append("  NotificationDetails: ").Append(NotificationDetails).Append('\n');
+        sb.Append("  StartDropDate: ").Append(StartDropDate).Append('\n');
+        sb.Append("  Tags: ").Append(Tags).Append('\n');
+        sb.Append("  TargetGroup: ").Append(TargetGroup).Append('\n');
+        sb.Append("  TemplateIds: ").Append(TemplateIds).Append('\n');
+        sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as InventoryDrop);
+    }
+
+    /// <summary>
+    /// Returns true if InventoryDrop instances are equal
+    /// </summary>
+    /// <param name="input">Instance of InventoryDrop to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(InventoryDrop input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.AuthorId == input.AuthorId ||
+                (this.AuthorId != null &&
+                this.AuthorId.Equals(input.AuthorId))
+            ) &&
+            (
+                this.CreatedAt == input.CreatedAt ||
+                this.CreatedAt.Equals(input.CreatedAt)
+            ) &&
+            (
+                this.DropExpiryDate == input.DropExpiryDate ||
+                (this.DropExpiryDate != null &&
+                this.DropExpiryDate.Equals(input.DropExpiryDate))
+            ) &&
+            (
+                this.DropStatus == input.DropStatus ||
+                (this.DropStatus != null &&
+                this.DropStatus.Equals(input.DropStatus))
+            ) &&
+            (
+                this.EndDropDate == input.EndDropDate ||
+                this.EndDropDate.Equals(input.EndDropDate)
+            ) &&
+            (
+                this.Id == input.Id ||
+                (this.Id != null &&
+                this.Id.Equals(input.Id))
+            ) &&
+            (
+                this.IsDisabled == input.IsDisabled ||
+                this.IsDisabled.Equals(input.IsDisabled)
+            ) &&
+            (
+                this.Name == input.Name ||
+                (this.Name != null &&
+                this.Name.Equals(input.Name))
+            ) &&
+            (
+                this.NotificationDetails == input.NotificationDetails ||
+                (this.NotificationDetails != null &&
+                this.NotificationDetails.Equals(input.NotificationDetails))
+            ) &&
+            (
+                this.StartDropDate == input.StartDropDate ||
+                this.StartDropDate.Equals(input.StartDropDate)
+            ) &&
+            (
+                this.Tags == input.Tags ||
+                this.Tags != null &&
+                input.Tags != null &&
+                this.Tags.SequenceEqual(input.Tags)
+            ) &&
+            (
+                this.TargetGroup == input.TargetGroup ||
+                (this.TargetGroup != null &&
+                this.TargetGroup.Equals(input.TargetGroup))
+            ) &&
+            (
+                this.TemplateIds == input.TemplateIds ||
+                this.TemplateIds != null &&
+                input.TemplateIds != null &&
+                this.TemplateIds.SequenceEqual(input.TemplateIds)
+            ) &&
+            (
+                this.UpdatedAt == input.UpdatedAt ||
+                this.UpdatedAt.Equals(input.UpdatedAt)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.AuthorId != null)
+            {
+                hashCode = (hashCode * 59) + this.AuthorId.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+            if (this.DropExpiryDate != null)
+            {
+                hashCode = (hashCode * 59) + this.DropExpiryDate.GetHashCode();
+            }
+            if (this.DropStatus != null)
+            {
+                hashCode = (hashCode * 59) + this.DropStatus.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.EndDropDate.GetHashCode();
+            if (this.Id != null)
+            {
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.IsDisabled.GetHashCode();
+            if (this.Name != null)
+            {
+                hashCode = (hashCode * 59) + this.Name.GetHashCode();
+            }
+            if (this.NotificationDetails != null)
+            {
+                hashCode = (hashCode * 59) + this.NotificationDetails.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.StartDropDate.GetHashCode();
+            if (this.Tags != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Tags);
+            }
+            if (this.TargetGroup != null)
+            {
+                hashCode = (hashCode * 59) + this.TargetGroup.GetHashCode();
+            }
+            if (this.TemplateIds != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.TemplateIds);
+            }
+            hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

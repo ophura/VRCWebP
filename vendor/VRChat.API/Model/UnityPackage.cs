@@ -1,0 +1,402 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// UnityPackage
+/// </summary>
+[DataContract(Name = "UnityPackage")]
+public partial class UnityPackage : IEquatable<UnityPackage>, IValidatableObject
+{
+
+    /// <summary>
+    /// Gets or Sets PerformanceRating
+    /// </summary>
+    [DataMember(Name = "performanceRating", EmitDefaultValue = false)]
+    public PerformanceRatings? PerformanceRating { get; set; }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UnityPackage" /> class.
+    /// </summary>
+
+    protected UnityPackage() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UnityPackage" /> class.
+    /// </summary>
+    /// <param name="assetUrl">assetUrl.</param>
+    /// <param name="assetUrlObject">assetUrlObject.</param>
+    /// <param name="assetVersion">assetVersion (required).</param>
+    /// <param name="createdAt">createdAt.</param>
+    /// <param name="id">id (required).</param>
+    /// <param name="impostorUrl">impostorUrl.</param>
+    /// <param name="impostorizerVersion">impostorizerVersion.</param>
+    /// <param name="performanceRating">performanceRating.</param>
+    /// <param name="platform">This is normally &#x60;android&#x60;, &#x60;ios&#x60;, &#x60;standalonewindows&#x60;, &#x60;web&#x60;, or the empty value &#x60;&#x60;, but also supposedly can be any random Unity version such as &#x60;2019.2.4-801-Release&#x60; or &#x60;2019.2.2-772-Release&#x60; or even &#x60;unknownplatform&#x60;. (required).</param>
+    /// <param name="pluginUrl">pluginUrl.</param>
+    /// <param name="pluginUrlObject">pluginUrlObject.</param>
+    /// <param name="scanStatus">scanStatus.</param>
+    /// <param name="transpilerVersion">transpilerVersion.</param>
+    /// <param name="unitySortNumber">unitySortNumber.</param>
+    /// <param name="unityVersion">unityVersion (required) (default to &quot;5.3.4p1&quot;).</param>
+    /// <param name="variant">variant.</param>
+    /// <param name="worldSignature">worldSignature.</param>
+    public UnityPackage(string assetUrl = default, object assetUrlObject = default, int assetVersion = default, DateTime? createdAt = default, string id = default, string impostorUrl = default, string impostorizerVersion = default, PerformanceRatings? performanceRating = default, string platform = default, string pluginUrl = default, object pluginUrlObject = default, string scanStatus = default, string transpilerVersion = default, long unitySortNumber = default, string unityVersion = @"5.3.4p1", string variant = default, string worldSignature = default)
+    {
+        this.AssetVersion = assetVersion;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Id = id;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Platform = platform;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.UnityVersion = unityVersion;
+        this.AssetUrl = assetUrl;
+        this.AssetUrlObject = assetUrlObject;
+        this.CreatedAt = createdAt;
+        this.ImpostorUrl = impostorUrl;
+        this.ImpostorizerVersion = impostorizerVersion;
+        this.PerformanceRating = performanceRating;
+        this.PluginUrl = pluginUrl;
+        this.PluginUrlObject = pluginUrlObject;
+        this.ScanStatus = scanStatus;
+        this.TranspilerVersion = transpilerVersion;
+        this.UnitySortNumber = unitySortNumber;
+        this.Variant = variant;
+        this.WorldSignature = worldSignature;
+    }
+
+    /// <summary>
+    /// Gets or Sets AssetUrl
+    /// </summary>
+    [DataMember(Name = "assetUrl", EmitDefaultValue = true)]
+    public string AssetUrl { get; set; }
+
+    /// <summary>
+    /// Gets or Sets AssetUrlObject
+    /// </summary>
+    [DataMember(Name = "assetUrlObject", EmitDefaultValue = false)]
+    public object AssetUrlObject { get; set; }
+
+    /// <summary>
+    /// Gets or Sets AssetVersion
+    /// </summary>
+    [DataMember(Name = "assetVersion", IsRequired = true, EmitDefaultValue = true)]
+    public int AssetVersion { get; set; }
+
+    /// <summary>
+    /// Gets or Sets CreatedAt
+    /// </summary>
+    [DataMember(Name = "created_at", EmitDefaultValue = true)]
+    public DateTime? CreatedAt { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Id
+    /// </summary>
+    [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ImpostorUrl
+    /// </summary>
+    [DataMember(Name = "impostorUrl", EmitDefaultValue = true)]
+    public string ImpostorUrl { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ImpostorizerVersion
+    /// </summary>
+    [DataMember(Name = "impostorizerVersion", EmitDefaultValue = false)]
+    public string ImpostorizerVersion { get; set; }
+
+    /// <summary>
+    /// This is normally &#x60;android&#x60;, &#x60;ios&#x60;, &#x60;standalonewindows&#x60;, &#x60;web&#x60;, or the empty value &#x60;&#x60;, but also supposedly can be any random Unity version such as &#x60;2019.2.4-801-Release&#x60; or &#x60;2019.2.2-772-Release&#x60; or even &#x60;unknownplatform&#x60;.
+    /// </summary>
+    /// <value>This is normally &#x60;android&#x60;, &#x60;ios&#x60;, &#x60;standalonewindows&#x60;, &#x60;web&#x60;, or the empty value &#x60;&#x60;, but also supposedly can be any random Unity version such as &#x60;2019.2.4-801-Release&#x60; or &#x60;2019.2.2-772-Release&#x60; or even &#x60;unknownplatform&#x60;.</value>
+    [DataMember(Name = "platform", IsRequired = true, EmitDefaultValue = true)]
+    public string Platform { get; set; }
+
+    /// <summary>
+    /// Gets or Sets PluginUrl
+    /// </summary>
+    [DataMember(Name = "pluginUrl", EmitDefaultValue = true)]
+    public string PluginUrl { get; set; }
+
+    /// <summary>
+    /// Gets or Sets PluginUrlObject
+    /// </summary>
+    [DataMember(Name = "pluginUrlObject", EmitDefaultValue = false)]
+    public object PluginUrlObject { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ScanStatus
+    /// </summary>
+    [DataMember(Name = "scanStatus", EmitDefaultValue = false)]
+    public string ScanStatus { get; set; }
+
+    /// <summary>
+    /// Gets or Sets TranspilerVersion
+    /// </summary>
+    [DataMember(Name = "transpilerVersion", EmitDefaultValue = false)]
+    public string TranspilerVersion { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UnitySortNumber
+    /// </summary>
+    [DataMember(Name = "unitySortNumber", EmitDefaultValue = false)]
+    public long UnitySortNumber { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UnityVersion
+    /// </summary>
+    [DataMember(Name = "unityVersion", IsRequired = true, EmitDefaultValue = true)]
+    public string UnityVersion { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Variant
+    /// </summary>
+    [DataMember(Name = "variant", EmitDefaultValue = false)]
+    public string Variant { get; set; }
+
+    /// <summary>
+    /// Gets or Sets WorldSignature
+    /// </summary>
+    [DataMember(Name = "worldSignature", EmitDefaultValue = true)]
+    public string WorldSignature { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class UnityPackage {\n");
+        sb.Append("  AssetUrl: ").Append(AssetUrl).Append('\n');
+        sb.Append("  AssetUrlObject: ").Append(AssetUrlObject).Append('\n');
+        sb.Append("  AssetVersion: ").Append(AssetVersion).Append('\n');
+        sb.Append("  CreatedAt: ").Append(CreatedAt).Append('\n');
+        sb.Append("  Id: ").Append(Id).Append('\n');
+        sb.Append("  ImpostorUrl: ").Append(ImpostorUrl).Append('\n');
+        sb.Append("  ImpostorizerVersion: ").Append(ImpostorizerVersion).Append('\n');
+        sb.Append("  PerformanceRating: ").Append(PerformanceRating).Append('\n');
+        sb.Append("  Platform: ").Append(Platform).Append('\n');
+        sb.Append("  PluginUrl: ").Append(PluginUrl).Append('\n');
+        sb.Append("  PluginUrlObject: ").Append(PluginUrlObject).Append('\n');
+        sb.Append("  ScanStatus: ").Append(ScanStatus).Append('\n');
+        sb.Append("  TranspilerVersion: ").Append(TranspilerVersion).Append('\n');
+        sb.Append("  UnitySortNumber: ").Append(UnitySortNumber).Append('\n');
+        sb.Append("  UnityVersion: ").Append(UnityVersion).Append('\n');
+        sb.Append("  Variant: ").Append(Variant).Append('\n');
+        sb.Append("  WorldSignature: ").Append(WorldSignature).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as UnityPackage);
+    }
+
+    /// <summary>
+    /// Returns true if UnityPackage instances are equal
+    /// </summary>
+    /// <param name="input">Instance of UnityPackage to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(UnityPackage input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.AssetUrl == input.AssetUrl ||
+                (this.AssetUrl != null &&
+                this.AssetUrl.Equals(input.AssetUrl))
+            ) &&
+            (
+                this.AssetUrlObject == input.AssetUrlObject ||
+                (this.AssetUrlObject != null &&
+                this.AssetUrlObject.Equals(input.AssetUrlObject))
+            ) &&
+            (
+                this.AssetVersion == input.AssetVersion ||
+                this.AssetVersion.Equals(input.AssetVersion)
+            ) &&
+            (
+                this.CreatedAt == input.CreatedAt ||
+                (this.CreatedAt != null &&
+                this.CreatedAt.Equals(input.CreatedAt))
+            ) &&
+            (
+                this.Id == input.Id ||
+                (this.Id != null &&
+                this.Id.Equals(input.Id))
+            ) &&
+            (
+                this.ImpostorUrl == input.ImpostorUrl ||
+                (this.ImpostorUrl != null &&
+                this.ImpostorUrl.Equals(input.ImpostorUrl))
+            ) &&
+            (
+                this.ImpostorizerVersion == input.ImpostorizerVersion ||
+                (this.ImpostorizerVersion != null &&
+                this.ImpostorizerVersion.Equals(input.ImpostorizerVersion))
+            ) &&
+            (
+                this.PerformanceRating == input.PerformanceRating ||
+                this.PerformanceRating.Equals(input.PerformanceRating)
+            ) &&
+            (
+                this.Platform == input.Platform ||
+                (this.Platform != null &&
+                this.Platform.Equals(input.Platform))
+            ) &&
+            (
+                this.PluginUrl == input.PluginUrl ||
+                (this.PluginUrl != null &&
+                this.PluginUrl.Equals(input.PluginUrl))
+            ) &&
+            (
+                this.PluginUrlObject == input.PluginUrlObject ||
+                (this.PluginUrlObject != null &&
+                this.PluginUrlObject.Equals(input.PluginUrlObject))
+            ) &&
+            (
+                this.ScanStatus == input.ScanStatus ||
+                (this.ScanStatus != null &&
+                this.ScanStatus.Equals(input.ScanStatus))
+            ) &&
+            (
+                this.TranspilerVersion == input.TranspilerVersion ||
+                (this.TranspilerVersion != null &&
+                this.TranspilerVersion.Equals(input.TranspilerVersion))
+            ) &&
+            (
+                this.UnitySortNumber == input.UnitySortNumber ||
+                this.UnitySortNumber.Equals(input.UnitySortNumber)
+            ) &&
+            (
+                this.UnityVersion == input.UnityVersion ||
+                (this.UnityVersion != null &&
+                this.UnityVersion.Equals(input.UnityVersion))
+            ) &&
+            (
+                this.Variant == input.Variant ||
+                (this.Variant != null &&
+                this.Variant.Equals(input.Variant))
+            ) &&
+            (
+                this.WorldSignature == input.WorldSignature ||
+                (this.WorldSignature != null &&
+                this.WorldSignature.Equals(input.WorldSignature))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.AssetUrl != null)
+            {
+                hashCode = (hashCode * 59) + this.AssetUrl.GetHashCode();
+            }
+            if (this.AssetUrlObject != null)
+            {
+                hashCode = (hashCode * 59) + this.AssetUrlObject.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.AssetVersion.GetHashCode();
+            if (this.CreatedAt != null)
+            {
+                hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+            }
+            if (this.Id != null)
+            {
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
+            }
+            if (this.ImpostorUrl != null)
+            {
+                hashCode = (hashCode * 59) + this.ImpostorUrl.GetHashCode();
+            }
+            if (this.ImpostorizerVersion != null)
+            {
+                hashCode = (hashCode * 59) + this.ImpostorizerVersion.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.PerformanceRating.GetHashCode();
+            if (this.Platform != null)
+            {
+                hashCode = (hashCode * 59) + this.Platform.GetHashCode();
+            }
+            if (this.PluginUrl != null)
+            {
+                hashCode = (hashCode * 59) + this.PluginUrl.GetHashCode();
+            }
+            if (this.PluginUrlObject != null)
+            {
+                hashCode = (hashCode * 59) + this.PluginUrlObject.GetHashCode();
+            }
+            if (this.ScanStatus != null)
+            {
+                hashCode = (hashCode * 59) + this.ScanStatus.GetHashCode();
+            }
+            if (this.TranspilerVersion != null)
+            {
+                hashCode = (hashCode * 59) + this.TranspilerVersion.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.UnitySortNumber.GetHashCode();
+            if (this.UnityVersion != null)
+            {
+                hashCode = (hashCode * 59) + this.UnityVersion.GetHashCode();
+            }
+            if (this.Variant != null)
+            {
+                hashCode = (hashCode * 59) + this.Variant.GetHashCode();
+            }
+            if (this.WorldSignature != null)
+            {
+                hashCode = (hashCode * 59) + this.WorldSignature.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        // AssetVersion (int) minimum
+        if (this.AssetVersion < (int)0)
+        {
+            yield return new ValidationResult("Invalid value for AssetVersion, must be a value greater than or equal to 0.", new [] { "AssetVersion" });
+        }
+
+        // UnitySortNumber (long) minimum
+        if (this.UnitySortNumber < (long)0)
+        {
+            yield return new ValidationResult("Invalid value for UnitySortNumber, must be a value greater than or equal to 0.", new [] { "UnitySortNumber" });
+        }
+
+        // UnityVersion (string) minLength
+        if (this.UnityVersion != null && this.UnityVersion.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for UnityVersion, length must be greater than 1.", new [] { "UnityVersion" });
+        }
+
+        yield break;
+    }
+}

@@ -1,0 +1,378 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// StoreShelf
+/// </summary>
+[DataContract(Name = "StoreShelf")]
+public partial class StoreShelf : IEquatable<StoreShelf>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="StoreShelf" /> class.
+    /// </summary>
+
+    protected StoreShelf() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="StoreShelf" /> class.
+    /// </summary>
+    /// <param name="highlightListing">highlightListing.</param>
+    /// <param name="highlightListingId">highlightListingId.</param>
+    /// <param name="id">id (required).</param>
+    /// <param name="listingIds">listingIds (required).</param>
+    /// <param name="listings">listings.</param>
+    /// <param name="shelfBackgroundImageId">shelfBackgroundImageId.</param>
+    /// <param name="shelfClientBannerImageId">shelfClientBannerImageId.</param>
+    /// <param name="shelfDescription">shelfDescription (required).</param>
+    /// <param name="shelfIconImageId">shelfIconImageId.</param>
+    /// <param name="shelfLayout">shelfLayout (required).</param>
+    /// <param name="shelfMobileHeroBannerImageId">shelfMobileHeroBannerImageId.</param>
+    /// <param name="shelfMobileLogoImageId">shelfMobileLogoImageId.</param>
+    /// <param name="shelfMobileSecondaryBannerImageId">shelfMobileSecondaryBannerImageId.</param>
+    /// <param name="shelfTabBackgroundImageId">shelfTabBackgroundImageId.</param>
+    /// <param name="shelfTitle">shelfTitle (required).</param>
+    /// <param name="updatedAt">updatedAt (required).</param>
+    public StoreShelf(ProductListing highlightListing = default, string highlightListingId = default, string id = default, List<string> listingIds = default, List<ProductListing> listings = default, string shelfBackgroundImageId = default, string shelfClientBannerImageId = default, string shelfDescription = default, string shelfIconImageId = default, string shelfLayout = default, string shelfMobileHeroBannerImageId = default, string shelfMobileLogoImageId = default, string shelfMobileSecondaryBannerImageId = default, string shelfTabBackgroundImageId = default, string shelfTitle = default, DateTime updatedAt = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Id = id;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ListingIds = listingIds;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ShelfDescription = shelfDescription;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ShelfLayout = shelfLayout;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ShelfTitle = shelfTitle;
+        this.UpdatedAt = updatedAt;
+        this.HighlightListing = highlightListing;
+        this.HighlightListingId = highlightListingId;
+        this.Listings = listings;
+        this.ShelfBackgroundImageId = shelfBackgroundImageId;
+        this.ShelfClientBannerImageId = shelfClientBannerImageId;
+        this.ShelfIconImageId = shelfIconImageId;
+        this.ShelfMobileHeroBannerImageId = shelfMobileHeroBannerImageId;
+        this.ShelfMobileLogoImageId = shelfMobileLogoImageId;
+        this.ShelfMobileSecondaryBannerImageId = shelfMobileSecondaryBannerImageId;
+        this.ShelfTabBackgroundImageId = shelfTabBackgroundImageId;
+    }
+
+    /// <summary>
+    /// Gets or Sets HighlightListing
+    /// </summary>
+    [DataMember(Name = "highlightListing", EmitDefaultValue = false)]
+    public ProductListing HighlightListing { get; set; }
+
+    /// <summary>
+    /// Gets or Sets HighlightListingId
+    /// </summary>
+    [DataMember(Name = "highlightListingId", EmitDefaultValue = false)]
+    public string HighlightListingId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Id
+    /// </summary>
+    [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ListingIds
+    /// </summary>
+    [DataMember(Name = "listingIds", IsRequired = true, EmitDefaultValue = true)]
+    public List<string> ListingIds { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Listings
+    /// </summary>
+    [DataMember(Name = "listings", EmitDefaultValue = false)]
+    public List<ProductListing> Listings { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ShelfBackgroundImageId
+    /// </summary>
+    [DataMember(Name = "shelfBackgroundImageId", EmitDefaultValue = false)]
+    public string ShelfBackgroundImageId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ShelfClientBannerImageId
+    /// </summary>
+    [DataMember(Name = "shelfClientBannerImageId", EmitDefaultValue = false)]
+    public string ShelfClientBannerImageId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ShelfDescription
+    /// </summary>
+    [DataMember(Name = "shelfDescription", IsRequired = true, EmitDefaultValue = true)]
+    public string ShelfDescription { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ShelfIconImageId
+    /// </summary>
+    [DataMember(Name = "shelfIconImageId", EmitDefaultValue = false)]
+    public string ShelfIconImageId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ShelfLayout
+    /// </summary>
+    [DataMember(Name = "shelfLayout", IsRequired = true, EmitDefaultValue = true)]
+    public string ShelfLayout { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ShelfMobileHeroBannerImageId
+    /// </summary>
+    [DataMember(Name = "shelfMobileHeroBannerImageId", EmitDefaultValue = false)]
+    public string ShelfMobileHeroBannerImageId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ShelfMobileLogoImageId
+    /// </summary>
+    [DataMember(Name = "shelfMobileLogoImageId", EmitDefaultValue = false)]
+    public string ShelfMobileLogoImageId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ShelfMobileSecondaryBannerImageId
+    /// </summary>
+    [DataMember(Name = "shelfMobileSecondaryBannerImageId", EmitDefaultValue = false)]
+    public string ShelfMobileSecondaryBannerImageId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ShelfTabBackgroundImageId
+    /// </summary>
+    [DataMember(Name = "shelfTabBackgroundImageId", EmitDefaultValue = false)]
+    public string ShelfTabBackgroundImageId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ShelfTitle
+    /// </summary>
+    [DataMember(Name = "shelfTitle", IsRequired = true, EmitDefaultValue = true)]
+    public string ShelfTitle { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UpdatedAt
+    /// </summary>
+    [DataMember(Name = "updatedAt", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime UpdatedAt { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class StoreShelf {\n");
+        sb.Append("  HighlightListing: ").Append(HighlightListing).Append('\n');
+        sb.Append("  HighlightListingId: ").Append(HighlightListingId).Append('\n');
+        sb.Append("  Id: ").Append(Id).Append('\n');
+        sb.Append("  ListingIds: ").Append(ListingIds).Append('\n');
+        sb.Append("  Listings: ").Append(Listings).Append('\n');
+        sb.Append("  ShelfBackgroundImageId: ").Append(ShelfBackgroundImageId).Append('\n');
+        sb.Append("  ShelfClientBannerImageId: ").Append(ShelfClientBannerImageId).Append('\n');
+        sb.Append("  ShelfDescription: ").Append(ShelfDescription).Append('\n');
+        sb.Append("  ShelfIconImageId: ").Append(ShelfIconImageId).Append('\n');
+        sb.Append("  ShelfLayout: ").Append(ShelfLayout).Append('\n');
+        sb.Append("  ShelfMobileHeroBannerImageId: ").Append(ShelfMobileHeroBannerImageId).Append('\n');
+        sb.Append("  ShelfMobileLogoImageId: ").Append(ShelfMobileLogoImageId).Append('\n');
+        sb.Append("  ShelfMobileSecondaryBannerImageId: ").Append(ShelfMobileSecondaryBannerImageId).Append('\n');
+        sb.Append("  ShelfTabBackgroundImageId: ").Append(ShelfTabBackgroundImageId).Append('\n');
+        sb.Append("  ShelfTitle: ").Append(ShelfTitle).Append('\n');
+        sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as StoreShelf);
+    }
+
+    /// <summary>
+    /// Returns true if StoreShelf instances are equal
+    /// </summary>
+    /// <param name="input">Instance of StoreShelf to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(StoreShelf input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.HighlightListing == input.HighlightListing ||
+                (this.HighlightListing != null &&
+                this.HighlightListing.Equals(input.HighlightListing))
+            ) &&
+            (
+                this.HighlightListingId == input.HighlightListingId ||
+                (this.HighlightListingId != null &&
+                this.HighlightListingId.Equals(input.HighlightListingId))
+            ) &&
+            (
+                this.Id == input.Id ||
+                (this.Id != null &&
+                this.Id.Equals(input.Id))
+            ) &&
+            (
+                this.ListingIds == input.ListingIds ||
+                this.ListingIds != null &&
+                input.ListingIds != null &&
+                this.ListingIds.SequenceEqual(input.ListingIds)
+            ) &&
+            (
+                this.Listings == input.Listings ||
+                this.Listings != null &&
+                input.Listings != null &&
+                this.Listings.SequenceEqual(input.Listings)
+            ) &&
+            (
+                this.ShelfBackgroundImageId == input.ShelfBackgroundImageId ||
+                (this.ShelfBackgroundImageId != null &&
+                this.ShelfBackgroundImageId.Equals(input.ShelfBackgroundImageId))
+            ) &&
+            (
+                this.ShelfClientBannerImageId == input.ShelfClientBannerImageId ||
+                (this.ShelfClientBannerImageId != null &&
+                this.ShelfClientBannerImageId.Equals(input.ShelfClientBannerImageId))
+            ) &&
+            (
+                this.ShelfDescription == input.ShelfDescription ||
+                (this.ShelfDescription != null &&
+                this.ShelfDescription.Equals(input.ShelfDescription))
+            ) &&
+            (
+                this.ShelfIconImageId == input.ShelfIconImageId ||
+                (this.ShelfIconImageId != null &&
+                this.ShelfIconImageId.Equals(input.ShelfIconImageId))
+            ) &&
+            (
+                this.ShelfLayout == input.ShelfLayout ||
+                (this.ShelfLayout != null &&
+                this.ShelfLayout.Equals(input.ShelfLayout))
+            ) &&
+            (
+                this.ShelfMobileHeroBannerImageId == input.ShelfMobileHeroBannerImageId ||
+                (this.ShelfMobileHeroBannerImageId != null &&
+                this.ShelfMobileHeroBannerImageId.Equals(input.ShelfMobileHeroBannerImageId))
+            ) &&
+            (
+                this.ShelfMobileLogoImageId == input.ShelfMobileLogoImageId ||
+                (this.ShelfMobileLogoImageId != null &&
+                this.ShelfMobileLogoImageId.Equals(input.ShelfMobileLogoImageId))
+            ) &&
+            (
+                this.ShelfMobileSecondaryBannerImageId == input.ShelfMobileSecondaryBannerImageId ||
+                (this.ShelfMobileSecondaryBannerImageId != null &&
+                this.ShelfMobileSecondaryBannerImageId.Equals(input.ShelfMobileSecondaryBannerImageId))
+            ) &&
+            (
+                this.ShelfTabBackgroundImageId == input.ShelfTabBackgroundImageId ||
+                (this.ShelfTabBackgroundImageId != null &&
+                this.ShelfTabBackgroundImageId.Equals(input.ShelfTabBackgroundImageId))
+            ) &&
+            (
+                this.ShelfTitle == input.ShelfTitle ||
+                (this.ShelfTitle != null &&
+                this.ShelfTitle.Equals(input.ShelfTitle))
+            ) &&
+            (
+                this.UpdatedAt == input.UpdatedAt ||
+                this.UpdatedAt.Equals(input.UpdatedAt)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.HighlightListing != null)
+            {
+                hashCode = (hashCode * 59) + this.HighlightListing.GetHashCode();
+            }
+            if (this.HighlightListingId != null)
+            {
+                hashCode = (hashCode * 59) + this.HighlightListingId.GetHashCode();
+            }
+            if (this.Id != null)
+            {
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
+            }
+            if (this.ListingIds != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.ListingIds);
+            }
+            if (this.Listings != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Listings);
+            }
+            if (this.ShelfBackgroundImageId != null)
+            {
+                hashCode = (hashCode * 59) + this.ShelfBackgroundImageId.GetHashCode();
+            }
+            if (this.ShelfClientBannerImageId != null)
+            {
+                hashCode = (hashCode * 59) + this.ShelfClientBannerImageId.GetHashCode();
+            }
+            if (this.ShelfDescription != null)
+            {
+                hashCode = (hashCode * 59) + this.ShelfDescription.GetHashCode();
+            }
+            if (this.ShelfIconImageId != null)
+            {
+                hashCode = (hashCode * 59) + this.ShelfIconImageId.GetHashCode();
+            }
+            if (this.ShelfLayout != null)
+            {
+                hashCode = (hashCode * 59) + this.ShelfLayout.GetHashCode();
+            }
+            if (this.ShelfMobileHeroBannerImageId != null)
+            {
+                hashCode = (hashCode * 59) + this.ShelfMobileHeroBannerImageId.GetHashCode();
+            }
+            if (this.ShelfMobileLogoImageId != null)
+            {
+                hashCode = (hashCode * 59) + this.ShelfMobileLogoImageId.GetHashCode();
+            }
+            if (this.ShelfMobileSecondaryBannerImageId != null)
+            {
+                hashCode = (hashCode * 59) + this.ShelfMobileSecondaryBannerImageId.GetHashCode();
+            }
+            if (this.ShelfTabBackgroundImageId != null)
+            {
+                hashCode = (hashCode * 59) + this.ShelfTabBackgroundImageId.GetHashCode();
+            }
+            if (this.ShelfTitle != null)
+            {
+                hashCode = (hashCode * 59) + this.ShelfTitle.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

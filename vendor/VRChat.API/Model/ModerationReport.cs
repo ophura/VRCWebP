@@ -1,0 +1,289 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// ModerationReport
+/// </summary>
+[DataContract(Name = "ModerationReport")]
+public partial class ModerationReport : IEquatable<ModerationReport>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ModerationReport" /> class.
+    /// </summary>
+
+    protected ModerationReport() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ModerationReport" /> class.
+    /// </summary>
+    /// <param name="category">Valid values are the keys of the object &#x60;$.reportOptions[type]&#x60; from &#x60;GET /config&#x60;. Descriptions of these are found at &#x60;$.reportCategories[type]&#x60;. (required).</param>
+    /// <param name="contentId">contentId (required).</param>
+    /// <param name="contentName">contentName (required).</param>
+    /// <param name="contentThumbnailImageUrl">contentThumbnailImageUrl (required).</param>
+    /// <param name="created">created (required).</param>
+    /// <param name="description">The subjective reason for the report (required).</param>
+    /// <param name="evidenceRequired">evidenceRequired (required).</param>
+    /// <param name="id">id (required).</param>
+    /// <param name="reason">Valid values are the strings in the array &#x60;$.reportOptions[type][category]&#x60; from &#x60;GET /config&#x60;. Descriptions of these are found at &#x60;$.reportReasons[type]&#x60;. (required).</param>
+    /// <param name="supportRequired">supportRequired (required).</param>
+    /// <param name="type">Valid values are the keys of the object &#x60;$.reportOptions&#x60; from &#x60;GET /config&#x60;. (required).</param>
+    public ModerationReport(string category = default, string contentId = default, string contentName = default, string contentThumbnailImageUrl = default, DateTime created = default, string description = default, bool? evidenceRequired = default, string id = default, string reason = default, bool supportRequired = default, string type = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Category = category;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ContentId = contentId;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ContentName = contentName;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ContentThumbnailImageUrl = contentThumbnailImageUrl;
+        this.Created = created;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Description = description;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.EvidenceRequired = evidenceRequired;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Id = id;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Reason = reason;
+        this.SupportRequired = supportRequired;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Type = type;
+    }
+
+    /// <summary>
+    /// Valid values are the keys of the object &#x60;$.reportOptions[type]&#x60; from &#x60;GET /config&#x60;. Descriptions of these are found at &#x60;$.reportCategories[type]&#x60;.
+    /// </summary>
+    /// <value>Valid values are the keys of the object &#x60;$.reportOptions[type]&#x60; from &#x60;GET /config&#x60;. Descriptions of these are found at &#x60;$.reportCategories[type]&#x60;.</value>
+    [DataMember(Name = "category", IsRequired = true, EmitDefaultValue = true)]
+    public string Category { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ContentId
+    /// </summary>
+    [DataMember(Name = "contentId", IsRequired = true, EmitDefaultValue = true)]
+    public string ContentId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ContentName
+    /// </summary>
+    [DataMember(Name = "contentName", IsRequired = true, EmitDefaultValue = true)]
+    public string ContentName { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ContentThumbnailImageUrl
+    /// </summary>
+    [DataMember(Name = "contentThumbnailImageUrl", IsRequired = true, EmitDefaultValue = true)]
+    public string ContentThumbnailImageUrl { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Created
+    /// </summary>
+    [DataMember(Name = "created", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime Created { get; set; }
+
+    /// <summary>
+    /// The subjective reason for the report
+    /// </summary>
+    /// <value>The subjective reason for the report</value>
+    [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
+    public string Description { get; set; }
+
+    /// <summary>
+    /// Gets or Sets EvidenceRequired
+    /// </summary>
+    [DataMember(Name = "evidenceRequired", IsRequired = true, EmitDefaultValue = true)]
+    public bool? EvidenceRequired { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Id
+    /// </summary>
+    [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Valid values are the strings in the array &#x60;$.reportOptions[type][category]&#x60; from &#x60;GET /config&#x60;. Descriptions of these are found at &#x60;$.reportReasons[type]&#x60;.
+    /// </summary>
+    /// <value>Valid values are the strings in the array &#x60;$.reportOptions[type][category]&#x60; from &#x60;GET /config&#x60;. Descriptions of these are found at &#x60;$.reportReasons[type]&#x60;.</value>
+    [DataMember(Name = "reason", IsRequired = true, EmitDefaultValue = true)]
+    public string Reason { get; set; }
+
+    /// <summary>
+    /// Gets or Sets SupportRequired
+    /// </summary>
+    [DataMember(Name = "supportRequired", IsRequired = true, EmitDefaultValue = true)]
+    public bool SupportRequired { get; set; }
+
+    /// <summary>
+    /// Valid values are the keys of the object &#x60;$.reportOptions&#x60; from &#x60;GET /config&#x60;.
+    /// </summary>
+    /// <value>Valid values are the keys of the object &#x60;$.reportOptions&#x60; from &#x60;GET /config&#x60;.</value>
+    [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+    public string Type { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class ModerationReport {\n");
+        sb.Append("  Category: ").Append(Category).Append('\n');
+        sb.Append("  ContentId: ").Append(ContentId).Append('\n');
+        sb.Append("  ContentName: ").Append(ContentName).Append('\n');
+        sb.Append("  ContentThumbnailImageUrl: ").Append(ContentThumbnailImageUrl).Append('\n');
+        sb.Append("  Created: ").Append(Created).Append('\n');
+        sb.Append("  Description: ").Append(Description).Append('\n');
+        sb.Append("  EvidenceRequired: ").Append(EvidenceRequired).Append('\n');
+        sb.Append("  Id: ").Append(Id).Append('\n');
+        sb.Append("  Reason: ").Append(Reason).Append('\n');
+        sb.Append("  SupportRequired: ").Append(SupportRequired).Append('\n');
+        sb.Append("  Type: ").Append(Type).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as ModerationReport);
+    }
+
+    /// <summary>
+    /// Returns true if ModerationReport instances are equal
+    /// </summary>
+    /// <param name="input">Instance of ModerationReport to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(ModerationReport input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Category == input.Category ||
+                (this.Category != null &&
+                this.Category.Equals(input.Category))
+            ) &&
+            (
+                this.ContentId == input.ContentId ||
+                (this.ContentId != null &&
+                this.ContentId.Equals(input.ContentId))
+            ) &&
+            (
+                this.ContentName == input.ContentName ||
+                (this.ContentName != null &&
+                this.ContentName.Equals(input.ContentName))
+            ) &&
+            (
+                this.ContentThumbnailImageUrl == input.ContentThumbnailImageUrl ||
+                (this.ContentThumbnailImageUrl != null &&
+                this.ContentThumbnailImageUrl.Equals(input.ContentThumbnailImageUrl))
+            ) &&
+            (
+                this.Created == input.Created ||
+                this.Created.Equals(input.Created)
+            ) &&
+            (
+                this.Description == input.Description ||
+                (this.Description != null &&
+                this.Description.Equals(input.Description))
+            ) &&
+            (
+                this.EvidenceRequired == input.EvidenceRequired ||
+                (this.EvidenceRequired != null &&
+                this.EvidenceRequired.Equals(input.EvidenceRequired))
+            ) &&
+            (
+                this.Id == input.Id ||
+                (this.Id != null &&
+                this.Id.Equals(input.Id))
+            ) &&
+            (
+                this.Reason == input.Reason ||
+                (this.Reason != null &&
+                this.Reason.Equals(input.Reason))
+            ) &&
+            (
+                this.SupportRequired == input.SupportRequired ||
+                this.SupportRequired.Equals(input.SupportRequired)
+            ) &&
+            (
+                this.Type == input.Type ||
+                (this.Type != null &&
+                this.Type.Equals(input.Type))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.Category != null)
+            {
+                hashCode = (hashCode * 59) + this.Category.GetHashCode();
+            }
+            if (this.ContentId != null)
+            {
+                hashCode = (hashCode * 59) + this.ContentId.GetHashCode();
+            }
+            if (this.ContentName != null)
+            {
+                hashCode = (hashCode * 59) + this.ContentName.GetHashCode();
+            }
+            if (this.ContentThumbnailImageUrl != null)
+            {
+                hashCode = (hashCode * 59) + this.ContentThumbnailImageUrl.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.Created.GetHashCode();
+            if (this.Description != null)
+            {
+                hashCode = (hashCode * 59) + this.Description.GetHashCode();
+            }
+            if (this.EvidenceRequired != null)
+            {
+                hashCode = (hashCode * 59) + this.EvidenceRequired.GetHashCode();
+            }
+            if (this.Id != null)
+            {
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
+            }
+            if (this.Reason != null)
+            {
+                hashCode = (hashCode * 59) + this.Reason.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.SupportRequired.GetHashCode();
+            if (this.Type != null)
+            {
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

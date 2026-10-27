@@ -1,0 +1,25 @@
+{
+  "sourceRevisions": {
+    "vrchatapi-csharp": "5f8068685c1abe67190ce023d516b59ad3313525"
+  },
+  "cascadiaCode": {
+    "version": "2407.24",
+    "source": "https://github.com/microsoft/cascadia-code/releases/tag/v2407.24",
+    "license": "OFL-1.1",
+    "regularSha256": "C33EF522CDFEFF99907FB54F3E97152BB18BFB9B56EC2FEF4D4CEEC51C8974A4",
+    "semiBoldSha256": "152F369A2A568EDA3281F8F280B907DD7A90CC2D4235677D0D7DED4DAEA324EC"
+  },
+  "ffmpeg": {
+    "version": "9.0.2",
+    "source": "https://ffmpeg.org/releases/ffmpeg-9.0.2.tar.xz",
+    "sha256": "8c3850283eb25fa026482078a04051e0be17347b09ef81a0849bec15a96e002e",
+    "license": "LGPL-2.1-or-later",
+    "correspondingSource": {
+      "status": "source-built",
+      "pins": "assets/native-build.json",
+      "buildRecord": "assets/native-build.json",
+      "archive": "artifacts/sources/VRCWebP-media-sources-9.0.2.zip",
+      "instructions": "docs/FFMPEG-SOURCE.md"
+    }
+  }
+}

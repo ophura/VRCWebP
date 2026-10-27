@@ -1,0 +1,708 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// DynamicContentRow
+/// </summary>
+[DataContract(Name = "DynamicContentRow")]
+public partial class DynamicContentRow : IEquatable<DynamicContentRow>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DynamicContentRow" /> class.
+    /// </summary>
+
+    protected DynamicContentRow() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DynamicContentRow" /> class.
+    /// </summary>
+    /// <param name="anyStyle">anyStyle.</param>
+    /// <param name="anyTag">anyTag.</param>
+    /// <param name="avatarSpecific">avatarSpecific.</param>
+    /// <param name="bannersTag">bannersTag.</param>
+    /// <param name="categories">categories.</param>
+    /// <param name="featuredResults">featuredResults.</param>
+    /// <param name="groupPool">groupPool.</param>
+    /// <param name="index">index.</param>
+    /// <param name="marketplace">marketplace.</param>
+    /// <param name="maxPrice">maxPrice.</param>
+    /// <param name="minOccupants">minOccupants.</param>
+    /// <param name="minPrice">minPrice.</param>
+    /// <param name="minimumInterestCount">minimumInterestCount.</param>
+    /// <param name="minimumRemainingMinutes">minimumRemainingMinutes.</param>
+    /// <param name="mode">mode.</param>
+    /// <param name="n">n.</param>
+    /// <param name="name">name (required).</param>
+    /// <param name="nonFeaturedResults">nonFeaturedResults.</param>
+    /// <param name="notag">notag.</param>
+    /// <param name="varParams">varParams.</param>
+    /// <param name="personalizedResults">personalizedResults.</param>
+    /// <param name="platform">Usually \&quot;ThisPlatformSupported\&quot;, but can also be other values such as \&quot;all\&quot; or platform specific identifiers. (required).</param>
+    /// <param name="region">region.</param>
+    /// <param name="scope">scope.</param>
+    /// <param name="shortName">shortName.</param>
+    /// <param name="sortHeading">sortHeading.</param>
+    /// <param name="sortOrder">sortOrder.</param>
+    /// <param name="sortOwnership">sortOwnership.</param>
+    /// <param name="style">style.</param>
+    /// <param name="tag">Tag to filter content for this row. Not a &#x60;Tag&#x60;: that type forbids the empty string, which this field uses for a row that is not tag-filtered..</param>
+    /// <param name="tags">tags.</param>
+    /// <param name="type">Type is not present if it is a world..</param>
+    /// <param name="upcomingOffsetMinutes">upcomingOffsetMinutes.</param>
+    /// <param name="worldPool">worldPool.</param>
+    public DynamicContentRow(List<string> anyStyle = default, List<string> anyTag = default, bool? avatarSpecific = default, string bannersTag = default, List<string> categories = default, string featuredResults = default, string groupPool = default, int index = default, string marketplace = default, int maxPrice = default, int minOccupants = default, int minPrice = default, int minimumInterestCount = default, int minimumRemainingMinutes = default, string mode = default, int n = default, LocalizableString name = default, string nonFeaturedResults = default, List<string> notag = default, Dictionary<string, object> varParams = default, string personalizedResults = default, string platform = default, string region = default, string scope = default, LocalizableString shortName = default, string sortHeading = default, string sortOrder = default, string sortOwnership = default, string style = default, string tag = default, List<string> tags = default, string type = default, int upcomingOffsetMinutes = default, string worldPool = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Name = name;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Platform = platform;
+        this.AnyStyle = anyStyle;
+        this.AnyTag = anyTag;
+        this.AvatarSpecific = avatarSpecific;
+        this.BannersTag = bannersTag;
+        this.Categories = categories;
+        this.FeaturedResults = featuredResults;
+        this.GroupPool = groupPool;
+        this.Index = index;
+        this.Marketplace = marketplace;
+        this.MaxPrice = maxPrice;
+        this.MinOccupants = minOccupants;
+        this.MinPrice = minPrice;
+        this.MinimumInterestCount = minimumInterestCount;
+        this.MinimumRemainingMinutes = minimumRemainingMinutes;
+        this.Mode = mode;
+        this.N = n;
+        this.NonFeaturedResults = nonFeaturedResults;
+        this.Notag = notag;
+        this.Params = varParams;
+        this.PersonalizedResults = personalizedResults;
+        this.Region = region;
+        this.Scope = scope;
+        this.ShortName = shortName;
+        this.SortHeading = sortHeading;
+        this.SortOrder = sortOrder;
+        this.SortOwnership = sortOwnership;
+        this.Style = style;
+        this.Tag = tag;
+        this.Tags = tags;
+        this.Type = type;
+        this.UpcomingOffsetMinutes = upcomingOffsetMinutes;
+        this.WorldPool = worldPool;
+    }
+
+    /// <summary>
+    /// Gets or Sets AnyStyle
+    /// </summary>
+    [DataMember(Name = "anyStyle", EmitDefaultValue = true)]
+    public List<string> AnyStyle { get; set; }
+
+    /// <summary>
+    /// Gets or Sets AnyTag
+    /// </summary>
+    [DataMember(Name = "anyTag", EmitDefaultValue = true)]
+    public List<string> AnyTag { get; set; }
+
+    /// <summary>
+    /// Gets or Sets AvatarSpecific
+    /// </summary>
+    [DataMember(Name = "avatarSpecific", EmitDefaultValue = true)]
+    public bool? AvatarSpecific { get; set; }
+
+    /// <summary>
+    /// Gets or Sets BannersTag
+    /// </summary>
+    [DataMember(Name = "bannersTag", EmitDefaultValue = false)]
+    public string BannersTag { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Categories
+    /// </summary>
+    [DataMember(Name = "categories", EmitDefaultValue = false)]
+    public List<string> Categories { get; set; }
+
+    /// <summary>
+    /// Gets or Sets FeaturedResults
+    /// </summary>
+    [DataMember(Name = "featuredResults", EmitDefaultValue = false)]
+    public string FeaturedResults { get; set; }
+
+    /// <summary>
+    /// Gets or Sets GroupPool
+    /// </summary>
+    [DataMember(Name = "groupPool", EmitDefaultValue = false)]
+    public string GroupPool { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Index
+    /// </summary>
+    [DataMember(Name = "index", EmitDefaultValue = false)]
+    public int Index { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Marketplace
+    /// </summary>
+    [DataMember(Name = "marketplace", EmitDefaultValue = false)]
+    public string Marketplace { get; set; }
+
+    /// <summary>
+    /// Gets or Sets MaxPrice
+    /// </summary>
+    [DataMember(Name = "maxPrice", EmitDefaultValue = false)]
+    public int MaxPrice { get; set; }
+
+    /// <summary>
+    /// Gets or Sets MinOccupants
+    /// </summary>
+    [DataMember(Name = "minOccupants", EmitDefaultValue = false)]
+    public int MinOccupants { get; set; }
+
+    /// <summary>
+    /// Gets or Sets MinPrice
+    /// </summary>
+    [DataMember(Name = "minPrice", EmitDefaultValue = false)]
+    public int MinPrice { get; set; }
+
+    /// <summary>
+    /// Gets or Sets MinimumInterestCount
+    /// </summary>
+    [DataMember(Name = "minimumInterestCount", EmitDefaultValue = false)]
+    public int MinimumInterestCount { get; set; }
+
+    /// <summary>
+    /// Gets or Sets MinimumRemainingMinutes
+    /// </summary>
+    [DataMember(Name = "minimumRemainingMinutes", EmitDefaultValue = false)]
+    public int MinimumRemainingMinutes { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Mode
+    /// </summary>
+    [DataMember(Name = "mode", EmitDefaultValue = false)]
+    public string Mode { get; set; }
+
+    /// <summary>
+    /// Gets or Sets N
+    /// </summary>
+    [DataMember(Name = "n", EmitDefaultValue = false)]
+    public int N { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Name
+    /// </summary>
+    [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
+    public LocalizableString Name { get; set; }
+
+    /// <summary>
+    /// Gets or Sets NonFeaturedResults
+    /// </summary>
+    [DataMember(Name = "nonFeaturedResults", EmitDefaultValue = false)]
+    public string NonFeaturedResults { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Notag
+    /// </summary>
+    [DataMember(Name = "notag", EmitDefaultValue = true)]
+    public List<string> Notag { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Params
+    /// </summary>
+    [DataMember(Name = "params", EmitDefaultValue = false)]
+    public Dictionary<string, object> Params { get; set; }
+
+    /// <summary>
+    /// Gets or Sets PersonalizedResults
+    /// </summary>
+    [DataMember(Name = "personalizedResults", EmitDefaultValue = false)]
+    public string PersonalizedResults { get; set; }
+
+    /// <summary>
+    /// Usually \&quot;ThisPlatformSupported\&quot;, but can also be other values such as \&quot;all\&quot; or platform specific identifiers.
+    /// </summary>
+    /// <value>Usually \&quot;ThisPlatformSupported\&quot;, but can also be other values such as \&quot;all\&quot; or platform specific identifiers.</value>
+    [DataMember(Name = "platform", IsRequired = true, EmitDefaultValue = true)]
+    public string Platform { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Region
+    /// </summary>
+    [DataMember(Name = "region", EmitDefaultValue = true)]
+    public string Region { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Scope
+    /// </summary>
+    [DataMember(Name = "scope", EmitDefaultValue = false)]
+    public string Scope { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ShortName
+    /// </summary>
+    [DataMember(Name = "shortName", EmitDefaultValue = true)]
+    public LocalizableString ShortName { get; set; }
+
+    /// <summary>
+    /// Gets or Sets SortHeading
+    /// </summary>
+    [DataMember(Name = "sortHeading", EmitDefaultValue = false)]
+    public string SortHeading { get; set; }
+
+    /// <summary>
+    /// Gets or Sets SortOrder
+    /// </summary>
+    [DataMember(Name = "sortOrder", EmitDefaultValue = false)]
+    public string SortOrder { get; set; }
+
+    /// <summary>
+    /// Gets or Sets SortOwnership
+    /// </summary>
+    [DataMember(Name = "sortOwnership", EmitDefaultValue = false)]
+    public string SortOwnership { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Style
+    /// </summary>
+    [DataMember(Name = "style", EmitDefaultValue = true)]
+    public string Style { get; set; }
+
+    /// <summary>
+    /// Tag to filter content for this row. Not a &#x60;Tag&#x60;: that type forbids the empty string, which this field uses for a row that is not tag-filtered.
+    /// </summary>
+    /// <value>Tag to filter content for this row. Not a &#x60;Tag&#x60;: that type forbids the empty string, which this field uses for a row that is not tag-filtered.</value>
+    [DataMember(Name = "tag", EmitDefaultValue = true)]
+    public string Tag { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Tags
+    /// </summary>
+    [DataMember(Name = "tags", EmitDefaultValue = true)]
+    public List<string> Tags { get; set; }
+
+    /// <summary>
+    /// Type is not present if it is a world.
+    /// </summary>
+    /// <value>Type is not present if it is a world.</value>
+    [DataMember(Name = "type", EmitDefaultValue = false)]
+    public string Type { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UpcomingOffsetMinutes
+    /// </summary>
+    [DataMember(Name = "upcomingOffsetMinutes", EmitDefaultValue = false)]
+    public int UpcomingOffsetMinutes { get; set; }
+
+    /// <summary>
+    /// Gets or Sets WorldPool
+    /// </summary>
+    [DataMember(Name = "worldPool", EmitDefaultValue = false)]
+    public string WorldPool { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class DynamicContentRow {\n");
+        sb.Append("  AnyStyle: ").Append(AnyStyle).Append('\n');
+        sb.Append("  AnyTag: ").Append(AnyTag).Append('\n');
+        sb.Append("  AvatarSpecific: ").Append(AvatarSpecific).Append('\n');
+        sb.Append("  BannersTag: ").Append(BannersTag).Append('\n');
+        sb.Append("  Categories: ").Append(Categories).Append('\n');
+        sb.Append("  FeaturedResults: ").Append(FeaturedResults).Append('\n');
+        sb.Append("  GroupPool: ").Append(GroupPool).Append('\n');
+        sb.Append("  Index: ").Append(Index).Append('\n');
+        sb.Append("  Marketplace: ").Append(Marketplace).Append('\n');
+        sb.Append("  MaxPrice: ").Append(MaxPrice).Append('\n');
+        sb.Append("  MinOccupants: ").Append(MinOccupants).Append('\n');
+        sb.Append("  MinPrice: ").Append(MinPrice).Append('\n');
+        sb.Append("  MinimumInterestCount: ").Append(MinimumInterestCount).Append('\n');
+        sb.Append("  MinimumRemainingMinutes: ").Append(MinimumRemainingMinutes).Append('\n');
+        sb.Append("  Mode: ").Append(Mode).Append('\n');
+        sb.Append("  N: ").Append(N).Append('\n');
+        sb.Append("  Name: ").Append((object)Name).Append('\n');
+        sb.Append("  NonFeaturedResults: ").Append(NonFeaturedResults).Append('\n');
+        sb.Append("  Notag: ").Append(Notag).Append('\n');
+        sb.Append("  Params: ").Append(Params).Append('\n');
+        sb.Append("  PersonalizedResults: ").Append(PersonalizedResults).Append('\n');
+        sb.Append("  Platform: ").Append(Platform).Append('\n');
+        sb.Append("  Region: ").Append(Region).Append('\n');
+        sb.Append("  Scope: ").Append(Scope).Append('\n');
+        sb.Append("  ShortName: ").Append((object)ShortName).Append('\n');
+        sb.Append("  SortHeading: ").Append(SortHeading).Append('\n');
+        sb.Append("  SortOrder: ").Append(SortOrder).Append('\n');
+        sb.Append("  SortOwnership: ").Append(SortOwnership).Append('\n');
+        sb.Append("  Style: ").Append(Style).Append('\n');
+        sb.Append("  Tag: ").Append(Tag).Append('\n');
+        sb.Append("  Tags: ").Append(Tags).Append('\n');
+        sb.Append("  Type: ").Append(Type).Append('\n');
+        sb.Append("  UpcomingOffsetMinutes: ").Append(UpcomingOffsetMinutes).Append('\n');
+        sb.Append("  WorldPool: ").Append(WorldPool).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as DynamicContentRow);
+    }
+
+    /// <summary>
+    /// Returns true if DynamicContentRow instances are equal
+    /// </summary>
+    /// <param name="input">Instance of DynamicContentRow to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(DynamicContentRow input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.AnyStyle == input.AnyStyle ||
+                this.AnyStyle != null &&
+                input.AnyStyle != null &&
+                this.AnyStyle.SequenceEqual(input.AnyStyle)
+            ) &&
+            (
+                this.AnyTag == input.AnyTag ||
+                this.AnyTag != null &&
+                input.AnyTag != null &&
+                this.AnyTag.SequenceEqual(input.AnyTag)
+            ) &&
+            (
+                this.AvatarSpecific == input.AvatarSpecific ||
+                (this.AvatarSpecific != null &&
+                this.AvatarSpecific.Equals(input.AvatarSpecific))
+            ) &&
+            (
+                this.BannersTag == input.BannersTag ||
+                (this.BannersTag != null &&
+                this.BannersTag.Equals(input.BannersTag))
+            ) &&
+            (
+                this.Categories == input.Categories ||
+                this.Categories != null &&
+                input.Categories != null &&
+                this.Categories.SequenceEqual(input.Categories)
+            ) &&
+            (
+                this.FeaturedResults == input.FeaturedResults ||
+                (this.FeaturedResults != null &&
+                this.FeaturedResults.Equals(input.FeaturedResults))
+            ) &&
+            (
+                this.GroupPool == input.GroupPool ||
+                (this.GroupPool != null &&
+                this.GroupPool.Equals(input.GroupPool))
+            ) &&
+            (
+                this.Index == input.Index ||
+                this.Index.Equals(input.Index)
+            ) &&
+            (
+                this.Marketplace == input.Marketplace ||
+                (this.Marketplace != null &&
+                this.Marketplace.Equals(input.Marketplace))
+            ) &&
+            (
+                this.MaxPrice == input.MaxPrice ||
+                this.MaxPrice.Equals(input.MaxPrice)
+            ) &&
+            (
+                this.MinOccupants == input.MinOccupants ||
+                this.MinOccupants.Equals(input.MinOccupants)
+            ) &&
+            (
+                this.MinPrice == input.MinPrice ||
+                this.MinPrice.Equals(input.MinPrice)
+            ) &&
+            (
+                this.MinimumInterestCount == input.MinimumInterestCount ||
+                this.MinimumInterestCount.Equals(input.MinimumInterestCount)
+            ) &&
+            (
+                this.MinimumRemainingMinutes == input.MinimumRemainingMinutes ||
+                this.MinimumRemainingMinutes.Equals(input.MinimumRemainingMinutes)
+            ) &&
+            (
+                this.Mode == input.Mode ||
+                (this.Mode != null &&
+                this.Mode.Equals(input.Mode))
+            ) &&
+            (
+                this.N == input.N ||
+                this.N.Equals(input.N)
+            ) &&
+            (
+                this.Name == input.Name ||
+                (this.Name != null &&
+                this.Name.Equals(input.Name))
+            ) &&
+            (
+                this.NonFeaturedResults == input.NonFeaturedResults ||
+                (this.NonFeaturedResults != null &&
+                this.NonFeaturedResults.Equals(input.NonFeaturedResults))
+            ) &&
+            (
+                this.Notag == input.Notag ||
+                this.Notag != null &&
+                input.Notag != null &&
+                this.Notag.SequenceEqual(input.Notag)
+            ) &&
+            (
+                this.Params == input.Params ||
+                this.Params != null &&
+                input.Params != null &&
+                this.Params.SequenceEqual(input.Params)
+            ) &&
+            (
+                this.PersonalizedResults == input.PersonalizedResults ||
+                (this.PersonalizedResults != null &&
+                this.PersonalizedResults.Equals(input.PersonalizedResults))
+            ) &&
+            (
+                this.Platform == input.Platform ||
+                (this.Platform != null &&
+                this.Platform.Equals(input.Platform))
+            ) &&
+            (
+                this.Region == input.Region ||
+                (this.Region != null &&
+                this.Region.Equals(input.Region))
+            ) &&
+            (
+                this.Scope == input.Scope ||
+                (this.Scope != null &&
+                this.Scope.Equals(input.Scope))
+            ) &&
+            (
+                this.ShortName == input.ShortName ||
+                (this.ShortName != null &&
+                this.ShortName.Equals(input.ShortName))
+            ) &&
+            (
+                this.SortHeading == input.SortHeading ||
+                (this.SortHeading != null &&
+                this.SortHeading.Equals(input.SortHeading))
+            ) &&
+            (
+                this.SortOrder == input.SortOrder ||
+                (this.SortOrder != null &&
+                this.SortOrder.Equals(input.SortOrder))
+            ) &&
+            (
+                this.SortOwnership == input.SortOwnership ||
+                (this.SortOwnership != null &&
+                this.SortOwnership.Equals(input.SortOwnership))
+            ) &&
+            (
+                this.Style == input.Style ||
+                (this.Style != null &&
+                this.Style.Equals(input.Style))
+            ) &&
+            (
+                this.Tag == input.Tag ||
+                (this.Tag != null &&
+                this.Tag.Equals(input.Tag))
+            ) &&
+            (
+                this.Tags == input.Tags ||
+                this.Tags != null &&
+                input.Tags != null &&
+                this.Tags.SequenceEqual(input.Tags)
+            ) &&
+            (
+                this.Type == input.Type ||
+                (this.Type != null &&
+                this.Type.Equals(input.Type))
+            ) &&
+            (
+                this.UpcomingOffsetMinutes == input.UpcomingOffsetMinutes ||
+                this.UpcomingOffsetMinutes.Equals(input.UpcomingOffsetMinutes)
+            ) &&
+            (
+                this.WorldPool == input.WorldPool ||
+                (this.WorldPool != null &&
+                this.WorldPool.Equals(input.WorldPool))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.AnyStyle != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.AnyStyle);
+            }
+            if (this.AnyTag != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.AnyTag);
+            }
+            if (this.AvatarSpecific != null)
+            {
+                hashCode = (hashCode * 59) + this.AvatarSpecific.GetHashCode();
+            }
+            if (this.BannersTag != null)
+            {
+                hashCode = (hashCode * 59) + this.BannersTag.GetHashCode();
+            }
+            if (this.Categories != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Categories);
+            }
+            if (this.FeaturedResults != null)
+            {
+                hashCode = (hashCode * 59) + this.FeaturedResults.GetHashCode();
+            }
+            if (this.GroupPool != null)
+            {
+                hashCode = (hashCode * 59) + this.GroupPool.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.Index.GetHashCode();
+            if (this.Marketplace != null)
+            {
+                hashCode = (hashCode * 59) + this.Marketplace.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.MaxPrice.GetHashCode();
+            hashCode = (hashCode * 59) + this.MinOccupants.GetHashCode();
+            hashCode = (hashCode * 59) + this.MinPrice.GetHashCode();
+            hashCode = (hashCode * 59) + this.MinimumInterestCount.GetHashCode();
+            hashCode = (hashCode * 59) + this.MinimumRemainingMinutes.GetHashCode();
+            if (this.Mode != null)
+            {
+                hashCode = (hashCode * 59) + this.Mode.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.N.GetHashCode();
+            if (this.Name != null)
+            {
+                hashCode = (hashCode * 59) + this.Name.GetHashCode();
+            }
+            if (this.NonFeaturedResults != null)
+            {
+                hashCode = (hashCode * 59) + this.NonFeaturedResults.GetHashCode();
+            }
+            if (this.Notag != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Notag);
+            }
+            if (this.Params != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Params);
+            }
+            if (this.PersonalizedResults != null)
+            {
+                hashCode = (hashCode * 59) + this.PersonalizedResults.GetHashCode();
+            }
+            if (this.Platform != null)
+            {
+                hashCode = (hashCode * 59) + this.Platform.GetHashCode();
+            }
+            if (this.Region != null)
+            {
+                hashCode = (hashCode * 59) + this.Region.GetHashCode();
+            }
+            if (this.Scope != null)
+            {
+                hashCode = (hashCode * 59) + this.Scope.GetHashCode();
+            }
+            if (this.ShortName != null)
+            {
+                hashCode = (hashCode * 59) + this.ShortName.GetHashCode();
+            }
+            if (this.SortHeading != null)
+            {
+                hashCode = (hashCode * 59) + this.SortHeading.GetHashCode();
+            }
+            if (this.SortOrder != null)
+            {
+                hashCode = (hashCode * 59) + this.SortOrder.GetHashCode();
+            }
+            if (this.SortOwnership != null)
+            {
+                hashCode = (hashCode * 59) + this.SortOwnership.GetHashCode();
+            }
+            if (this.Style != null)
+            {
+                hashCode = (hashCode * 59) + this.Style.GetHashCode();
+            }
+            if (this.Tag != null)
+            {
+                hashCode = (hashCode * 59) + this.Tag.GetHashCode();
+            }
+            if (this.Tags != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Tags);
+            }
+            if (this.Type != null)
+            {
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.UpcomingOffsetMinutes.GetHashCode();
+            if (this.WorldPool != null)
+            {
+                hashCode = (hashCode * 59) + this.WorldPool.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        // Index (int) minimum
+        if (this.Index < (int)0)
+        {
+            yield return new ValidationResult("Invalid value for Index, must be a value greater than or equal to 0.", new [] { "Index" });
+        }
+
+        // Platform (string) minLength
+        if (this.Platform != null && this.Platform.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for Platform, length must be greater than 1.", new [] { "Platform" });
+        }
+
+        // SortHeading (string) minLength
+        if (this.SortHeading != null && this.SortHeading.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for SortHeading, length must be greater than 1.", new [] { "SortHeading" });
+        }
+
+        // SortOrder (string) minLength
+        if (this.SortOrder != null && this.SortOrder.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for SortOrder, length must be greater than 1.", new [] { "SortOrder" });
+        }
+
+        // SortOwnership (string) minLength
+        if (this.SortOwnership != null && this.SortOwnership.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for SortOwnership, length must be greater than 1.", new [] { "SortOwnership" });
+        }
+
+        yield break;
+    }
+}

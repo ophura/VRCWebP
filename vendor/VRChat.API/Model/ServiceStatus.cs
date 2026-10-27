@@ -1,0 +1,254 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// Status information for a service request
+/// </summary>
+[DataContract(Name = "ServiceStatus")]
+public partial class ServiceStatus : IEquatable<ServiceStatus>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ServiceStatus" /> class.
+    /// </summary>
+
+    protected ServiceStatus() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ServiceStatus" /> class.
+    /// </summary>
+    /// <param name="createdAt">createdAt (required).</param>
+    /// <param name="id">The id of this service, NOT the id of the thing this service was requested for. (required).</param>
+    /// <param name="progress">progress (required).</param>
+    /// <param name="requesterUserId">The id of the user who requested this service. (required).</param>
+    /// <param name="state">state (required).</param>
+    /// <param name="subjectId">The id of the thing this service was requested for. (required).</param>
+    /// <param name="subjectType">The kind of the thing this service was requested for. (required).</param>
+    /// <param name="type">The kind of service that was requested. (required).</param>
+    /// <param name="updatedAt">updatedAt (required).</param>
+    public ServiceStatus(DateTime createdAt = default, string id = default, List<object> progress = default, string requesterUserId = default, string state = default, string subjectId = default, string subjectType = default, string type = default, DateTime updatedAt = default)
+    {
+        this.CreatedAt = createdAt;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Id = id;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Progress = progress;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.RequesterUserId = requesterUserId;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.State = state;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.SubjectId = subjectId;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.SubjectType = subjectType;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Type = type;
+        this.UpdatedAt = updatedAt;
+    }
+
+    /// <summary>
+    /// Gets or Sets CreatedAt
+    /// </summary>
+    [DataMember(Name = "created_at", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime CreatedAt { get; set; }
+
+    /// <summary>
+    /// The id of this service, NOT the id of the thing this service was requested for.
+    /// </summary>
+    /// <value>The id of this service, NOT the id of the thing this service was requested for.</value>
+    [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Progress
+    /// </summary>
+    [DataMember(Name = "progress", IsRequired = true, EmitDefaultValue = true)]
+    public List<object> Progress { get; set; }
+
+    /// <summary>
+    /// The id of the user who requested this service.
+    /// </summary>
+    /// <value>The id of the user who requested this service.</value>
+    [DataMember(Name = "requesterUserId", IsRequired = true, EmitDefaultValue = true)]
+    public string RequesterUserId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets State
+    /// </summary>
+    [DataMember(Name = "state", IsRequired = true, EmitDefaultValue = true)]
+    public string State { get; set; }
+
+    /// <summary>
+    /// The id of the thing this service was requested for.
+    /// </summary>
+    /// <value>The id of the thing this service was requested for.</value>
+    [DataMember(Name = "subjectId", IsRequired = true, EmitDefaultValue = true)]
+    public string SubjectId { get; set; }
+
+    /// <summary>
+    /// The kind of the thing this service was requested for.
+    /// </summary>
+    /// <value>The kind of the thing this service was requested for.</value>
+    [DataMember(Name = "subjectType", IsRequired = true, EmitDefaultValue = true)]
+    public string SubjectType { get; set; }
+
+    /// <summary>
+    /// The kind of service that was requested.
+    /// </summary>
+    /// <value>The kind of service that was requested.</value>
+    [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+    public string Type { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UpdatedAt
+    /// </summary>
+    [DataMember(Name = "updated_at", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime UpdatedAt { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class ServiceStatus {\n");
+        sb.Append("  CreatedAt: ").Append(CreatedAt).Append('\n');
+        sb.Append("  Id: ").Append(Id).Append('\n');
+        sb.Append("  Progress: ").Append(Progress).Append('\n');
+        sb.Append("  RequesterUserId: ").Append(RequesterUserId).Append('\n');
+        sb.Append("  State: ").Append(State).Append('\n');
+        sb.Append("  SubjectId: ").Append(SubjectId).Append('\n');
+        sb.Append("  SubjectType: ").Append(SubjectType).Append('\n');
+        sb.Append("  Type: ").Append(Type).Append('\n');
+        sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as ServiceStatus);
+    }
+
+    /// <summary>
+    /// Returns true if ServiceStatus instances are equal
+    /// </summary>
+    /// <param name="input">Instance of ServiceStatus to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(ServiceStatus input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.CreatedAt == input.CreatedAt ||
+                this.CreatedAt.Equals(input.CreatedAt)
+            ) &&
+            (
+                this.Id == input.Id ||
+                (this.Id != null &&
+                this.Id.Equals(input.Id))
+            ) &&
+            (
+                this.Progress == input.Progress ||
+                this.Progress != null &&
+                input.Progress != null &&
+                this.Progress.SequenceEqual(input.Progress)
+            ) &&
+            (
+                this.RequesterUserId == input.RequesterUserId ||
+                (this.RequesterUserId != null &&
+                this.RequesterUserId.Equals(input.RequesterUserId))
+            ) &&
+            (
+                this.State == input.State ||
+                (this.State != null &&
+                this.State.Equals(input.State))
+            ) &&
+            (
+                this.SubjectId == input.SubjectId ||
+                (this.SubjectId != null &&
+                this.SubjectId.Equals(input.SubjectId))
+            ) &&
+            (
+                this.SubjectType == input.SubjectType ||
+                (this.SubjectType != null &&
+                this.SubjectType.Equals(input.SubjectType))
+            ) &&
+            (
+                this.Type == input.Type ||
+                (this.Type != null &&
+                this.Type.Equals(input.Type))
+            ) &&
+            (
+                this.UpdatedAt == input.UpdatedAt ||
+                this.UpdatedAt.Equals(input.UpdatedAt)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+            if (this.Id != null)
+            {
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
+            }
+            if (this.Progress != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Progress);
+            }
+            if (this.RequesterUserId != null)
+            {
+                hashCode = (hashCode * 59) + this.RequesterUserId.GetHashCode();
+            }
+            if (this.State != null)
+            {
+                hashCode = (hashCode * 59) + this.State.GetHashCode();
+            }
+            if (this.SubjectId != null)
+            {
+                hashCode = (hashCode * 59) + this.SubjectId.GetHashCode();
+            }
+            if (this.SubjectType != null)
+            {
+                hashCode = (hashCode * 59) + this.SubjectType.GetHashCode();
+            }
+            if (this.Type != null)
+            {
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

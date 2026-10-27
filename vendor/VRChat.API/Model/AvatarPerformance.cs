@@ -1,0 +1,165 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// AvatarPerformance
+/// </summary>
+[DataContract(Name = "AvatarPerformance")]
+public partial class AvatarPerformance : IEquatable<AvatarPerformance>, IValidatableObject
+{
+
+    /// <summary>
+    /// Gets or Sets Android
+    /// </summary>
+    [DataMember(Name = "android", EmitDefaultValue = false)]
+    public PerformanceRatings? Android { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Ios
+    /// </summary>
+    [DataMember(Name = "ios", EmitDefaultValue = false)]
+    public PerformanceRatings? Ios { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Standalonewindows
+    /// </summary>
+    [DataMember(Name = "standalonewindows", EmitDefaultValue = false)]
+    public PerformanceRatings? Standalonewindows { get; set; }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AvatarPerformance" /> class.
+    /// </summary>
+    /// <param name="android">android.</param>
+    /// <param name="androidSort">androidSort.</param>
+    /// <param name="ios">ios.</param>
+    /// <param name="iosSort">iosSort.</param>
+    /// <param name="standalonewindows">standalonewindows.</param>
+    /// <param name="standalonewindowsSort">standalonewindowsSort.</param>
+    public AvatarPerformance(PerformanceRatings? android = default, int androidSort = default, PerformanceRatings? ios = default, int iosSort = default, PerformanceRatings? standalonewindows = default, int standalonewindowsSort = default)
+    {
+        this.Android = android;
+        this.AndroidSort = androidSort;
+        this.Ios = ios;
+        this.IosSort = iosSort;
+        this.Standalonewindows = standalonewindows;
+        this.StandalonewindowsSort = standalonewindowsSort;
+    }
+
+    /// <summary>
+    /// Gets or Sets AndroidSort
+    /// </summary>
+    [DataMember(Name = "android-sort", EmitDefaultValue = false)]
+    public int AndroidSort { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IosSort
+    /// </summary>
+    [DataMember(Name = "ios-sort", EmitDefaultValue = false)]
+    public int IosSort { get; set; }
+
+    /// <summary>
+    /// Gets or Sets StandalonewindowsSort
+    /// </summary>
+    [DataMember(Name = "standalonewindows-sort", EmitDefaultValue = false)]
+    public int StandalonewindowsSort { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class AvatarPerformance {\n");
+        sb.Append("  Android: ").Append(Android).Append('\n');
+        sb.Append("  AndroidSort: ").Append(AndroidSort).Append('\n');
+        sb.Append("  Ios: ").Append(Ios).Append('\n');
+        sb.Append("  IosSort: ").Append(IosSort).Append('\n');
+        sb.Append("  Standalonewindows: ").Append(Standalonewindows).Append('\n');
+        sb.Append("  StandalonewindowsSort: ").Append(StandalonewindowsSort).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as AvatarPerformance);
+    }
+
+    /// <summary>
+    /// Returns true if AvatarPerformance instances are equal
+    /// </summary>
+    /// <param name="input">Instance of AvatarPerformance to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(AvatarPerformance input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Android == input.Android ||
+                this.Android.Equals(input.Android)
+            ) &&
+            (
+                this.AndroidSort == input.AndroidSort ||
+                this.AndroidSort.Equals(input.AndroidSort)
+            ) &&
+            (
+                this.Ios == input.Ios ||
+                this.Ios.Equals(input.Ios)
+            ) &&
+            (
+                this.IosSort == input.IosSort ||
+                this.IosSort.Equals(input.IosSort)
+            ) &&
+            (
+                this.Standalonewindows == input.Standalonewindows ||
+                this.Standalonewindows.Equals(input.Standalonewindows)
+            ) &&
+            (
+                this.StandalonewindowsSort == input.StandalonewindowsSort ||
+                this.StandalonewindowsSort.Equals(input.StandalonewindowsSort)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.Android.GetHashCode();
+            hashCode = (hashCode * 59) + this.AndroidSort.GetHashCode();
+            hashCode = (hashCode * 59) + this.Ios.GetHashCode();
+            hashCode = (hashCode * 59) + this.IosSort.GetHashCode();
+            hashCode = (hashCode * 59) + this.Standalonewindows.GetHashCode();
+            hashCode = (hashCode * 59) + this.StandalonewindowsSort.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

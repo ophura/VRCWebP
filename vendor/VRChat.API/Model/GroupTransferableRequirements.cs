@@ -1,0 +1,156 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// GroupTransferableRequirements
+/// </summary>
+[DataContract(Name = "GroupTransferableRequirements")]
+public partial class GroupTransferableRequirements : IEquatable<GroupTransferableRequirements>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GroupTransferableRequirements" /> class.
+    /// </summary>
+
+    protected GroupTransferableRequirements() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GroupTransferableRequirements" /> class.
+    /// </summary>
+    /// <param name="groupNotMonetized">groupNotMonetized (required) (default to false).</param>
+    /// <param name="hasVRCPlus">hasVRCPlus (required) (default to false).</param>
+    /// <param name="hasVerifiedEmail">hasVerifiedEmail (required) (default to false).</param>
+    /// <param name="targetCanOwnMoreGroups">targetCanOwnMoreGroups (required) (default to false).</param>
+    /// <param name="targetIsGroupMember">targetIsGroupMember (required) (default to false).</param>
+    public GroupTransferableRequirements(bool groupNotMonetized = false, bool hasVRCPlus = false, bool hasVerifiedEmail = false, bool targetCanOwnMoreGroups = false, bool targetIsGroupMember = false)
+    {
+        this.GroupNotMonetized = groupNotMonetized;
+        this.HasVRCPlus = hasVRCPlus;
+        this.HasVerifiedEmail = hasVerifiedEmail;
+        this.TargetCanOwnMoreGroups = targetCanOwnMoreGroups;
+        this.TargetIsGroupMember = targetIsGroupMember;
+    }
+
+    /// <summary>
+    /// Gets or Sets GroupNotMonetized
+    /// </summary>
+    [DataMember(Name = "groupNotMonetized", IsRequired = true, EmitDefaultValue = true)]
+    public bool GroupNotMonetized { get; set; }
+
+    /// <summary>
+    /// Gets or Sets HasVRCPlus
+    /// </summary>
+    [DataMember(Name = "hasVRCPlus", IsRequired = true, EmitDefaultValue = true)]
+    public bool HasVRCPlus { get; set; }
+
+    /// <summary>
+    /// Gets or Sets HasVerifiedEmail
+    /// </summary>
+    [DataMember(Name = "hasVerifiedEmail", IsRequired = true, EmitDefaultValue = true)]
+    public bool HasVerifiedEmail { get; set; }
+
+    /// <summary>
+    /// Gets or Sets TargetCanOwnMoreGroups
+    /// </summary>
+    [DataMember(Name = "targetCanOwnMoreGroups", IsRequired = true, EmitDefaultValue = true)]
+    public bool TargetCanOwnMoreGroups { get; set; }
+
+    /// <summary>
+    /// Gets or Sets TargetIsGroupMember
+    /// </summary>
+    [DataMember(Name = "targetIsGroupMember", IsRequired = true, EmitDefaultValue = true)]
+    public bool TargetIsGroupMember { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class GroupTransferableRequirements {\n");
+        sb.Append("  GroupNotMonetized: ").Append(GroupNotMonetized).Append('\n');
+        sb.Append("  HasVRCPlus: ").Append(HasVRCPlus).Append('\n');
+        sb.Append("  HasVerifiedEmail: ").Append(HasVerifiedEmail).Append('\n');
+        sb.Append("  TargetCanOwnMoreGroups: ").Append(TargetCanOwnMoreGroups).Append('\n');
+        sb.Append("  TargetIsGroupMember: ").Append(TargetIsGroupMember).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as GroupTransferableRequirements);
+    }
+
+    /// <summary>
+    /// Returns true if GroupTransferableRequirements instances are equal
+    /// </summary>
+    /// <param name="input">Instance of GroupTransferableRequirements to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(GroupTransferableRequirements input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.GroupNotMonetized == input.GroupNotMonetized ||
+                this.GroupNotMonetized.Equals(input.GroupNotMonetized)
+            ) &&
+            (
+                this.HasVRCPlus == input.HasVRCPlus ||
+                this.HasVRCPlus.Equals(input.HasVRCPlus)
+            ) &&
+            (
+                this.HasVerifiedEmail == input.HasVerifiedEmail ||
+                this.HasVerifiedEmail.Equals(input.HasVerifiedEmail)
+            ) &&
+            (
+                this.TargetCanOwnMoreGroups == input.TargetCanOwnMoreGroups ||
+                this.TargetCanOwnMoreGroups.Equals(input.TargetCanOwnMoreGroups)
+            ) &&
+            (
+                this.TargetIsGroupMember == input.TargetIsGroupMember ||
+                this.TargetIsGroupMember.Equals(input.TargetIsGroupMember)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.GroupNotMonetized.GetHashCode();
+            hashCode = (hashCode * 59) + this.HasVRCPlus.GetHashCode();
+            hashCode = (hashCode * 59) + this.HasVerifiedEmail.GetHashCode();
+            hashCode = (hashCode * 59) + this.TargetCanOwnMoreGroups.GetHashCode();
+            hashCode = (hashCode * 59) + this.TargetIsGroupMember.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

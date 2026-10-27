@@ -1,0 +1,425 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// May be null when attempting to retrieve group membership for a user who is not part of the group
+/// </summary>
+[DataContract(Name = "GroupMember")]
+public partial class GroupMember : IEquatable<GroupMember>, IValidatableObject
+{
+
+    /// <summary>
+    /// Gets or Sets MembershipStatus
+    /// </summary>
+    [DataMember(Name = "membershipStatus", EmitDefaultValue = false)]
+    public GroupMemberStatus? MembershipStatus { get; set; }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GroupMember" /> class.
+    /// </summary>
+
+    protected GroupMember() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GroupMember" /> class.
+    /// </summary>
+    /// <param name="acceptedByDisplayName">Only missing when explicitly fetching own user..</param>
+    /// <param name="acceptedById">Only missing when explicitly fetching own user..</param>
+    /// <param name="bannedAt">Only missing when explicitly fetching own user..</param>
+    /// <param name="createdAt">Only missing when explicitly fetching own user..</param>
+    /// <param name="groupId">groupId (required).</param>
+    /// <param name="hasJoinedFromPurchase">Missing when explicitly fetching own user, or when group isn&#39;t linked to a purchase..</param>
+    /// <param name="id">id (required).</param>
+    /// <param name="isRepresenting">Whether the user is representing the group. This makes the group show up above the name tag in-game. (required) (default to false).</param>
+    /// <param name="isSubscribedToAnnouncements">isSubscribedToAnnouncements (default to false).</param>
+    /// <param name="isSubscribedToEventAnnouncements">Only missing when explicitly fetching own user..</param>
+    /// <param name="joinedAt">joinedAt.</param>
+    /// <param name="lastPostReadAt">lastPostReadAt.</param>
+    /// <param name="mRoleIds">mRoleIds (required).</param>
+    /// <param name="managerNotes">Only missing when explicitly fetching own user..</param>
+    /// <param name="membershipStatus">membershipStatus.</param>
+    /// <param name="roleIds">roleIds (required).</param>
+    /// <param name="user">user.</param>
+    /// <param name="userId">A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed. (required).</param>
+    /// <param name="visibility">visibility.</param>
+    public GroupMember(string acceptedByDisplayName = default, string acceptedById = default, DateTime? bannedAt = default, DateTime? createdAt = default, string groupId = default, bool hasJoinedFromPurchase = default, string id = default, bool isRepresenting = false, bool isSubscribedToAnnouncements = false, bool isSubscribedToEventAnnouncements = default, DateTime? joinedAt = default, DateTime? lastPostReadAt = default, List<string> mRoleIds = default, string managerNotes = default, GroupMemberStatus? membershipStatus = default, List<string> roleIds = default, GroupMemberLimitedUser user = default, string userId = default, string visibility = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.GroupId = groupId;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Id = id;
+        this.IsRepresenting = isRepresenting;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.MRoleIds = mRoleIds;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.RoleIds = roleIds;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.UserId = userId;
+        this.AcceptedByDisplayName = acceptedByDisplayName;
+        this.AcceptedById = acceptedById;
+        this.BannedAt = bannedAt;
+        this.CreatedAt = createdAt;
+        this.HasJoinedFromPurchase = hasJoinedFromPurchase;
+        this.IsSubscribedToAnnouncements = isSubscribedToAnnouncements;
+        this.IsSubscribedToEventAnnouncements = isSubscribedToEventAnnouncements;
+        this.JoinedAt = joinedAt;
+        this.LastPostReadAt = lastPostReadAt;
+        this.ManagerNotes = managerNotes;
+        this.MembershipStatus = membershipStatus;
+        this.User = user;
+        this.Visibility = visibility;
+    }
+
+    /// <summary>
+    /// Only missing when explicitly fetching own user.
+    /// </summary>
+    /// <value>Only missing when explicitly fetching own user.</value>
+    [DataMember(Name = "acceptedByDisplayName", EmitDefaultValue = true)]
+    public string AcceptedByDisplayName { get; set; }
+
+    /// <summary>
+    /// Only missing when explicitly fetching own user.
+    /// </summary>
+    /// <value>Only missing when explicitly fetching own user.</value>
+    [DataMember(Name = "acceptedById", EmitDefaultValue = true)]
+    public string AcceptedById { get; set; }
+
+    /// <summary>
+    /// Only missing when explicitly fetching own user.
+    /// </summary>
+    /// <value>Only missing when explicitly fetching own user.</value>
+    [DataMember(Name = "bannedAt", EmitDefaultValue = true)]
+    public DateTime? BannedAt { get; set; }
+
+    /// <summary>
+    /// Only missing when explicitly fetching own user.
+    /// </summary>
+    /// <value>Only missing when explicitly fetching own user.</value>
+    [DataMember(Name = "createdAt", EmitDefaultValue = true)]
+    public DateTime? CreatedAt { get; set; }
+
+    /// <summary>
+    /// Gets or Sets GroupId
+    /// </summary>
+    [DataMember(Name = "groupId", IsRequired = true, EmitDefaultValue = true)]
+    public string GroupId { get; set; }
+
+    /// <summary>
+    /// Missing when explicitly fetching own user, or when group isn&#39;t linked to a purchase.
+    /// </summary>
+    /// <value>Missing when explicitly fetching own user, or when group isn&#39;t linked to a purchase.</value>
+    [DataMember(Name = "hasJoinedFromPurchase", EmitDefaultValue = true)]
+    public bool HasJoinedFromPurchase { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Id
+    /// </summary>
+    [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Whether the user is representing the group. This makes the group show up above the name tag in-game.
+    /// </summary>
+    /// <value>Whether the user is representing the group. This makes the group show up above the name tag in-game.</value>
+    [DataMember(Name = "isRepresenting", IsRequired = true, EmitDefaultValue = true)]
+    public bool IsRepresenting { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IsSubscribedToAnnouncements
+    /// </summary>
+    [DataMember(Name = "isSubscribedToAnnouncements", EmitDefaultValue = true)]
+    public bool IsSubscribedToAnnouncements { get; set; }
+
+    /// <summary>
+    /// Only missing when explicitly fetching own user.
+    /// </summary>
+    /// <value>Only missing when explicitly fetching own user.</value>
+    [DataMember(Name = "isSubscribedToEventAnnouncements", EmitDefaultValue = true)]
+    public bool IsSubscribedToEventAnnouncements { get; set; }
+
+    /// <summary>
+    /// Gets or Sets JoinedAt
+    /// </summary>
+    [DataMember(Name = "joinedAt", EmitDefaultValue = true)]
+    public DateTime? JoinedAt { get; set; }
+
+    /// <summary>
+    /// Gets or Sets LastPostReadAt
+    /// </summary>
+    [DataMember(Name = "lastPostReadAt", EmitDefaultValue = true)]
+    public DateTime? LastPostReadAt { get; set; }
+
+    /// <summary>
+    /// Gets or Sets MRoleIds
+    /// </summary>
+    [DataMember(Name = "mRoleIds", IsRequired = true, EmitDefaultValue = true)]
+    public List<string> MRoleIds { get; set; }
+
+    /// <summary>
+    /// Only missing when explicitly fetching own user.
+    /// </summary>
+    /// <value>Only missing when explicitly fetching own user.</value>
+    [DataMember(Name = "managerNotes", EmitDefaultValue = true)]
+    public string ManagerNotes { get; set; }
+
+    /// <summary>
+    /// Gets or Sets RoleIds
+    /// </summary>
+    [DataMember(Name = "roleIds", IsRequired = true, EmitDefaultValue = true)]
+    public List<string> RoleIds { get; set; }
+
+    /// <summary>
+    /// Gets or Sets User
+    /// </summary>
+    [DataMember(Name = "user", EmitDefaultValue = true)]
+    public GroupMemberLimitedUser User { get; set; }
+
+    /// <summary>
+    /// A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed.
+    /// </summary>
+    /// <value>A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed.</value>
+    [DataMember(Name = "userId", IsRequired = true, EmitDefaultValue = true)]
+    public string UserId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Visibility
+    /// </summary>
+    [DataMember(Name = "visibility", EmitDefaultValue = false)]
+    public string Visibility { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class GroupMember {\n");
+        sb.Append("  AcceptedByDisplayName: ").Append(AcceptedByDisplayName).Append('\n');
+        sb.Append("  AcceptedById: ").Append(AcceptedById).Append('\n');
+        sb.Append("  BannedAt: ").Append(BannedAt).Append('\n');
+        sb.Append("  CreatedAt: ").Append(CreatedAt).Append('\n');
+        sb.Append("  GroupId: ").Append(GroupId).Append('\n');
+        sb.Append("  HasJoinedFromPurchase: ").Append(HasJoinedFromPurchase).Append('\n');
+        sb.Append("  Id: ").Append(Id).Append('\n');
+        sb.Append("  IsRepresenting: ").Append(IsRepresenting).Append('\n');
+        sb.Append("  IsSubscribedToAnnouncements: ").Append(IsSubscribedToAnnouncements).Append('\n');
+        sb.Append("  IsSubscribedToEventAnnouncements: ").Append(IsSubscribedToEventAnnouncements).Append('\n');
+        sb.Append("  JoinedAt: ").Append(JoinedAt).Append('\n');
+        sb.Append("  LastPostReadAt: ").Append(LastPostReadAt).Append('\n');
+        sb.Append("  MRoleIds: ").Append(MRoleIds).Append('\n');
+        sb.Append("  ManagerNotes: ").Append(ManagerNotes).Append('\n');
+        sb.Append("  MembershipStatus: ").Append(MembershipStatus).Append('\n');
+        sb.Append("  RoleIds: ").Append(RoleIds).Append('\n');
+        sb.Append("  User: ").Append(User).Append('\n');
+        sb.Append("  UserId: ").Append(UserId).Append('\n');
+        sb.Append("  Visibility: ").Append(Visibility).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as GroupMember);
+    }
+
+    /// <summary>
+    /// Returns true if GroupMember instances are equal
+    /// </summary>
+    /// <param name="input">Instance of GroupMember to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(GroupMember input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.AcceptedByDisplayName == input.AcceptedByDisplayName ||
+                (this.AcceptedByDisplayName != null &&
+                this.AcceptedByDisplayName.Equals(input.AcceptedByDisplayName))
+            ) &&
+            (
+                this.AcceptedById == input.AcceptedById ||
+                (this.AcceptedById != null &&
+                this.AcceptedById.Equals(input.AcceptedById))
+            ) &&
+            (
+                this.BannedAt == input.BannedAt ||
+                (this.BannedAt != null &&
+                this.BannedAt.Equals(input.BannedAt))
+            ) &&
+            (
+                this.CreatedAt == input.CreatedAt ||
+                (this.CreatedAt != null &&
+                this.CreatedAt.Equals(input.CreatedAt))
+            ) &&
+            (
+                this.GroupId == input.GroupId ||
+                (this.GroupId != null &&
+                this.GroupId.Equals(input.GroupId))
+            ) &&
+            (
+                this.HasJoinedFromPurchase == input.HasJoinedFromPurchase ||
+                this.HasJoinedFromPurchase.Equals(input.HasJoinedFromPurchase)
+            ) &&
+            (
+                this.Id == input.Id ||
+                (this.Id != null &&
+                this.Id.Equals(input.Id))
+            ) &&
+            (
+                this.IsRepresenting == input.IsRepresenting ||
+                this.IsRepresenting.Equals(input.IsRepresenting)
+            ) &&
+            (
+                this.IsSubscribedToAnnouncements == input.IsSubscribedToAnnouncements ||
+                this.IsSubscribedToAnnouncements.Equals(input.IsSubscribedToAnnouncements)
+            ) &&
+            (
+                this.IsSubscribedToEventAnnouncements == input.IsSubscribedToEventAnnouncements ||
+                this.IsSubscribedToEventAnnouncements.Equals(input.IsSubscribedToEventAnnouncements)
+            ) &&
+            (
+                this.JoinedAt == input.JoinedAt ||
+                (this.JoinedAt != null &&
+                this.JoinedAt.Equals(input.JoinedAt))
+            ) &&
+            (
+                this.LastPostReadAt == input.LastPostReadAt ||
+                (this.LastPostReadAt != null &&
+                this.LastPostReadAt.Equals(input.LastPostReadAt))
+            ) &&
+            (
+                this.MRoleIds == input.MRoleIds ||
+                this.MRoleIds != null &&
+                input.MRoleIds != null &&
+                this.MRoleIds.SequenceEqual(input.MRoleIds)
+            ) &&
+            (
+                this.ManagerNotes == input.ManagerNotes ||
+                (this.ManagerNotes != null &&
+                this.ManagerNotes.Equals(input.ManagerNotes))
+            ) &&
+            (
+                this.MembershipStatus == input.MembershipStatus ||
+                this.MembershipStatus.Equals(input.MembershipStatus)
+            ) &&
+            (
+                this.RoleIds == input.RoleIds ||
+                this.RoleIds != null &&
+                input.RoleIds != null &&
+                this.RoleIds.SequenceEqual(input.RoleIds)
+            ) &&
+            (
+                this.User == input.User ||
+                (this.User != null &&
+                this.User.Equals(input.User))
+            ) &&
+            (
+                this.UserId == input.UserId ||
+                (this.UserId != null &&
+                this.UserId.Equals(input.UserId))
+            ) &&
+            (
+                this.Visibility == input.Visibility ||
+                (this.Visibility != null &&
+                this.Visibility.Equals(input.Visibility))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.AcceptedByDisplayName != null)
+            {
+                hashCode = (hashCode * 59) + this.AcceptedByDisplayName.GetHashCode();
+            }
+            if (this.AcceptedById != null)
+            {
+                hashCode = (hashCode * 59) + this.AcceptedById.GetHashCode();
+            }
+            if (this.BannedAt != null)
+            {
+                hashCode = (hashCode * 59) + this.BannedAt.GetHashCode();
+            }
+            if (this.CreatedAt != null)
+            {
+                hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+            }
+            if (this.GroupId != null)
+            {
+                hashCode = (hashCode * 59) + this.GroupId.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.HasJoinedFromPurchase.GetHashCode();
+            if (this.Id != null)
+            {
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.IsRepresenting.GetHashCode();
+            hashCode = (hashCode * 59) + this.IsSubscribedToAnnouncements.GetHashCode();
+            hashCode = (hashCode * 59) + this.IsSubscribedToEventAnnouncements.GetHashCode();
+            if (this.JoinedAt != null)
+            {
+                hashCode = (hashCode * 59) + this.JoinedAt.GetHashCode();
+            }
+            if (this.LastPostReadAt != null)
+            {
+                hashCode = (hashCode * 59) + this.LastPostReadAt.GetHashCode();
+            }
+            if (this.MRoleIds != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.MRoleIds);
+            }
+            if (this.ManagerNotes != null)
+            {
+                hashCode = (hashCode * 59) + this.ManagerNotes.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.MembershipStatus.GetHashCode();
+            if (this.RoleIds != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.RoleIds);
+            }
+            if (this.User != null)
+            {
+                hashCode = (hashCode * 59) + this.User.GetHashCode();
+            }
+            if (this.UserId != null)
+            {
+                hashCode = (hashCode * 59) + this.UserId.GetHashCode();
+            }
+            if (this.Visibility != null)
+            {
+                hashCode = (hashCode * 59) + this.Visibility.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

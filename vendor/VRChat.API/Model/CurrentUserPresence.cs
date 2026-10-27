@@ -1,0 +1,536 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// CurrentUserPresence
+/// </summary>
+[DataContract(Name = "CurrentUserPresence")]
+public partial class CurrentUserPresence : IEquatable<CurrentUserPresence>, IValidatableObject
+{
+
+    /// <summary>
+    /// Gets or Sets BannerType
+    /// </summary>
+    [DataMember(Name = "bannerType", EmitDefaultValue = false)]
+    public BannerType? BannerType { get; set; }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CurrentUserPresence" /> class.
+    /// </summary>
+    /// <param name="avatarImageUrl">avatarImageUrl.</param>
+    /// <param name="avatarThumbnail">avatarThumbnail.</param>
+    /// <param name="banner">banner.</param>
+    /// <param name="bannerColor">Six hexadecimal digits, without a leading &#x60;#&#x60;. May be empty..</param>
+    /// <param name="bannerType">bannerType.</param>
+    /// <param name="bannerUrl">bannerUrl.</param>
+    /// <param name="currentAvatarTags">currentAvatarTags.</param>
+    /// <param name="debugflag">debugflag.</param>
+    /// <param name="displayName">displayName.</param>
+    /// <param name="groups">groups.</param>
+    /// <param name="iconFrame">iconFrame.</param>
+    /// <param name="iconUrl">iconUrl.</param>
+    /// <param name="id">A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed..</param>
+    /// <param name="instance">instance.</param>
+    /// <param name="instanceType">either an InstanceType or an empty string.</param>
+    /// <param name="isRejoining">isRejoining.</param>
+    /// <param name="nameplateEffect">nameplateEffect.</param>
+    /// <param name="platform">either a Platform or an empty string.</param>
+    /// <param name="profileEffect">profileEffect.</param>
+    /// <param name="profilePicOverride">profilePicOverride.</param>
+    /// <param name="status">either a UserStatus or empty string.</param>
+    /// <param name="travelingToInstance">travelingToInstance.</param>
+    /// <param name="travelingToWorld">Represents a unique location, consisting of a world identifier and an instance identifier, or \&quot;offline\&quot; if the user is not on your friends list..</param>
+    /// <param name="userIcon">userIcon.</param>
+    /// <param name="world">WorldID be \&quot;offline\&quot; on User profiles if you are not friends with that user..</param>
+    public CurrentUserPresence(string avatarImageUrl = default, string avatarThumbnail = default, string banner = default, string bannerColor = default, BannerType? bannerType = default, string bannerUrl = default, string currentAvatarTags = default, string debugflag = default, string displayName = default, List<string> groups = default, string iconFrame = default, string iconUrl = default, string id = default, string instance = default, string instanceType = default, string isRejoining = default, string nameplateEffect = default, string platform = default, string profileEffect = default, string profilePicOverride = default, string status = default, string travelingToInstance = default, string travelingToWorld = default, string userIcon = default, string world = default)
+    {
+        this.AvatarImageUrl = avatarImageUrl;
+        this.AvatarThumbnail = avatarThumbnail;
+        this.Banner = banner;
+        this.BannerColor = bannerColor;
+        this.BannerType = bannerType;
+        this.BannerUrl = bannerUrl;
+        this.CurrentAvatarTags = currentAvatarTags;
+        this.Debugflag = debugflag;
+        this.DisplayName = displayName;
+        this.Groups = groups;
+        this.IconFrame = iconFrame;
+        this.IconUrl = iconUrl;
+        this.Id = id;
+        this.Instance = instance;
+        this.InstanceType = instanceType;
+        this.IsRejoining = isRejoining;
+        this.NameplateEffect = nameplateEffect;
+        this.Platform = platform;
+        this.ProfileEffect = profileEffect;
+        this.ProfilePicOverride = profilePicOverride;
+        this.Status = status;
+        this.TravelingToInstance = travelingToInstance;
+        this.TravelingToWorld = travelingToWorld;
+        this.UserIcon = userIcon;
+        this.World = world;
+    }
+
+    /// <summary>
+    /// Gets or Sets AvatarImageUrl
+    /// </summary>
+    [DataMember(Name = "avatarImageUrl", EmitDefaultValue = false)]
+    public string AvatarImageUrl { get; set; }
+
+    /// <summary>
+    /// Gets or Sets AvatarThumbnail
+    /// </summary>
+    [DataMember(Name = "avatarThumbnail", EmitDefaultValue = true)]
+    public string AvatarThumbnail { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Banner
+    /// </summary>
+    [DataMember(Name = "banner", EmitDefaultValue = false)]
+    public string Banner { get; set; }
+
+    /// <summary>
+    /// Six hexadecimal digits, without a leading &#x60;#&#x60;. May be empty.
+    /// </summary>
+    /// <value>Six hexadecimal digits, without a leading &#x60;#&#x60;. May be empty.</value>
+    [DataMember(Name = "bannerColor", EmitDefaultValue = false)]
+    public string BannerColor { get; set; }
+
+    /// <summary>
+    /// Gets or Sets BannerUrl
+    /// </summary>
+    [DataMember(Name = "bannerUrl", EmitDefaultValue = false)]
+    public string BannerUrl { get; set; }
+
+    /// <summary>
+    /// Gets or Sets CurrentAvatarTags
+    /// </summary>
+    [DataMember(Name = "currentAvatarTags", EmitDefaultValue = false)]
+    public string CurrentAvatarTags { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Debugflag
+    /// </summary>
+    [DataMember(Name = "debugflag", EmitDefaultValue = false)]
+    public string Debugflag { get; set; }
+
+    /// <summary>
+    /// Gets or Sets DisplayName
+    /// </summary>
+    [DataMember(Name = "displayName", EmitDefaultValue = false)]
+    public string DisplayName { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Groups
+    /// </summary>
+    [DataMember(Name = "groups", EmitDefaultValue = true)]
+    public List<string> Groups { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IconFrame
+    /// </summary>
+    [DataMember(Name = "iconFrame", EmitDefaultValue = false)]
+    public string IconFrame { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IconUrl
+    /// </summary>
+    [DataMember(Name = "iconUrl", EmitDefaultValue = false)]
+    public string IconUrl { get; set; }
+
+    /// <summary>
+    /// A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed.
+    /// </summary>
+    /// <value>A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed.</value>
+    [DataMember(Name = "id", EmitDefaultValue = false)]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Instance
+    /// </summary>
+    [DataMember(Name = "instance", EmitDefaultValue = true)]
+    public string Instance { get; set; }
+
+    /// <summary>
+    /// either an InstanceType or an empty string
+    /// </summary>
+    /// <value>either an InstanceType or an empty string</value>
+    [DataMember(Name = "instanceType", EmitDefaultValue = true)]
+    public string InstanceType { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IsRejoining
+    /// </summary>
+    [DataMember(Name = "isRejoining", EmitDefaultValue = true)]
+    public string IsRejoining { get; set; }
+
+    /// <summary>
+    /// Gets or Sets NameplateEffect
+    /// </summary>
+    [DataMember(Name = "nameplateEffect", EmitDefaultValue = false)]
+    public string NameplateEffect { get; set; }
+
+    /// <summary>
+    /// either a Platform or an empty string
+    /// </summary>
+    /// <value>either a Platform or an empty string</value>
+    [DataMember(Name = "platform", EmitDefaultValue = true)]
+    public string Platform { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ProfileEffect
+    /// </summary>
+    [DataMember(Name = "profileEffect", EmitDefaultValue = false)]
+    public string ProfileEffect { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ProfilePicOverride
+    /// </summary>
+    [DataMember(Name = "profilePicOverride", EmitDefaultValue = true)]
+    public string ProfilePicOverride { get; set; }
+
+    /// <summary>
+    /// either a UserStatus or empty string
+    /// </summary>
+    /// <value>either a UserStatus or empty string</value>
+    [DataMember(Name = "status", EmitDefaultValue = true)]
+    public string Status { get; set; }
+
+    /// <summary>
+    /// Gets or Sets TravelingToInstance
+    /// </summary>
+    [DataMember(Name = "travelingToInstance", EmitDefaultValue = true)]
+    public string TravelingToInstance { get; set; }
+
+    /// <summary>
+    /// Represents a unique location, consisting of a world identifier and an instance identifier, or \&quot;offline\&quot; if the user is not on your friends list.
+    /// </summary>
+    /// <value>Represents a unique location, consisting of a world identifier and an instance identifier, or \&quot;offline\&quot; if the user is not on your friends list.</value>
+    [DataMember(Name = "travelingToWorld", EmitDefaultValue = true)]
+    public string TravelingToWorld { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UserIcon
+    /// </summary>
+    [DataMember(Name = "userIcon", EmitDefaultValue = true)]
+    public string UserIcon { get; set; }
+
+    /// <summary>
+    /// WorldID be \&quot;offline\&quot; on User profiles if you are not friends with that user.
+    /// </summary>
+    /// <value>WorldID be \&quot;offline\&quot; on User profiles if you are not friends with that user.</value>
+    [DataMember(Name = "world", EmitDefaultValue = true)]
+    public string World { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class CurrentUserPresence {\n");
+        sb.Append("  AvatarImageUrl: ").Append(AvatarImageUrl).Append('\n');
+        sb.Append("  AvatarThumbnail: ").Append(AvatarThumbnail).Append('\n');
+        sb.Append("  Banner: ").Append(Banner).Append('\n');
+        sb.Append("  BannerColor: ").Append(BannerColor).Append('\n');
+        sb.Append("  BannerType: ").Append(BannerType).Append('\n');
+        sb.Append("  BannerUrl: ").Append(BannerUrl).Append('\n');
+        sb.Append("  CurrentAvatarTags: ").Append(CurrentAvatarTags).Append('\n');
+        sb.Append("  Debugflag: ").Append(Debugflag).Append('\n');
+        sb.Append("  DisplayName: ").Append(DisplayName).Append('\n');
+        sb.Append("  Groups: ").Append(Groups).Append('\n');
+        sb.Append("  IconFrame: ").Append(IconFrame).Append('\n');
+        sb.Append("  IconUrl: ").Append(IconUrl).Append('\n');
+        sb.Append("  Id: ").Append(Id).Append('\n');
+        sb.Append("  Instance: ").Append(Instance).Append('\n');
+        sb.Append("  InstanceType: ").Append(InstanceType).Append('\n');
+        sb.Append("  IsRejoining: ").Append(IsRejoining).Append('\n');
+        sb.Append("  NameplateEffect: ").Append(NameplateEffect).Append('\n');
+        sb.Append("  Platform: ").Append(Platform).Append('\n');
+        sb.Append("  ProfileEffect: ").Append(ProfileEffect).Append('\n');
+        sb.Append("  ProfilePicOverride: ").Append(ProfilePicOverride).Append('\n');
+        sb.Append("  Status: ").Append(Status).Append('\n');
+        sb.Append("  TravelingToInstance: ").Append(TravelingToInstance).Append('\n');
+        sb.Append("  TravelingToWorld: ").Append(TravelingToWorld).Append('\n');
+        sb.Append("  UserIcon: ").Append(UserIcon).Append('\n');
+        sb.Append("  World: ").Append(World).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as CurrentUserPresence);
+    }
+
+    /// <summary>
+    /// Returns true if CurrentUserPresence instances are equal
+    /// </summary>
+    /// <param name="input">Instance of CurrentUserPresence to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(CurrentUserPresence input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.AvatarImageUrl == input.AvatarImageUrl ||
+                (this.AvatarImageUrl != null &&
+                this.AvatarImageUrl.Equals(input.AvatarImageUrl))
+            ) &&
+            (
+                this.AvatarThumbnail == input.AvatarThumbnail ||
+                (this.AvatarThumbnail != null &&
+                this.AvatarThumbnail.Equals(input.AvatarThumbnail))
+            ) &&
+            (
+                this.Banner == input.Banner ||
+                (this.Banner != null &&
+                this.Banner.Equals(input.Banner))
+            ) &&
+            (
+                this.BannerColor == input.BannerColor ||
+                (this.BannerColor != null &&
+                this.BannerColor.Equals(input.BannerColor))
+            ) &&
+            (
+                this.BannerType == input.BannerType ||
+                this.BannerType.Equals(input.BannerType)
+            ) &&
+            (
+                this.BannerUrl == input.BannerUrl ||
+                (this.BannerUrl != null &&
+                this.BannerUrl.Equals(input.BannerUrl))
+            ) &&
+            (
+                this.CurrentAvatarTags == input.CurrentAvatarTags ||
+                (this.CurrentAvatarTags != null &&
+                this.CurrentAvatarTags.Equals(input.CurrentAvatarTags))
+            ) &&
+            (
+                this.Debugflag == input.Debugflag ||
+                (this.Debugflag != null &&
+                this.Debugflag.Equals(input.Debugflag))
+            ) &&
+            (
+                this.DisplayName == input.DisplayName ||
+                (this.DisplayName != null &&
+                this.DisplayName.Equals(input.DisplayName))
+            ) &&
+            (
+                this.Groups == input.Groups ||
+                this.Groups != null &&
+                input.Groups != null &&
+                this.Groups.SequenceEqual(input.Groups)
+            ) &&
+            (
+                this.IconFrame == input.IconFrame ||
+                (this.IconFrame != null &&
+                this.IconFrame.Equals(input.IconFrame))
+            ) &&
+            (
+                this.IconUrl == input.IconUrl ||
+                (this.IconUrl != null &&
+                this.IconUrl.Equals(input.IconUrl))
+            ) &&
+            (
+                this.Id == input.Id ||
+                (this.Id != null &&
+                this.Id.Equals(input.Id))
+            ) &&
+            (
+                this.Instance == input.Instance ||
+                (this.Instance != null &&
+                this.Instance.Equals(input.Instance))
+            ) &&
+            (
+                this.InstanceType == input.InstanceType ||
+                (this.InstanceType != null &&
+                this.InstanceType.Equals(input.InstanceType))
+            ) &&
+            (
+                this.IsRejoining == input.IsRejoining ||
+                (this.IsRejoining != null &&
+                this.IsRejoining.Equals(input.IsRejoining))
+            ) &&
+            (
+                this.NameplateEffect == input.NameplateEffect ||
+                (this.NameplateEffect != null &&
+                this.NameplateEffect.Equals(input.NameplateEffect))
+            ) &&
+            (
+                this.Platform == input.Platform ||
+                (this.Platform != null &&
+                this.Platform.Equals(input.Platform))
+            ) &&
+            (
+                this.ProfileEffect == input.ProfileEffect ||
+                (this.ProfileEffect != null &&
+                this.ProfileEffect.Equals(input.ProfileEffect))
+            ) &&
+            (
+                this.ProfilePicOverride == input.ProfilePicOverride ||
+                (this.ProfilePicOverride != null &&
+                this.ProfilePicOverride.Equals(input.ProfilePicOverride))
+            ) &&
+            (
+                this.Status == input.Status ||
+                (this.Status != null &&
+                this.Status.Equals(input.Status))
+            ) &&
+            (
+                this.TravelingToInstance == input.TravelingToInstance ||
+                (this.TravelingToInstance != null &&
+                this.TravelingToInstance.Equals(input.TravelingToInstance))
+            ) &&
+            (
+                this.TravelingToWorld == input.TravelingToWorld ||
+                (this.TravelingToWorld != null &&
+                this.TravelingToWorld.Equals(input.TravelingToWorld))
+            ) &&
+            (
+                this.UserIcon == input.UserIcon ||
+                (this.UserIcon != null &&
+                this.UserIcon.Equals(input.UserIcon))
+            ) &&
+            (
+                this.World == input.World ||
+                (this.World != null &&
+                this.World.Equals(input.World))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.AvatarImageUrl != null)
+            {
+                hashCode = (hashCode * 59) + this.AvatarImageUrl.GetHashCode();
+            }
+            if (this.AvatarThumbnail != null)
+            {
+                hashCode = (hashCode * 59) + this.AvatarThumbnail.GetHashCode();
+            }
+            if (this.Banner != null)
+            {
+                hashCode = (hashCode * 59) + this.Banner.GetHashCode();
+            }
+            if (this.BannerColor != null)
+            {
+                hashCode = (hashCode * 59) + this.BannerColor.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.BannerType.GetHashCode();
+            if (this.BannerUrl != null)
+            {
+                hashCode = (hashCode * 59) + this.BannerUrl.GetHashCode();
+            }
+            if (this.CurrentAvatarTags != null)
+            {
+                hashCode = (hashCode * 59) + this.CurrentAvatarTags.GetHashCode();
+            }
+            if (this.Debugflag != null)
+            {
+                hashCode = (hashCode * 59) + this.Debugflag.GetHashCode();
+            }
+            if (this.DisplayName != null)
+            {
+                hashCode = (hashCode * 59) + this.DisplayName.GetHashCode();
+            }
+            if (this.Groups != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Groups);
+            }
+            if (this.IconFrame != null)
+            {
+                hashCode = (hashCode * 59) + this.IconFrame.GetHashCode();
+            }
+            if (this.IconUrl != null)
+            {
+                hashCode = (hashCode * 59) + this.IconUrl.GetHashCode();
+            }
+            if (this.Id != null)
+            {
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
+            }
+            if (this.Instance != null)
+            {
+                hashCode = (hashCode * 59) + this.Instance.GetHashCode();
+            }
+            if (this.InstanceType != null)
+            {
+                hashCode = (hashCode * 59) + this.InstanceType.GetHashCode();
+            }
+            if (this.IsRejoining != null)
+            {
+                hashCode = (hashCode * 59) + this.IsRejoining.GetHashCode();
+            }
+            if (this.NameplateEffect != null)
+            {
+                hashCode = (hashCode * 59) + this.NameplateEffect.GetHashCode();
+            }
+            if (this.Platform != null)
+            {
+                hashCode = (hashCode * 59) + this.Platform.GetHashCode();
+            }
+            if (this.ProfileEffect != null)
+            {
+                hashCode = (hashCode * 59) + this.ProfileEffect.GetHashCode();
+            }
+            if (this.ProfilePicOverride != null)
+            {
+                hashCode = (hashCode * 59) + this.ProfilePicOverride.GetHashCode();
+            }
+            if (this.Status != null)
+            {
+                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+            }
+            if (this.TravelingToInstance != null)
+            {
+                hashCode = (hashCode * 59) + this.TravelingToInstance.GetHashCode();
+            }
+            if (this.TravelingToWorld != null)
+            {
+                hashCode = (hashCode * 59) + this.TravelingToWorld.GetHashCode();
+            }
+            if (this.UserIcon != null)
+            {
+                hashCode = (hashCode * 59) + this.UserIcon.GetHashCode();
+            }
+            if (this.World != null)
+            {
+                hashCode = (hashCode * 59) + this.World.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

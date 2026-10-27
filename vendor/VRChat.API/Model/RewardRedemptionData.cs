@@ -1,0 +1,117 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// RewardRedemptionData
+/// </summary>
+[DataContract(Name = "RewardRedemptionData")]
+public partial class RewardRedemptionData : IEquatable<RewardRedemptionData>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="RewardRedemptionData" /> class.
+    /// </summary>
+    /// <param name="badge">badge.</param>
+    /// <param name="item">item.</param>
+    public RewardRedemptionData(RewardBadge badge = default, InventoryTemplate item = default)
+    {
+        this.Badge = badge;
+        this.Item = item;
+    }
+
+    /// <summary>
+    /// Gets or Sets Badge
+    /// </summary>
+    [DataMember(Name = "badge", EmitDefaultValue = false)]
+    public RewardBadge Badge { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Item
+    /// </summary>
+    [DataMember(Name = "item", EmitDefaultValue = false)]
+    public InventoryTemplate Item { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class RewardRedemptionData {\n");
+        sb.Append("  Badge: ").Append(Badge).Append('\n');
+        sb.Append("  Item: ").Append(Item).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as RewardRedemptionData);
+    }
+
+    /// <summary>
+    /// Returns true if RewardRedemptionData instances are equal
+    /// </summary>
+    /// <param name="input">Instance of RewardRedemptionData to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(RewardRedemptionData input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Badge == input.Badge ||
+                (this.Badge != null &&
+                this.Badge.Equals(input.Badge))
+            ) &&
+            (
+                this.Item == input.Item ||
+                (this.Item != null &&
+                this.Item.Equals(input.Item))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.Badge != null)
+            {
+                hashCode = (hashCode * 59) + this.Badge.GetHashCode();
+            }
+            if (this.Item != null)
+            {
+                hashCode = (hashCode * 59) + this.Item.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

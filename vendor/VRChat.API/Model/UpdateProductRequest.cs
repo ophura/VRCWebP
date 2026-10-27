@@ -1,0 +1,169 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// UpdateProductRequest
+/// </summary>
+[DataContract(Name = "UpdateProductRequest")]
+public partial class UpdateProductRequest : IEquatable<UpdateProductRequest>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UpdateProductRequest" /> class.
+    /// </summary>
+    /// <param name="description">description.</param>
+    /// <param name="displayName">displayName.</param>
+    /// <param name="imageId">imageId.</param>
+    /// <param name="tags">tags.</param>
+    /// <param name="useForSubscriberList">useForSubscriberList.</param>
+    public UpdateProductRequest(string description = default, string displayName = default, string imageId = default, List<string> tags = default, bool useForSubscriberList = default)
+    {
+        this.Description = description;
+        this.DisplayName = displayName;
+        this.ImageId = imageId;
+        this.Tags = tags;
+        this.UseForSubscriberList = useForSubscriberList;
+    }
+
+    /// <summary>
+    /// Gets or Sets Description
+    /// </summary>
+    [DataMember(Name = "description", EmitDefaultValue = false)]
+    public string Description { get; set; }
+
+    /// <summary>
+    /// Gets or Sets DisplayName
+    /// </summary>
+    [DataMember(Name = "displayName", EmitDefaultValue = false)]
+    public string DisplayName { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ImageId
+    /// </summary>
+    [DataMember(Name = "imageId", EmitDefaultValue = false)]
+    public string ImageId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Tags
+    /// </summary>
+    [DataMember(Name = "tags", EmitDefaultValue = false)]
+    public List<string> Tags { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UseForSubscriberList
+    /// </summary>
+    [DataMember(Name = "useForSubscriberList", EmitDefaultValue = true)]
+    public bool UseForSubscriberList { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class UpdateProductRequest {\n");
+        sb.Append("  Description: ").Append(Description).Append('\n');
+        sb.Append("  DisplayName: ").Append(DisplayName).Append('\n');
+        sb.Append("  ImageId: ").Append(ImageId).Append('\n');
+        sb.Append("  Tags: ").Append(Tags).Append('\n');
+        sb.Append("  UseForSubscriberList: ").Append(UseForSubscriberList).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as UpdateProductRequest);
+    }
+
+    /// <summary>
+    /// Returns true if UpdateProductRequest instances are equal
+    /// </summary>
+    /// <param name="input">Instance of UpdateProductRequest to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(UpdateProductRequest input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Description == input.Description ||
+                (this.Description != null &&
+                this.Description.Equals(input.Description))
+            ) &&
+            (
+                this.DisplayName == input.DisplayName ||
+                (this.DisplayName != null &&
+                this.DisplayName.Equals(input.DisplayName))
+            ) &&
+            (
+                this.ImageId == input.ImageId ||
+                (this.ImageId != null &&
+                this.ImageId.Equals(input.ImageId))
+            ) &&
+            (
+                this.Tags == input.Tags ||
+                this.Tags != null &&
+                input.Tags != null &&
+                this.Tags.SequenceEqual(input.Tags)
+            ) &&
+            (
+                this.UseForSubscriberList == input.UseForSubscriberList ||
+                this.UseForSubscriberList.Equals(input.UseForSubscriberList)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.Description != null)
+            {
+                hashCode = (hashCode * 59) + this.Description.GetHashCode();
+            }
+            if (this.DisplayName != null)
+            {
+                hashCode = (hashCode * 59) + this.DisplayName.GetHashCode();
+            }
+            if (this.ImageId != null)
+            {
+                hashCode = (hashCode * 59) + this.ImageId.GetHashCode();
+            }
+            if (this.Tags != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Tags);
+            }
+            hashCode = (hashCode * 59) + this.UseForSubscriberList.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

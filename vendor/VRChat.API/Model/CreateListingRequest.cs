@@ -1,0 +1,226 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// Observed create-listing payload fields. Additional fields may exist.
+/// </summary>
+[DataContract(Name = "CreateListingRequest")]
+public partial class CreateListingRequest : IEquatable<CreateListingRequest>, IValidatableObject
+{
+
+    /// <summary>
+    /// Gets or Sets ListingType
+    /// </summary>
+    [DataMember(Name = "listingType", IsRequired = true, EmitDefaultValue = true)]
+    public ProductListingType ListingType { get; set; }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CreateListingRequest" /> class.
+    /// </summary>
+
+    protected CreateListingRequest() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CreateListingRequest" /> class.
+    /// </summary>
+    /// <param name="active">active.</param>
+    /// <param name="description">description (required).</param>
+    /// <param name="displayName">displayName (required).</param>
+    /// <param name="imageId">imageId (required).</param>
+    /// <param name="listingType">listingType (required).</param>
+    /// <param name="priceTokens">priceTokens (required).</param>
+    /// <param name="productIds">productIds (required).</param>
+    /// <param name="storeIds">storeIds (required).</param>
+    public CreateListingRequest(bool active = default, string description = default, string displayName = default, string imageId = default, ProductListingType listingType = default, int priceTokens = default, List<string> productIds = default, List<string> storeIds = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Description = description;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.DisplayName = displayName;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ImageId = imageId;
+        this.ListingType = listingType;
+        this.PriceTokens = priceTokens;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ProductIds = productIds;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.StoreIds = storeIds;
+        this.Active = active;
+    }
+
+    /// <summary>
+    /// Gets or Sets Active
+    /// </summary>
+    [DataMember(Name = "active", EmitDefaultValue = true)]
+    public bool Active { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Description
+    /// </summary>
+    [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
+    public string Description { get; set; }
+
+    /// <summary>
+    /// Gets or Sets DisplayName
+    /// </summary>
+    [DataMember(Name = "displayName", IsRequired = true, EmitDefaultValue = true)]
+    public string DisplayName { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ImageId
+    /// </summary>
+    [DataMember(Name = "imageId", IsRequired = true, EmitDefaultValue = true)]
+    public string ImageId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets PriceTokens
+    /// </summary>
+    [DataMember(Name = "priceTokens", IsRequired = true, EmitDefaultValue = true)]
+    public int PriceTokens { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ProductIds
+    /// </summary>
+    [DataMember(Name = "productIds", IsRequired = true, EmitDefaultValue = true)]
+    public List<string> ProductIds { get; set; }
+
+    /// <summary>
+    /// Gets or Sets StoreIds
+    /// </summary>
+    [DataMember(Name = "storeIds", IsRequired = true, EmitDefaultValue = true)]
+    public List<string> StoreIds { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class CreateListingRequest {\n");
+        sb.Append("  Active: ").Append(Active).Append('\n');
+        sb.Append("  Description: ").Append(Description).Append('\n');
+        sb.Append("  DisplayName: ").Append(DisplayName).Append('\n');
+        sb.Append("  ImageId: ").Append(ImageId).Append('\n');
+        sb.Append("  ListingType: ").Append(ListingType).Append('\n');
+        sb.Append("  PriceTokens: ").Append(PriceTokens).Append('\n');
+        sb.Append("  ProductIds: ").Append(ProductIds).Append('\n');
+        sb.Append("  StoreIds: ").Append(StoreIds).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as CreateListingRequest);
+    }
+
+    /// <summary>
+    /// Returns true if CreateListingRequest instances are equal
+    /// </summary>
+    /// <param name="input">Instance of CreateListingRequest to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(CreateListingRequest input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Active == input.Active ||
+                this.Active.Equals(input.Active)
+            ) &&
+            (
+                this.Description == input.Description ||
+                (this.Description != null &&
+                this.Description.Equals(input.Description))
+            ) &&
+            (
+                this.DisplayName == input.DisplayName ||
+                (this.DisplayName != null &&
+                this.DisplayName.Equals(input.DisplayName))
+            ) &&
+            (
+                this.ImageId == input.ImageId ||
+                (this.ImageId != null &&
+                this.ImageId.Equals(input.ImageId))
+            ) &&
+            (
+                this.ListingType == input.ListingType ||
+                this.ListingType.Equals(input.ListingType)
+            ) &&
+            (
+                this.PriceTokens == input.PriceTokens ||
+                this.PriceTokens.Equals(input.PriceTokens)
+            ) &&
+            (
+                this.ProductIds == input.ProductIds ||
+                this.ProductIds != null &&
+                input.ProductIds != null &&
+                this.ProductIds.SequenceEqual(input.ProductIds)
+            ) &&
+            (
+                this.StoreIds == input.StoreIds ||
+                this.StoreIds != null &&
+                input.StoreIds != null &&
+                this.StoreIds.SequenceEqual(input.StoreIds)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.Active.GetHashCode();
+            if (this.Description != null)
+            {
+                hashCode = (hashCode * 59) + this.Description.GetHashCode();
+            }
+            if (this.DisplayName != null)
+            {
+                hashCode = (hashCode * 59) + this.DisplayName.GetHashCode();
+            }
+            if (this.ImageId != null)
+            {
+                hashCode = (hashCode * 59) + this.ImageId.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.ListingType.GetHashCode();
+            hashCode = (hashCode * 59) + this.PriceTokens.GetHashCode();
+            if (this.ProductIds != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.ProductIds);
+            }
+            if (this.StoreIds != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.StoreIds);
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

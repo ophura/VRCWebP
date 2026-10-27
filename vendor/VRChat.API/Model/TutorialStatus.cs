@@ -1,0 +1,155 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// TutorialStatus
+/// </summary>
+[DataContract(Name = "TutorialStatus")]
+public partial class TutorialStatus : IEquatable<TutorialStatus>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TutorialStatus" /> class.
+    /// </summary>
+
+    protected TutorialStatus() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TutorialStatus" /> class.
+    /// </summary>
+    /// <param name="completed">completed (required).</param>
+    /// <param name="completedAnyTutorial">completedAnyTutorial (required).</param>
+    /// <param name="completedTutorials">completedTutorials (required).</param>
+    /// <param name="tutorialKey">The ID of a tutorial. A platform tutorial is &#x60;{platform}:{store}:v1&#x60;, taken from the &#x60;X-Platform&#x60; and &#x60;X-Store&#x60; headers, with &#x60;undefined&#x60; for a header the request left out. Other tutorials take a longer form, such as &#x60;platform-agnostic:custom:onboarding-tutorial-world:v1&#x60;. (required) (default to &quot;undefined:undefined:v1&quot;).</param>
+    public TutorialStatus(bool completed = default, bool completedAnyTutorial = default, List<string> completedTutorials = default, string tutorialKey = @"undefined:undefined:v1")
+    {
+        this.Completed = completed;
+        this.CompletedAnyTutorial = completedAnyTutorial;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.CompletedTutorials = completedTutorials;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.TutorialKey = tutorialKey;
+    }
+
+    /// <summary>
+    /// Gets or Sets Completed
+    /// </summary>
+    [DataMember(Name = "completed", IsRequired = true, EmitDefaultValue = true)]
+    public bool Completed { get; set; }
+
+    /// <summary>
+    /// Gets or Sets CompletedAnyTutorial
+    /// </summary>
+    [DataMember(Name = "completedAnyTutorial", IsRequired = true, EmitDefaultValue = true)]
+    public bool CompletedAnyTutorial { get; set; }
+
+    /// <summary>
+    /// Gets or Sets CompletedTutorials
+    /// </summary>
+    [DataMember(Name = "completedTutorials", IsRequired = true, EmitDefaultValue = true)]
+    public List<string> CompletedTutorials { get; set; }
+
+    /// <summary>
+    /// The ID of a tutorial. A platform tutorial is &#x60;{platform}:{store}:v1&#x60;, taken from the &#x60;X-Platform&#x60; and &#x60;X-Store&#x60; headers, with &#x60;undefined&#x60; for a header the request left out. Other tutorials take a longer form, such as &#x60;platform-agnostic:custom:onboarding-tutorial-world:v1&#x60;.
+    /// </summary>
+    /// <value>The ID of a tutorial. A platform tutorial is &#x60;{platform}:{store}:v1&#x60;, taken from the &#x60;X-Platform&#x60; and &#x60;X-Store&#x60; headers, with &#x60;undefined&#x60; for a header the request left out. Other tutorials take a longer form, such as &#x60;platform-agnostic:custom:onboarding-tutorial-world:v1&#x60;.</value>
+    [DataMember(Name = "tutorialKey", IsRequired = true, EmitDefaultValue = true)]
+    public string TutorialKey { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class TutorialStatus {\n");
+        sb.Append("  Completed: ").Append(Completed).Append('\n');
+        sb.Append("  CompletedAnyTutorial: ").Append(CompletedAnyTutorial).Append('\n');
+        sb.Append("  CompletedTutorials: ").Append(CompletedTutorials).Append('\n');
+        sb.Append("  TutorialKey: ").Append(TutorialKey).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as TutorialStatus);
+    }
+
+    /// <summary>
+    /// Returns true if TutorialStatus instances are equal
+    /// </summary>
+    /// <param name="input">Instance of TutorialStatus to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(TutorialStatus input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Completed == input.Completed ||
+                this.Completed.Equals(input.Completed)
+            ) &&
+            (
+                this.CompletedAnyTutorial == input.CompletedAnyTutorial ||
+                this.CompletedAnyTutorial.Equals(input.CompletedAnyTutorial)
+            ) &&
+            (
+                this.CompletedTutorials == input.CompletedTutorials ||
+                this.CompletedTutorials != null &&
+                input.CompletedTutorials != null &&
+                this.CompletedTutorials.SequenceEqual(input.CompletedTutorials)
+            ) &&
+            (
+                this.TutorialKey == input.TutorialKey ||
+                (this.TutorialKey != null &&
+                this.TutorialKey.Equals(input.TutorialKey))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.Completed.GetHashCode();
+            hashCode = (hashCode * 59) + this.CompletedAnyTutorial.GetHashCode();
+            if (this.CompletedTutorials != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.CompletedTutorials);
+            }
+            if (this.TutorialKey != null)
+            {
+                hashCode = (hashCode * 59) + this.TutorialKey.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

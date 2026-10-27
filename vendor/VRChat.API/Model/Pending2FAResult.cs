@@ -1,0 +1,124 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// Pending2FAResult
+/// </summary>
+[DataContract(Name = "Pending2FAResult")]
+public partial class Pending2FAResult : IEquatable<Pending2FAResult>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Pending2FAResult" /> class.
+    /// </summary>
+
+    protected Pending2FAResult() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Pending2FAResult" /> class.
+    /// </summary>
+    /// <param name="qrCodeDataUrl">qrCodeDataUrl (required).</param>
+    /// <param name="secret">secret (required).</param>
+    public Pending2FAResult(string qrCodeDataUrl = default, string secret = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.QrCodeDataUrl = qrCodeDataUrl;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Secret = secret;
+    }
+
+    /// <summary>
+    /// Gets or Sets QrCodeDataUrl
+    /// </summary>
+    [DataMember(Name = "qrCodeDataUrl", IsRequired = true, EmitDefaultValue = true)]
+    public string QrCodeDataUrl { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Secret
+    /// </summary>
+    [DataMember(Name = "secret", IsRequired = true, EmitDefaultValue = true)]
+    public string Secret { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class Pending2FAResult {\n");
+        sb.Append("  QrCodeDataUrl: ").Append(QrCodeDataUrl).Append('\n');
+        sb.Append("  Secret: ").Append(Secret).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as Pending2FAResult);
+    }
+
+    /// <summary>
+    /// Returns true if Pending2FAResult instances are equal
+    /// </summary>
+    /// <param name="input">Instance of Pending2FAResult to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(Pending2FAResult input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.QrCodeDataUrl == input.QrCodeDataUrl ||
+                (this.QrCodeDataUrl != null &&
+                this.QrCodeDataUrl.Equals(input.QrCodeDataUrl))
+            ) &&
+            (
+                this.Secret == input.Secret ||
+                (this.Secret != null &&
+                this.Secret.Equals(input.Secret))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.QrCodeDataUrl != null)
+            {
+                hashCode = (hashCode * 59) + this.QrCodeDataUrl.GetHashCode();
+            }
+            if (this.Secret != null)
+            {
+                hashCode = (hashCode * 59) + this.Secret.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

@@ -1,0 +1,406 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// UpdateUserRequest
+/// </summary>
+[DataContract(Name = "UpdateUserRequest")]
+public partial class UpdateUserRequest : IEquatable<UpdateUserRequest>, IValidatableObject
+{
+
+    /// <summary>
+    /// Gets or Sets Status
+    /// </summary>
+    [DataMember(Name = "status", EmitDefaultValue = false)]
+    public UserStatus? Status { get; set; }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="UpdateUserRequest" /> class.
+    /// </summary>
+    /// <param name="acceptedTOSVersion">acceptedTOSVersion.</param>
+    /// <param name="allowAvatarCopying">allowAvatarCopying.</param>
+    /// <param name="allowWorldsToCountFriendsInInstance">The \&quot;Allow Worlds to Count Friends in Instance\&quot; setting, introduced under [Udon Methods for Friend Info](https://ask.vrchat.com/t/developer-update-24-september-2026/48972#p-90922-udon-methods-for-friend-info-13) in the Developer Update of September 24, 2026..</param>
+    /// <param name="birthday">birthday.</param>
+    /// <param name="contentFilters">These tags begin with &#x60;content_&#x60; and control content gating.</param>
+    /// <param name="currentPassword">currentPassword.</param>
+    /// <param name="displayName">MUST specify currentPassword as well to change display name.</param>
+    /// <param name="email">email.</param>
+    /// <param name="hasDiscordFriendsOptOut">Opt out of the Discord Friend Connections feature.</param>
+    /// <param name="hasSharedConnectionsOptOut">Opt out of the Mutuals feature.</param>
+    /// <param name="homeLocation">WorldID be \&quot;offline\&quot; on User profiles if you are not friends with that user..</param>
+    /// <param name="isBoopingEnabled">isBoopingEnabled.</param>
+    /// <param name="password">MUST specify currentPassword as well to change password.</param>
+    /// <param name="pronouns">pronouns.</param>
+    /// <param name="revertDisplayName">MUST specify currentPassword as well to revert display name.</param>
+    /// <param name="status">status.</param>
+    /// <param name="statusDescription">statusDescription.</param>
+    /// <param name="tags">tags.</param>
+    /// <param name="unsubscribe">unsubscribe.</param>
+    public UpdateUserRequest(int acceptedTOSVersion = default, bool allowAvatarCopying = default, bool allowWorldsToCountFriendsInInstance = default, DateOnly birthday = default, List<ContentFilter> contentFilters = default, string currentPassword = default, string displayName = default, string email = default, bool hasDiscordFriendsOptOut = default, bool hasSharedConnectionsOptOut = default, string homeLocation = default, bool isBoopingEnabled = default, string password = default, string pronouns = default, bool revertDisplayName = default, UserStatus? status = default, string statusDescription = default, List<string> tags = default, bool unsubscribe = default)
+    {
+        this.AcceptedTOSVersion = acceptedTOSVersion;
+        this.AllowAvatarCopying = allowAvatarCopying;
+        this.AllowWorldsToCountFriendsInInstance = allowWorldsToCountFriendsInInstance;
+        this.Birthday = birthday;
+        this.ContentFilters = contentFilters;
+        this.CurrentPassword = currentPassword;
+        this.DisplayName = displayName;
+        this.Email = email;
+        this.HasDiscordFriendsOptOut = hasDiscordFriendsOptOut;
+        this.HasSharedConnectionsOptOut = hasSharedConnectionsOptOut;
+        this.HomeLocation = homeLocation;
+        this.IsBoopingEnabled = isBoopingEnabled;
+        this.Password = password;
+        this.Pronouns = pronouns;
+        this.RevertDisplayName = revertDisplayName;
+        this.Status = status;
+        this.StatusDescription = statusDescription;
+        this.Tags = tags;
+        this.Unsubscribe = unsubscribe;
+    }
+
+    /// <summary>
+    /// Gets or Sets AcceptedTOSVersion
+    /// </summary>
+    [DataMember(Name = "acceptedTOSVersion", EmitDefaultValue = false)]
+    public int AcceptedTOSVersion { get; set; }
+
+    /// <summary>
+    /// Gets or Sets AllowAvatarCopying
+    /// </summary>
+    [DataMember(Name = "allowAvatarCopying", EmitDefaultValue = true)]
+    public bool AllowAvatarCopying { get; set; }
+
+    /// <summary>
+    /// The \&quot;Allow Worlds to Count Friends in Instance\&quot; setting, introduced under [Udon Methods for Friend Info](https://ask.vrchat.com/t/developer-update-24-september-2026/48972#p-90922-udon-methods-for-friend-info-13) in the Developer Update of September 24, 2026.
+    /// </summary>
+    /// <value>The \&quot;Allow Worlds to Count Friends in Instance\&quot; setting, introduced under [Udon Methods for Friend Info](https://ask.vrchat.com/t/developer-update-24-september-2026/48972#p-90922-udon-methods-for-friend-info-13) in the Developer Update of September 24, 2026.</value>
+    [DataMember(Name = "allowWorldsToCountFriendsInInstance", EmitDefaultValue = true)]
+    public bool AllowWorldsToCountFriendsInInstance { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Birthday
+    /// </summary>
+    [DataMember(Name = "birthday", EmitDefaultValue = false)]
+    public DateOnly Birthday { get; set; }
+
+    /// <summary>
+    /// These tags begin with &#x60;content_&#x60; and control content gating
+    /// </summary>
+    /// <value>These tags begin with &#x60;content_&#x60; and control content gating</value>
+    [DataMember(Name = "contentFilters", EmitDefaultValue = false)]
+    public List<ContentFilter> ContentFilters { get; set; }
+
+    /// <summary>
+    /// Gets or Sets CurrentPassword
+    /// </summary>
+    [DataMember(Name = "currentPassword", EmitDefaultValue = false)]
+    public string CurrentPassword { get; set; }
+
+    /// <summary>
+    /// MUST specify currentPassword as well to change display name
+    /// </summary>
+    /// <value>MUST specify currentPassword as well to change display name</value>
+    [DataMember(Name = "displayName", EmitDefaultValue = false)]
+    public string DisplayName { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Email
+    /// </summary>
+    [DataMember(Name = "email", EmitDefaultValue = false)]
+    public string Email { get; set; }
+
+    /// <summary>
+    /// Opt out of the Discord Friend Connections feature
+    /// </summary>
+    /// <value>Opt out of the Discord Friend Connections feature</value>
+    [DataMember(Name = "hasDiscordFriendsOptOut", EmitDefaultValue = true)]
+    public bool HasDiscordFriendsOptOut { get; set; }
+
+    /// <summary>
+    /// Opt out of the Mutuals feature
+    /// </summary>
+    /// <value>Opt out of the Mutuals feature</value>
+    [DataMember(Name = "hasSharedConnectionsOptOut", EmitDefaultValue = true)]
+    public bool HasSharedConnectionsOptOut { get; set; }
+
+    /// <summary>
+    /// WorldID be \&quot;offline\&quot; on User profiles if you are not friends with that user.
+    /// </summary>
+    /// <value>WorldID be \&quot;offline\&quot; on User profiles if you are not friends with that user.</value>
+    [DataMember(Name = "homeLocation", EmitDefaultValue = false)]
+    public string HomeLocation { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IsBoopingEnabled
+    /// </summary>
+    [DataMember(Name = "isBoopingEnabled", EmitDefaultValue = true)]
+    public bool IsBoopingEnabled { get; set; }
+
+    /// <summary>
+    /// MUST specify currentPassword as well to change password
+    /// </summary>
+    /// <value>MUST specify currentPassword as well to change password</value>
+    [DataMember(Name = "password", EmitDefaultValue = false)]
+    public string Password { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Pronouns
+    /// </summary>
+    [DataMember(Name = "pronouns", EmitDefaultValue = false)]
+    public string Pronouns { get; set; }
+
+    /// <summary>
+    /// MUST specify currentPassword as well to revert display name
+    /// </summary>
+    /// <value>MUST specify currentPassword as well to revert display name</value>
+    [DataMember(Name = "revertDisplayName", EmitDefaultValue = true)]
+    public bool RevertDisplayName { get; set; }
+
+    /// <summary>
+    /// Gets or Sets StatusDescription
+    /// </summary>
+    [DataMember(Name = "statusDescription", EmitDefaultValue = false)]
+    public string StatusDescription { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Tags
+    /// </summary>
+    [DataMember(Name = "tags", EmitDefaultValue = false)]
+    public List<string> Tags { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Unsubscribe
+    /// </summary>
+    [DataMember(Name = "unsubscribe", EmitDefaultValue = true)]
+    public bool Unsubscribe { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class UpdateUserRequest {\n");
+        sb.Append("  AcceptedTOSVersion: ").Append(AcceptedTOSVersion).Append('\n');
+        sb.Append("  AllowAvatarCopying: ").Append(AllowAvatarCopying).Append('\n');
+        sb.Append("  AllowWorldsToCountFriendsInInstance: ").Append(AllowWorldsToCountFriendsInInstance).Append('\n');
+        sb.Append("  Birthday: ").Append(Birthday).Append('\n');
+        sb.Append("  ContentFilters: ").Append(ContentFilters).Append('\n');
+        sb.Append("  CurrentPassword: ").Append(CurrentPassword).Append('\n');
+        sb.Append("  DisplayName: ").Append(DisplayName).Append('\n');
+        sb.Append("  Email: ").Append(Email).Append('\n');
+        sb.Append("  HasDiscordFriendsOptOut: ").Append(HasDiscordFriendsOptOut).Append('\n');
+        sb.Append("  HasSharedConnectionsOptOut: ").Append(HasSharedConnectionsOptOut).Append('\n');
+        sb.Append("  HomeLocation: ").Append(HomeLocation).Append('\n');
+        sb.Append("  IsBoopingEnabled: ").Append(IsBoopingEnabled).Append('\n');
+        sb.Append("  Password: ").Append(Password).Append('\n');
+        sb.Append("  Pronouns: ").Append(Pronouns).Append('\n');
+        sb.Append("  RevertDisplayName: ").Append(RevertDisplayName).Append('\n');
+        sb.Append("  Status: ").Append(Status).Append('\n');
+        sb.Append("  StatusDescription: ").Append(StatusDescription).Append('\n');
+        sb.Append("  Tags: ").Append(Tags).Append('\n');
+        sb.Append("  Unsubscribe: ").Append(Unsubscribe).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as UpdateUserRequest);
+    }
+
+    /// <summary>
+    /// Returns true if UpdateUserRequest instances are equal
+    /// </summary>
+    /// <param name="input">Instance of UpdateUserRequest to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(UpdateUserRequest input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.AcceptedTOSVersion == input.AcceptedTOSVersion ||
+                this.AcceptedTOSVersion.Equals(input.AcceptedTOSVersion)
+            ) &&
+            (
+                this.AllowAvatarCopying == input.AllowAvatarCopying ||
+                this.AllowAvatarCopying.Equals(input.AllowAvatarCopying)
+            ) &&
+            (
+                this.AllowWorldsToCountFriendsInInstance == input.AllowWorldsToCountFriendsInInstance ||
+                this.AllowWorldsToCountFriendsInInstance.Equals(input.AllowWorldsToCountFriendsInInstance)
+            ) &&
+            (
+                this.Birthday == input.Birthday ||
+                this.Birthday.Equals(input.Birthday)
+            ) &&
+            (
+                this.ContentFilters == input.ContentFilters ||
+                this.ContentFilters != null &&
+                input.ContentFilters != null &&
+                this.ContentFilters.SequenceEqual(input.ContentFilters)
+            ) &&
+            (
+                this.CurrentPassword == input.CurrentPassword ||
+                (this.CurrentPassword != null &&
+                this.CurrentPassword.Equals(input.CurrentPassword))
+            ) &&
+            (
+                this.DisplayName == input.DisplayName ||
+                (this.DisplayName != null &&
+                this.DisplayName.Equals(input.DisplayName))
+            ) &&
+            (
+                this.Email == input.Email ||
+                (this.Email != null &&
+                this.Email.Equals(input.Email))
+            ) &&
+            (
+                this.HasDiscordFriendsOptOut == input.HasDiscordFriendsOptOut ||
+                this.HasDiscordFriendsOptOut.Equals(input.HasDiscordFriendsOptOut)
+            ) &&
+            (
+                this.HasSharedConnectionsOptOut == input.HasSharedConnectionsOptOut ||
+                this.HasSharedConnectionsOptOut.Equals(input.HasSharedConnectionsOptOut)
+            ) &&
+            (
+                this.HomeLocation == input.HomeLocation ||
+                (this.HomeLocation != null &&
+                this.HomeLocation.Equals(input.HomeLocation))
+            ) &&
+            (
+                this.IsBoopingEnabled == input.IsBoopingEnabled ||
+                this.IsBoopingEnabled.Equals(input.IsBoopingEnabled)
+            ) &&
+            (
+                this.Password == input.Password ||
+                (this.Password != null &&
+                this.Password.Equals(input.Password))
+            ) &&
+            (
+                this.Pronouns == input.Pronouns ||
+                (this.Pronouns != null &&
+                this.Pronouns.Equals(input.Pronouns))
+            ) &&
+            (
+                this.RevertDisplayName == input.RevertDisplayName ||
+                this.RevertDisplayName.Equals(input.RevertDisplayName)
+            ) &&
+            (
+                this.Status == input.Status ||
+                this.Status.Equals(input.Status)
+            ) &&
+            (
+                this.StatusDescription == input.StatusDescription ||
+                (this.StatusDescription != null &&
+                this.StatusDescription.Equals(input.StatusDescription))
+            ) &&
+            (
+                this.Tags == input.Tags ||
+                this.Tags != null &&
+                input.Tags != null &&
+                this.Tags.SequenceEqual(input.Tags)
+            ) &&
+            (
+                this.Unsubscribe == input.Unsubscribe ||
+                this.Unsubscribe.Equals(input.Unsubscribe)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.AcceptedTOSVersion.GetHashCode();
+            hashCode = (hashCode * 59) + this.AllowAvatarCopying.GetHashCode();
+            hashCode = (hashCode * 59) + this.AllowWorldsToCountFriendsInInstance.GetHashCode();
+            hashCode = (hashCode * 59) + this.Birthday.GetHashCode();
+            if (this.ContentFilters != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.ContentFilters);
+            }
+            if (this.CurrentPassword != null)
+            {
+                hashCode = (hashCode * 59) + this.CurrentPassword.GetHashCode();
+            }
+            if (this.DisplayName != null)
+            {
+                hashCode = (hashCode * 59) + this.DisplayName.GetHashCode();
+            }
+            if (this.Email != null)
+            {
+                hashCode = (hashCode * 59) + this.Email.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.HasDiscordFriendsOptOut.GetHashCode();
+            hashCode = (hashCode * 59) + this.HasSharedConnectionsOptOut.GetHashCode();
+            if (this.HomeLocation != null)
+            {
+                hashCode = (hashCode * 59) + this.HomeLocation.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.IsBoopingEnabled.GetHashCode();
+            if (this.Password != null)
+            {
+                hashCode = (hashCode * 59) + this.Password.GetHashCode();
+            }
+            if (this.Pronouns != null)
+            {
+                hashCode = (hashCode * 59) + this.Pronouns.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.RevertDisplayName.GetHashCode();
+            hashCode = (hashCode * 59) + this.Status.GetHashCode();
+            if (this.StatusDescription != null)
+            {
+                hashCode = (hashCode * 59) + this.StatusDescription.GetHashCode();
+            }
+            if (this.Tags != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Tags);
+            }
+            hashCode = (hashCode * 59) + this.Unsubscribe.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        // Pronouns (string) maxLength
+        if (this.Pronouns != null && this.Pronouns.Length > 32)
+        {
+            yield return new ValidationResult("Invalid value for Pronouns, length must be less than 32.", new [] { "Pronouns" });
+        }
+
+        // Pronouns (string) minLength
+        if (this.Pronouns != null && this.Pronouns.Length < 0)
+        {
+            yield return new ValidationResult("Invalid value for Pronouns, length must be greater than 0.", new [] { "Pronouns" });
+        }
+
+        yield break;
+    }
+}

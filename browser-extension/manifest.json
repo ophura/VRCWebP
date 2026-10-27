@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "VRCWebP Browser Bridge",
+  "version": "1.1.11",
+  "description": "Share only your VRChat session with the local VRCWebP app.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxju1Jo0nzyPYjdAAiM8htrkqRBojmvG8bYoStwSw9qWO4dRPDSKBpCPTLiV3nvmc96gftKhgIYu58pmBPb9ADfTFSqY76yCzK24t4y7KGkrb94eTd+EjSQNNYkuZxUfe7pzNNGveYo7eGBJ/gkv67TaGNAWNWPPd8p+wjcda1uxK/leec5wZ9tdx9KMal2vPKThdc8bmrVJAprIbsZEMJsqMFIz/D8nfyDHUoa0Mi6b0yOnJ2pzdrOf4/XjAvfnrAvp5ARxZdPMgiThbBCkr9RjF3ae8elV8tfP6PGfd+zbzKJm3HIDyl2NtAYYvaD/3OcmgaHMPethRi4bsnJENgQIDAQAB",
+  "permissions": [
+    "cookies",
+    "nativeMessaging",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://vrchat.com/*",
+    "https://www.vrchat.com/*",
+    "https://api.vrchat.com/*",
+    "https://api.vrchat.cloud/*"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "vrcwebp@local.bridge",
+      "strict_min_version": "109.0"
+    }
+  },
+  "action": {
+    "default_title": "Connect VRCWebP",
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "icons": {
+    "48": "icon.png",
+    "16": "icon.png",
+    "128": "icon.png"
+  }
+}

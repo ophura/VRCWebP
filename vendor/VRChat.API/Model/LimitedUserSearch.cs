@@ -1,0 +1,369 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// User object received when searching
+/// </summary>
+[DataContract(Name = "LimitedUserSearch")]
+public partial class LimitedUserSearch : IEquatable<LimitedUserSearch>, IValidatableObject
+{
+
+    /// <summary>
+    /// Gets or Sets BannerType
+    /// </summary>
+    [DataMember(Name = "bannerType", EmitDefaultValue = false)]
+    public BannerType? BannerType { get; set; }
+
+    /// <summary>
+    /// Gets or Sets DeveloperType
+    /// </summary>
+    [DataMember(Name = "developerType", IsRequired = true, EmitDefaultValue = true)]
+    public DeveloperType DeveloperType { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Status
+    /// </summary>
+    [DataMember(Name = "status", IsRequired = true, EmitDefaultValue = true)]
+    public UserStatus Status { get; set; }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LimitedUserSearch" /> class.
+    /// </summary>
+
+    protected LimitedUserSearch() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LimitedUserSearch" /> class.
+    /// </summary>
+    /// <param name="bannerColor">Six hexadecimal digits, without a leading &#x60;#&#x60;. May be empty..</param>
+    /// <param name="bannerType">bannerType.</param>
+    /// <param name="bannerUrl">bannerUrl.</param>
+    /// <param name="developerType">developerType (required).</param>
+    /// <param name="displayName">displayName (required).</param>
+    /// <param name="iconFrame">iconFrame.</param>
+    /// <param name="iconUrl">iconUrl.</param>
+    /// <param name="id">A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed. (required).</param>
+    /// <param name="isFriend">isFriend (required).</param>
+    /// <param name="lastPlatform">This is normally &#x60;android&#x60;, &#x60;ios&#x60;, &#x60;standalonewindows&#x60;, &#x60;web&#x60;, or the empty value &#x60;&#x60;, but also supposedly can be any random Unity version such as &#x60;2019.2.4-801-Release&#x60; or &#x60;2019.2.2-772-Release&#x60; or even &#x60;unknownplatform&#x60;. (required).</param>
+    /// <param name="nameplateEffect">nameplateEffect.</param>
+    /// <param name="profileEffect">profileEffect.</param>
+    /// <param name="pronouns">pronouns.</param>
+    /// <param name="status">status (required).</param>
+    /// <param name="statusDescription">statusDescription (required).</param>
+    /// <param name="tags">&lt;- Always empty. (required).</param>
+    public LimitedUserSearch(string bannerColor = default, BannerType? bannerType = default, string bannerUrl = default, DeveloperType developerType = default, string displayName = default, string iconFrame = default, string iconUrl = default, string id = default, bool isFriend = default, string lastPlatform = default, string nameplateEffect = default, string profileEffect = default, string pronouns = default, UserStatus status = default, string statusDescription = default, List<string> tags = default)
+    {
+        this.DeveloperType = developerType;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.DisplayName = displayName;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Id = id;
+        this.IsFriend = isFriend;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.LastPlatform = lastPlatform;
+        this.Status = status;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.StatusDescription = statusDescription;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Tags = tags;
+        this.BannerColor = bannerColor;
+        this.BannerType = bannerType;
+        this.BannerUrl = bannerUrl;
+        this.IconFrame = iconFrame;
+        this.IconUrl = iconUrl;
+        this.NameplateEffect = nameplateEffect;
+        this.ProfileEffect = profileEffect;
+        this.Pronouns = pronouns;
+    }
+
+    /// <summary>
+    /// Six hexadecimal digits, without a leading &#x60;#&#x60;. May be empty.
+    /// </summary>
+    /// <value>Six hexadecimal digits, without a leading &#x60;#&#x60;. May be empty.</value>
+    [DataMember(Name = "bannerColor", EmitDefaultValue = false)]
+    public string BannerColor { get; set; }
+
+    /// <summary>
+    /// Gets or Sets BannerUrl
+    /// </summary>
+    [DataMember(Name = "bannerUrl", EmitDefaultValue = false)]
+    public string BannerUrl { get; set; }
+
+    /// <summary>
+    /// Gets or Sets DisplayName
+    /// </summary>
+    [DataMember(Name = "displayName", IsRequired = true, EmitDefaultValue = true)]
+    public string DisplayName { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IconFrame
+    /// </summary>
+    [DataMember(Name = "iconFrame", EmitDefaultValue = false)]
+    public string IconFrame { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IconUrl
+    /// </summary>
+    [DataMember(Name = "iconUrl", EmitDefaultValue = false)]
+    public string IconUrl { get; set; }
+
+    /// <summary>
+    /// A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed.
+    /// </summary>
+    /// <value>A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed.</value>
+    [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Gets or Sets IsFriend
+    /// </summary>
+    [DataMember(Name = "isFriend", IsRequired = true, EmitDefaultValue = true)]
+    public bool IsFriend { get; set; }
+
+    /// <summary>
+    /// This is normally &#x60;android&#x60;, &#x60;ios&#x60;, &#x60;standalonewindows&#x60;, &#x60;web&#x60;, or the empty value &#x60;&#x60;, but also supposedly can be any random Unity version such as &#x60;2019.2.4-801-Release&#x60; or &#x60;2019.2.2-772-Release&#x60; or even &#x60;unknownplatform&#x60;.
+    /// </summary>
+    /// <value>This is normally &#x60;android&#x60;, &#x60;ios&#x60;, &#x60;standalonewindows&#x60;, &#x60;web&#x60;, or the empty value &#x60;&#x60;, but also supposedly can be any random Unity version such as &#x60;2019.2.4-801-Release&#x60; or &#x60;2019.2.2-772-Release&#x60; or even &#x60;unknownplatform&#x60;.</value>
+    [DataMember(Name = "last_platform", IsRequired = true, EmitDefaultValue = true)]
+    public string LastPlatform { get; set; }
+
+    /// <summary>
+    /// Gets or Sets NameplateEffect
+    /// </summary>
+    [DataMember(Name = "nameplateEffect", EmitDefaultValue = false)]
+    public string NameplateEffect { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ProfileEffect
+    /// </summary>
+    [DataMember(Name = "profileEffect", EmitDefaultValue = false)]
+    public string ProfileEffect { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Pronouns
+    /// </summary>
+    [DataMember(Name = "pronouns", EmitDefaultValue = false)]
+    public string Pronouns { get; set; }
+
+    /// <summary>
+    /// Gets or Sets StatusDescription
+    /// </summary>
+    [DataMember(Name = "statusDescription", IsRequired = true, EmitDefaultValue = true)]
+    public string StatusDescription { get; set; }
+
+    /// <summary>
+    /// &lt;- Always empty.
+    /// </summary>
+    /// <value>&lt;- Always empty.</value>
+    [DataMember(Name = "tags", IsRequired = true, EmitDefaultValue = true)]
+    public List<string> Tags { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class LimitedUserSearch {\n");
+        sb.Append("  BannerColor: ").Append(BannerColor).Append('\n');
+        sb.Append("  BannerType: ").Append(BannerType).Append('\n');
+        sb.Append("  BannerUrl: ").Append(BannerUrl).Append('\n');
+        sb.Append("  DeveloperType: ").Append(DeveloperType).Append('\n');
+        sb.Append("  DisplayName: ").Append(DisplayName).Append('\n');
+        sb.Append("  IconFrame: ").Append(IconFrame).Append('\n');
+        sb.Append("  IconUrl: ").Append(IconUrl).Append('\n');
+        sb.Append("  Id: ").Append(Id).Append('\n');
+        sb.Append("  IsFriend: ").Append(IsFriend).Append('\n');
+        sb.Append("  LastPlatform: ").Append(LastPlatform).Append('\n');
+        sb.Append("  NameplateEffect: ").Append(NameplateEffect).Append('\n');
+        sb.Append("  ProfileEffect: ").Append(ProfileEffect).Append('\n');
+        sb.Append("  Pronouns: ").Append(Pronouns).Append('\n');
+        sb.Append("  Status: ").Append(Status).Append('\n');
+        sb.Append("  StatusDescription: ").Append(StatusDescription).Append('\n');
+        sb.Append("  Tags: ").Append(Tags).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as LimitedUserSearch);
+    }
+
+    /// <summary>
+    /// Returns true if LimitedUserSearch instances are equal
+    /// </summary>
+    /// <param name="input">Instance of LimitedUserSearch to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(LimitedUserSearch input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.BannerColor == input.BannerColor ||
+                (this.BannerColor != null &&
+                this.BannerColor.Equals(input.BannerColor))
+            ) &&
+            (
+                this.BannerType == input.BannerType ||
+                this.BannerType.Equals(input.BannerType)
+            ) &&
+            (
+                this.BannerUrl == input.BannerUrl ||
+                (this.BannerUrl != null &&
+                this.BannerUrl.Equals(input.BannerUrl))
+            ) &&
+            (
+                this.DeveloperType == input.DeveloperType ||
+                this.DeveloperType.Equals(input.DeveloperType)
+            ) &&
+            (
+                this.DisplayName == input.DisplayName ||
+                (this.DisplayName != null &&
+                this.DisplayName.Equals(input.DisplayName))
+            ) &&
+            (
+                this.IconFrame == input.IconFrame ||
+                (this.IconFrame != null &&
+                this.IconFrame.Equals(input.IconFrame))
+            ) &&
+            (
+                this.IconUrl == input.IconUrl ||
+                (this.IconUrl != null &&
+                this.IconUrl.Equals(input.IconUrl))
+            ) &&
+            (
+                this.Id == input.Id ||
+                (this.Id != null &&
+                this.Id.Equals(input.Id))
+            ) &&
+            (
+                this.IsFriend == input.IsFriend ||
+                this.IsFriend.Equals(input.IsFriend)
+            ) &&
+            (
+                this.LastPlatform == input.LastPlatform ||
+                (this.LastPlatform != null &&
+                this.LastPlatform.Equals(input.LastPlatform))
+            ) &&
+            (
+                this.NameplateEffect == input.NameplateEffect ||
+                (this.NameplateEffect != null &&
+                this.NameplateEffect.Equals(input.NameplateEffect))
+            ) &&
+            (
+                this.ProfileEffect == input.ProfileEffect ||
+                (this.ProfileEffect != null &&
+                this.ProfileEffect.Equals(input.ProfileEffect))
+            ) &&
+            (
+                this.Pronouns == input.Pronouns ||
+                (this.Pronouns != null &&
+                this.Pronouns.Equals(input.Pronouns))
+            ) &&
+            (
+                this.Status == input.Status ||
+                this.Status.Equals(input.Status)
+            ) &&
+            (
+                this.StatusDescription == input.StatusDescription ||
+                (this.StatusDescription != null &&
+                this.StatusDescription.Equals(input.StatusDescription))
+            ) &&
+            (
+                this.Tags == input.Tags ||
+                this.Tags != null &&
+                input.Tags != null &&
+                this.Tags.SequenceEqual(input.Tags)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.BannerColor != null)
+            {
+                hashCode = (hashCode * 59) + this.BannerColor.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.BannerType.GetHashCode();
+            if (this.BannerUrl != null)
+            {
+                hashCode = (hashCode * 59) + this.BannerUrl.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.DeveloperType.GetHashCode();
+            if (this.DisplayName != null)
+            {
+                hashCode = (hashCode * 59) + this.DisplayName.GetHashCode();
+            }
+            if (this.IconFrame != null)
+            {
+                hashCode = (hashCode * 59) + this.IconFrame.GetHashCode();
+            }
+            if (this.IconUrl != null)
+            {
+                hashCode = (hashCode * 59) + this.IconUrl.GetHashCode();
+            }
+            if (this.Id != null)
+            {
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.IsFriend.GetHashCode();
+            if (this.LastPlatform != null)
+            {
+                hashCode = (hashCode * 59) + this.LastPlatform.GetHashCode();
+            }
+            if (this.NameplateEffect != null)
+            {
+                hashCode = (hashCode * 59) + this.NameplateEffect.GetHashCode();
+            }
+            if (this.ProfileEffect != null)
+            {
+                hashCode = (hashCode * 59) + this.ProfileEffect.GetHashCode();
+            }
+            if (this.Pronouns != null)
+            {
+                hashCode = (hashCode * 59) + this.Pronouns.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.Status.GetHashCode();
+            if (this.StatusDescription != null)
+            {
+                hashCode = (hashCode * 59) + this.StatusDescription.GetHashCode();
+            }
+            if (this.Tags != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Tags);
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

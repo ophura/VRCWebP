@@ -1,0 +1,204 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// Pseudocode steps to build a request with a valid combination: request &#x3D; {} config &#x3D; json.parse(GET /config) valid_types &#x3D; config.reportOptions.keys request.type &#x3D; select_one(valid_types, (id) &#x3D;&gt; { text: id, tooltip: \&quot;\&quot; }) valid_categories &#x3D; config.reportOptions[request.type].keys request.category &#x3D; select_one(valid_categories, (id) &#x3D;&gt; config.reportCategories[id]) valid_reasons &#x3D; config.reportOptions[request.type][request.category] request.reason &#x3D; select_one(valid_reasons, (id) &#x3D;&gt; config.reportReasons[id]) request.contentId &#x3D; relevant_id_of_type(request.type) request.details &#x3D; relevant_details_based_on_type(request.type) request.description &#x3D; input_string()
+/// </summary>
+[DataContract(Name = "SubmitModerationReportRequest")]
+public partial class SubmitModerationReportRequest : IEquatable<SubmitModerationReportRequest>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SubmitModerationReportRequest" /> class.
+    /// </summary>
+
+    protected SubmitModerationReportRequest() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SubmitModerationReportRequest" /> class.
+    /// </summary>
+    /// <param name="category">Valid values are the keys of the object &#x60;$.reportOptions[type]&#x60; from &#x60;GET /config&#x60;. Descriptions of these are found at &#x60;$.reportCategories[type]&#x60;. (required).</param>
+    /// <param name="contentId">The id of the user, group, world, avatar, inventory item, print, etc. being reported. (required).</param>
+    /// <param name="description">The subjective reason for the report.</param>
+    /// <param name="details">Relevant details specific to the type of the report. &#x60;fileId&#x60; is for the image file attached to an inventory item, such as an emoji. &#x60;holderId&#x60; is for the user who owns an inventory item, such as a emoji..</param>
+    /// <param name="reason">Valid values are the strings in the array &#x60;$.reportOptions[type][category]&#x60; from &#x60;GET /config&#x60;. Descriptions of these are found at &#x60;$.reportReasons[type]&#x60;. (required).</param>
+    /// <param name="type">Valid values are the keys of the object &#x60;$.reportOptions&#x60; from &#x60;GET /config&#x60;. (required).</param>
+    public SubmitModerationReportRequest(string category = default, string contentId = default, string description = default, SubmitModerationReportRequestDetails details = default, string reason = default, string type = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Category = category;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ContentId = contentId;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Reason = reason;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Type = type;
+        this.Description = description;
+        this.Details = details;
+    }
+
+    /// <summary>
+    /// Valid values are the keys of the object &#x60;$.reportOptions[type]&#x60; from &#x60;GET /config&#x60;. Descriptions of these are found at &#x60;$.reportCategories[type]&#x60;.
+    /// </summary>
+    /// <value>Valid values are the keys of the object &#x60;$.reportOptions[type]&#x60; from &#x60;GET /config&#x60;. Descriptions of these are found at &#x60;$.reportCategories[type]&#x60;.</value>
+    [DataMember(Name = "category", IsRequired = true, EmitDefaultValue = true)]
+    public string Category { get; set; }
+
+    /// <summary>
+    /// The id of the user, group, world, avatar, inventory item, print, etc. being reported.
+    /// </summary>
+    /// <value>The id of the user, group, world, avatar, inventory item, print, etc. being reported.</value>
+    [DataMember(Name = "contentId", IsRequired = true, EmitDefaultValue = true)]
+    public string ContentId { get; set; }
+
+    /// <summary>
+    /// The subjective reason for the report
+    /// </summary>
+    /// <value>The subjective reason for the report</value>
+    [DataMember(Name = "description", EmitDefaultValue = false)]
+    public string Description { get; set; }
+
+    /// <summary>
+    /// Relevant details specific to the type of the report. &#x60;fileId&#x60; is for the image file attached to an inventory item, such as an emoji. &#x60;holderId&#x60; is for the user who owns an inventory item, such as a emoji.
+    /// </summary>
+    /// <value>Relevant details specific to the type of the report. &#x60;fileId&#x60; is for the image file attached to an inventory item, such as an emoji. &#x60;holderId&#x60; is for the user who owns an inventory item, such as a emoji.</value>
+    [DataMember(Name = "details", EmitDefaultValue = false)]
+    public SubmitModerationReportRequestDetails Details { get; set; }
+
+    /// <summary>
+    /// Valid values are the strings in the array &#x60;$.reportOptions[type][category]&#x60; from &#x60;GET /config&#x60;. Descriptions of these are found at &#x60;$.reportReasons[type]&#x60;.
+    /// </summary>
+    /// <value>Valid values are the strings in the array &#x60;$.reportOptions[type][category]&#x60; from &#x60;GET /config&#x60;. Descriptions of these are found at &#x60;$.reportReasons[type]&#x60;.</value>
+    [DataMember(Name = "reason", IsRequired = true, EmitDefaultValue = true)]
+    public string Reason { get; set; }
+
+    /// <summary>
+    /// Valid values are the keys of the object &#x60;$.reportOptions&#x60; from &#x60;GET /config&#x60;.
+    /// </summary>
+    /// <value>Valid values are the keys of the object &#x60;$.reportOptions&#x60; from &#x60;GET /config&#x60;.</value>
+    [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+    public string Type { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class SubmitModerationReportRequest {\n");
+        sb.Append("  Category: ").Append(Category).Append('\n');
+        sb.Append("  ContentId: ").Append(ContentId).Append('\n');
+        sb.Append("  Description: ").Append(Description).Append('\n');
+        sb.Append("  Details: ").Append(Details).Append('\n');
+        sb.Append("  Reason: ").Append(Reason).Append('\n');
+        sb.Append("  Type: ").Append(Type).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as SubmitModerationReportRequest);
+    }
+
+    /// <summary>
+    /// Returns true if SubmitModerationReportRequest instances are equal
+    /// </summary>
+    /// <param name="input">Instance of SubmitModerationReportRequest to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(SubmitModerationReportRequest input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Category == input.Category ||
+                (this.Category != null &&
+                this.Category.Equals(input.Category))
+            ) &&
+            (
+                this.ContentId == input.ContentId ||
+                (this.ContentId != null &&
+                this.ContentId.Equals(input.ContentId))
+            ) &&
+            (
+                this.Description == input.Description ||
+                (this.Description != null &&
+                this.Description.Equals(input.Description))
+            ) &&
+            (
+                this.Details == input.Details ||
+                (this.Details != null &&
+                this.Details.Equals(input.Details))
+            ) &&
+            (
+                this.Reason == input.Reason ||
+                (this.Reason != null &&
+                this.Reason.Equals(input.Reason))
+            ) &&
+            (
+                this.Type == input.Type ||
+                (this.Type != null &&
+                this.Type.Equals(input.Type))
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.Category != null)
+            {
+                hashCode = (hashCode * 59) + this.Category.GetHashCode();
+            }
+            if (this.ContentId != null)
+            {
+                hashCode = (hashCode * 59) + this.ContentId.GetHashCode();
+            }
+            if (this.Description != null)
+            {
+                hashCode = (hashCode * 59) + this.Description.GetHashCode();
+            }
+            if (this.Details != null)
+            {
+                hashCode = (hashCode * 59) + this.Details.GetHashCode();
+            }
+            if (this.Reason != null)
+            {
+                hashCode = (hashCode * 59) + this.Reason.GetHashCode();
+            }
+            if (this.Type != null)
+            {
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+            }
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

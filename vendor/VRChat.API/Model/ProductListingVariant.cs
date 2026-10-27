@@ -1,0 +1,175 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// ProductListingVariant
+/// </summary>
+[DataContract(Name = "ProductListingVariant")]
+public partial class ProductListingVariant : IEquatable<ProductListingVariant>, IValidatableObject
+{
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ProductListingVariant" /> class.
+    /// </summary>
+
+    protected ProductListingVariant() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ProductListingVariant" /> class.
+    /// </summary>
+    /// <param name="effectiveFrom">effectiveFrom.</param>
+    /// <param name="listingVariantId">listingVariantId (required).</param>
+    /// <param name="nonRefundable">nonRefundable (required).</param>
+    /// <param name="quantity">quantity (required).</param>
+    /// <param name="sellerVariant">sellerVariant (required).</param>
+    /// <param name="unitPriceTokens">unitPriceTokens (required).</param>
+    public ProductListingVariant(DateTime effectiveFrom = default, string listingVariantId = default, bool nonRefundable = default, int quantity = default, bool sellerVariant = default, int unitPriceTokens = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ListingVariantId = listingVariantId;
+        this.NonRefundable = nonRefundable;
+        this.Quantity = quantity;
+        this.SellerVariant = sellerVariant;
+        this.UnitPriceTokens = unitPriceTokens;
+        this.EffectiveFrom = effectiveFrom;
+    }
+
+    /// <summary>
+    /// Gets or Sets EffectiveFrom
+    /// </summary>
+    [DataMember(Name = "effectiveFrom", EmitDefaultValue = false)]
+    public DateTime EffectiveFrom { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ListingVariantId
+    /// </summary>
+    [DataMember(Name = "listingVariantId", IsRequired = true, EmitDefaultValue = true)]
+    public string ListingVariantId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets NonRefundable
+    /// </summary>
+    [DataMember(Name = "nonRefundable", IsRequired = true, EmitDefaultValue = true)]
+    public bool NonRefundable { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Quantity
+    /// </summary>
+    [DataMember(Name = "quantity", IsRequired = true, EmitDefaultValue = true)]
+    public int Quantity { get; set; }
+
+    /// <summary>
+    /// Gets or Sets SellerVariant
+    /// </summary>
+    [DataMember(Name = "sellerVariant", IsRequired = true, EmitDefaultValue = true)]
+    public bool SellerVariant { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UnitPriceTokens
+    /// </summary>
+    [DataMember(Name = "unitPriceTokens", IsRequired = true, EmitDefaultValue = true)]
+    public int UnitPriceTokens { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class ProductListingVariant {\n");
+        sb.Append("  EffectiveFrom: ").Append(EffectiveFrom).Append('\n');
+        sb.Append("  ListingVariantId: ").Append(ListingVariantId).Append('\n');
+        sb.Append("  NonRefundable: ").Append(NonRefundable).Append('\n');
+        sb.Append("  Quantity: ").Append(Quantity).Append('\n');
+        sb.Append("  SellerVariant: ").Append(SellerVariant).Append('\n');
+        sb.Append("  UnitPriceTokens: ").Append(UnitPriceTokens).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as ProductListingVariant);
+    }
+
+    /// <summary>
+    /// Returns true if ProductListingVariant instances are equal
+    /// </summary>
+    /// <param name="input">Instance of ProductListingVariant to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(ProductListingVariant input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.EffectiveFrom == input.EffectiveFrom ||
+                this.EffectiveFrom.Equals(input.EffectiveFrom)
+            ) &&
+            (
+                this.ListingVariantId == input.ListingVariantId ||
+                (this.ListingVariantId != null &&
+                this.ListingVariantId.Equals(input.ListingVariantId))
+            ) &&
+            (
+                this.NonRefundable == input.NonRefundable ||
+                this.NonRefundable.Equals(input.NonRefundable)
+            ) &&
+            (
+                this.Quantity == input.Quantity ||
+                this.Quantity.Equals(input.Quantity)
+            ) &&
+            (
+                this.SellerVariant == input.SellerVariant ||
+                this.SellerVariant.Equals(input.SellerVariant)
+            ) &&
+            (
+                this.UnitPriceTokens == input.UnitPriceTokens ||
+                this.UnitPriceTokens.Equals(input.UnitPriceTokens)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.EffectiveFrom.GetHashCode();
+            if (this.ListingVariantId != null)
+            {
+                hashCode = (hashCode * 59) + this.ListingVariantId.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.NonRefundable.GetHashCode();
+            hashCode = (hashCode * 59) + this.Quantity.GetHashCode();
+            hashCode = (hashCode * 59) + this.SellerVariant.GetHashCode();
+            hashCode = (hashCode * 59) + this.UnitPriceTokens.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

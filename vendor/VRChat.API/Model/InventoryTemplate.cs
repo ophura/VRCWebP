@@ -1,0 +1,499 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// InventoryTemplate
+/// </summary>
+[DataContract(Name = "InventoryTemplate")]
+public partial class InventoryTemplate : IEquatable<InventoryTemplate>, IValidatableObject
+{
+
+    /// <summary>
+    /// Gets or Sets ItemType
+    /// </summary>
+    [DataMember(Name = "itemType", IsRequired = true, EmitDefaultValue = true)]
+    public InventoryItemType ItemType { get; set; }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InventoryTemplate" /> class.
+    /// </summary>
+
+    protected InventoryTemplate() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InventoryTemplate" /> class.
+    /// </summary>
+    /// <param name="attribution">attribution.</param>
+    /// <param name="authorId">A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed. (required).</param>
+    /// <param name="collections">collections (required).</param>
+    /// <param name="createdAt">createdAt (required).</param>
+    /// <param name="defaultAttributes">defaultAttributes (required).</param>
+    /// <param name="description">description (required).</param>
+    /// <param name="dropStatus">dropStatus.</param>
+    /// <param name="equipSlots">equipSlots (required).</param>
+    /// <param name="flags">flags (required).</param>
+    /// <param name="id">id (required).</param>
+    /// <param name="imageUrl">imageUrl (required).</param>
+    /// <param name="initialToggleState">initialToggleState.</param>
+    /// <param name="itemType">itemType (required).</param>
+    /// <param name="itemTypeLabel">itemTypeLabel (required).</param>
+    /// <param name="metadata">metadata.</param>
+    /// <param name="name">name (required).</param>
+    /// <param name="notificationDetails">notificationDetails.</param>
+    /// <param name="productId">productId.</param>
+    /// <param name="publishedListings">publishedListings.</param>
+    /// <param name="status">status.</param>
+    /// <param name="tags">tags (required).</param>
+    /// <param name="updatedAt">updatedAt (required).</param>
+    /// <param name="validateUserAttributes">validateUserAttributes (required).</param>
+    public InventoryTemplate(ProductListingAttribution attribution = default, string authorId = default, List<string> collections = default, DateTime createdAt = default, Dictionary<string, object> defaultAttributes = default, string description = default, string dropStatus = default, List<string> equipSlots = default, List<string> flags = default, string id = default, string imageUrl = default, bool initialToggleState = default, InventoryItemType itemType = default, string itemTypeLabel = default, InventoryMetadata metadata = default, string name = default, InventoryNotificationDetails notificationDetails = default, string productId = default, List<string> publishedListings = default, string status = default, List<string> tags = default, DateTime updatedAt = default, bool validateUserAttributes = default)
+    {
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.AuthorId = authorId;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Collections = collections;
+        this.CreatedAt = createdAt;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.DefaultAttributes = defaultAttributes;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Description = description;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.EquipSlots = equipSlots;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Flags = flags;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Id = id;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ImageUrl = imageUrl;
+        this.ItemType = itemType;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.ItemTypeLabel = itemTypeLabel;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Name = name;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Tags = tags;
+        this.UpdatedAt = updatedAt;
+        this.ValidateUserAttributes = validateUserAttributes;
+        this.Attribution = attribution;
+        this.DropStatus = dropStatus;
+        this.InitialToggleState = initialToggleState;
+        this.Metadata = metadata;
+        this.NotificationDetails = notificationDetails;
+        this.ProductId = productId;
+        this.PublishedListings = publishedListings;
+        this.Status = status;
+    }
+
+    /// <summary>
+    /// Gets or Sets Attribution
+    /// </summary>
+    [DataMember(Name = "attribution", EmitDefaultValue = true)]
+    public ProductListingAttribution Attribution { get; set; }
+
+    /// <summary>
+    /// A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed.
+    /// </summary>
+    /// <value>A users unique ID, usually in the form of &#x60;usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469&#x60;. Legacy players can have old IDs in the form of &#x60;8JoV9XEdpo&#x60;. The ID can never be changed.</value>
+    [DataMember(Name = "authorId", IsRequired = true, EmitDefaultValue = true)]
+    public string AuthorId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Collections
+    /// </summary>
+    [DataMember(Name = "collections", IsRequired = true, EmitDefaultValue = true)]
+    public List<string> Collections { get; set; }
+
+    /// <summary>
+    /// Gets or Sets CreatedAt
+    /// </summary>
+    [DataMember(Name = "created_at", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime CreatedAt { get; set; }
+
+    /// <summary>
+    /// Gets or Sets DefaultAttributes
+    /// </summary>
+    [DataMember(Name = "defaultAttributes", IsRequired = true, EmitDefaultValue = true)]
+    public Dictionary<string, object> DefaultAttributes { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Description
+    /// </summary>
+    [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
+    public string Description { get; set; }
+
+    /// <summary>
+    /// Gets or Sets DropStatus
+    /// </summary>
+    [DataMember(Name = "dropStatus", EmitDefaultValue = false)]
+    public string DropStatus { get; set; }
+
+    /// <summary>
+    /// Gets or Sets EquipSlots
+    /// </summary>
+    [DataMember(Name = "equipSlots", IsRequired = true, EmitDefaultValue = true)]
+    public List<string> EquipSlots { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Flags
+    /// </summary>
+    [DataMember(Name = "flags", IsRequired = true, EmitDefaultValue = true)]
+    public List<string> Flags { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Id
+    /// </summary>
+    [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ImageUrl
+    /// </summary>
+    [DataMember(Name = "imageUrl", IsRequired = true, EmitDefaultValue = true)]
+    public string ImageUrl { get; set; }
+
+    /// <summary>
+    /// Gets or Sets InitialToggleState
+    /// </summary>
+    [DataMember(Name = "initialToggleState", EmitDefaultValue = true)]
+    public bool InitialToggleState { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ItemTypeLabel
+    /// </summary>
+    [DataMember(Name = "itemTypeLabel", IsRequired = true, EmitDefaultValue = true)]
+    public string ItemTypeLabel { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Metadata
+    /// </summary>
+    [DataMember(Name = "metadata", EmitDefaultValue = false)]
+    public InventoryMetadata Metadata { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Name
+    /// </summary>
+    [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
+    public string Name { get; set; }
+
+    /// <summary>
+    /// Gets or Sets NotificationDetails
+    /// </summary>
+    [DataMember(Name = "notificationDetails", EmitDefaultValue = false)]
+    public InventoryNotificationDetails NotificationDetails { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ProductId
+    /// </summary>
+    [DataMember(Name = "productId", EmitDefaultValue = false)]
+    public string ProductId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets PublishedListings
+    /// </summary>
+    [DataMember(Name = "publishedListings", EmitDefaultValue = false)]
+    public List<string> PublishedListings { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Status
+    /// </summary>
+    [DataMember(Name = "status", EmitDefaultValue = false)]
+    public string Status { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Tags
+    /// </summary>
+    [DataMember(Name = "tags", IsRequired = true, EmitDefaultValue = true)]
+    public List<string> Tags { get; set; }
+
+    /// <summary>
+    /// Gets or Sets UpdatedAt
+    /// </summary>
+    [DataMember(Name = "updated_at", IsRequired = true, EmitDefaultValue = true)]
+    public DateTime UpdatedAt { get; set; }
+
+    /// <summary>
+    /// Gets or Sets ValidateUserAttributes
+    /// </summary>
+    [DataMember(Name = "validateUserAttributes", IsRequired = true, EmitDefaultValue = true)]
+    public bool ValidateUserAttributes { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class InventoryTemplate {\n");
+        sb.Append("  Attribution: ").Append(Attribution).Append('\n');
+        sb.Append("  AuthorId: ").Append(AuthorId).Append('\n');
+        sb.Append("  Collections: ").Append(Collections).Append('\n');
+        sb.Append("  CreatedAt: ").Append(CreatedAt).Append('\n');
+        sb.Append("  DefaultAttributes: ").Append(DefaultAttributes).Append('\n');
+        sb.Append("  Description: ").Append(Description).Append('\n');
+        sb.Append("  DropStatus: ").Append(DropStatus).Append('\n');
+        sb.Append("  EquipSlots: ").Append(EquipSlots).Append('\n');
+        sb.Append("  Flags: ").Append(Flags).Append('\n');
+        sb.Append("  Id: ").Append(Id).Append('\n');
+        sb.Append("  ImageUrl: ").Append(ImageUrl).Append('\n');
+        sb.Append("  InitialToggleState: ").Append(InitialToggleState).Append('\n');
+        sb.Append("  ItemType: ").Append(ItemType).Append('\n');
+        sb.Append("  ItemTypeLabel: ").Append(ItemTypeLabel).Append('\n');
+        sb.Append("  Metadata: ").Append(Metadata).Append('\n');
+        sb.Append("  Name: ").Append(Name).Append('\n');
+        sb.Append("  NotificationDetails: ").Append(NotificationDetails).Append('\n');
+        sb.Append("  ProductId: ").Append(ProductId).Append('\n');
+        sb.Append("  PublishedListings: ").Append(PublishedListings).Append('\n');
+        sb.Append("  Status: ").Append(Status).Append('\n');
+        sb.Append("  Tags: ").Append(Tags).Append('\n');
+        sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append('\n');
+        sb.Append("  ValidateUserAttributes: ").Append(ValidateUserAttributes).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as InventoryTemplate);
+    }
+
+    /// <summary>
+    /// Returns true if InventoryTemplate instances are equal
+    /// </summary>
+    /// <param name="input">Instance of InventoryTemplate to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(InventoryTemplate input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Attribution == input.Attribution ||
+                (this.Attribution != null &&
+                this.Attribution.Equals(input.Attribution))
+            ) &&
+            (
+                this.AuthorId == input.AuthorId ||
+                (this.AuthorId != null &&
+                this.AuthorId.Equals(input.AuthorId))
+            ) &&
+            (
+                this.Collections == input.Collections ||
+                this.Collections != null &&
+                input.Collections != null &&
+                this.Collections.SequenceEqual(input.Collections)
+            ) &&
+            (
+                this.CreatedAt == input.CreatedAt ||
+                this.CreatedAt.Equals(input.CreatedAt)
+            ) &&
+            (
+                this.DefaultAttributes == input.DefaultAttributes ||
+                this.DefaultAttributes != null &&
+                input.DefaultAttributes != null &&
+                this.DefaultAttributes.SequenceEqual(input.DefaultAttributes)
+            ) &&
+            (
+                this.Description == input.Description ||
+                (this.Description != null &&
+                this.Description.Equals(input.Description))
+            ) &&
+            (
+                this.DropStatus == input.DropStatus ||
+                (this.DropStatus != null &&
+                this.DropStatus.Equals(input.DropStatus))
+            ) &&
+            (
+                this.EquipSlots == input.EquipSlots ||
+                this.EquipSlots != null &&
+                input.EquipSlots != null &&
+                this.EquipSlots.SequenceEqual(input.EquipSlots)
+            ) &&
+            (
+                this.Flags == input.Flags ||
+                this.Flags != null &&
+                input.Flags != null &&
+                this.Flags.SequenceEqual(input.Flags)
+            ) &&
+            (
+                this.Id == input.Id ||
+                (this.Id != null &&
+                this.Id.Equals(input.Id))
+            ) &&
+            (
+                this.ImageUrl == input.ImageUrl ||
+                (this.ImageUrl != null &&
+                this.ImageUrl.Equals(input.ImageUrl))
+            ) &&
+            (
+                this.InitialToggleState == input.InitialToggleState ||
+                this.InitialToggleState.Equals(input.InitialToggleState)
+            ) &&
+            (
+                this.ItemType == input.ItemType ||
+                this.ItemType.Equals(input.ItemType)
+            ) &&
+            (
+                this.ItemTypeLabel == input.ItemTypeLabel ||
+                (this.ItemTypeLabel != null &&
+                this.ItemTypeLabel.Equals(input.ItemTypeLabel))
+            ) &&
+            (
+                this.Metadata == input.Metadata ||
+                (this.Metadata != null &&
+                this.Metadata.Equals(input.Metadata))
+            ) &&
+            (
+                this.Name == input.Name ||
+                (this.Name != null &&
+                this.Name.Equals(input.Name))
+            ) &&
+            (
+                this.NotificationDetails == input.NotificationDetails ||
+                (this.NotificationDetails != null &&
+                this.NotificationDetails.Equals(input.NotificationDetails))
+            ) &&
+            (
+                this.ProductId == input.ProductId ||
+                (this.ProductId != null &&
+                this.ProductId.Equals(input.ProductId))
+            ) &&
+            (
+                this.PublishedListings == input.PublishedListings ||
+                this.PublishedListings != null &&
+                input.PublishedListings != null &&
+                this.PublishedListings.SequenceEqual(input.PublishedListings)
+            ) &&
+            (
+                this.Status == input.Status ||
+                (this.Status != null &&
+                this.Status.Equals(input.Status))
+            ) &&
+            (
+                this.Tags == input.Tags ||
+                this.Tags != null &&
+                input.Tags != null &&
+                this.Tags.SequenceEqual(input.Tags)
+            ) &&
+            (
+                this.UpdatedAt == input.UpdatedAt ||
+                this.UpdatedAt.Equals(input.UpdatedAt)
+            ) &&
+            (
+                this.ValidateUserAttributes == input.ValidateUserAttributes ||
+                this.ValidateUserAttributes.Equals(input.ValidateUserAttributes)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            if (this.Attribution != null)
+            {
+                hashCode = (hashCode * 59) + this.Attribution.GetHashCode();
+            }
+            if (this.AuthorId != null)
+            {
+                hashCode = (hashCode * 59) + this.AuthorId.GetHashCode();
+            }
+            if (this.Collections != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Collections);
+            }
+            hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+            if (this.DefaultAttributes != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.DefaultAttributes);
+            }
+            if (this.Description != null)
+            {
+                hashCode = (hashCode * 59) + this.Description.GetHashCode();
+            }
+            if (this.DropStatus != null)
+            {
+                hashCode = (hashCode * 59) + this.DropStatus.GetHashCode();
+            }
+            if (this.EquipSlots != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.EquipSlots);
+            }
+            if (this.Flags != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Flags);
+            }
+            if (this.Id != null)
+            {
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
+            }
+            if (this.ImageUrl != null)
+            {
+                hashCode = (hashCode * 59) + this.ImageUrl.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.InitialToggleState.GetHashCode();
+            hashCode = (hashCode * 59) + this.ItemType.GetHashCode();
+            if (this.ItemTypeLabel != null)
+            {
+                hashCode = (hashCode * 59) + this.ItemTypeLabel.GetHashCode();
+            }
+            if (this.Metadata != null)
+            {
+                hashCode = (hashCode * 59) + this.Metadata.GetHashCode();
+            }
+            if (this.Name != null)
+            {
+                hashCode = (hashCode * 59) + this.Name.GetHashCode();
+            }
+            if (this.NotificationDetails != null)
+            {
+                hashCode = (hashCode * 59) + this.NotificationDetails.GetHashCode();
+            }
+            if (this.ProductId != null)
+            {
+                hashCode = (hashCode * 59) + this.ProductId.GetHashCode();
+            }
+            if (this.PublishedListings != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.PublishedListings);
+            }
+            if (this.Status != null)
+            {
+                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+            }
+            if (this.Tags != null)
+            {
+                hashCode = (hashCode * 59) + VRChat.API.Client.CollectionHash.Get(this.Tags);
+            }
+            hashCode = (hashCode * 59) + this.UpdatedAt.GetHashCode();
+            hashCode = (hashCode * 59) + this.ValidateUserAttributes.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        yield break;
+    }
+}

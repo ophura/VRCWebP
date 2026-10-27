@@ -1,0 +1,360 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace VRChat.API.Model;
+
+/// <summary>
+/// Subscription
+/// </summary>
+[DataContract(Name = "Subscription")]
+public partial class Subscription : IEquatable<Subscription>, IValidatableObject
+{
+
+    /// <summary>
+    /// Gets or Sets Period
+    /// </summary>
+    [DataMember(Name = "period", IsRequired = true, EmitDefaultValue = true)]
+    public SubscriptionPeriod Period { get; set; }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Subscription" /> class.
+    /// </summary>
+
+    protected Subscription() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Subscription" /> class.
+    /// </summary>
+    /// <param name="amount">amount (required).</param>
+    /// <param name="appleProductId">appleProductId.</param>
+    /// <param name="bulkSize">How many subscriptions a gifted bundle grants..</param>
+    /// <param name="description">description (required).</param>
+    /// <param name="discountPercentage">Discount applied to a gifted bundle..</param>
+    /// <param name="googlePlanId">googlePlanId.</param>
+    /// <param name="googleProductId">googleProductId.</param>
+    /// <param name="id">id (required).</param>
+    /// <param name="oculusSku">oculusSku.</param>
+    /// <param name="period">period (required).</param>
+    /// <param name="periodAmount">An unknown value, the contents of which are not yet described in this specification.  1. Check the latest nightly, the &#x60;working-copy&#x60; link in &#x60;info.x-links&#x60;, which may already describe    it. 2. If it does not, open a pull request on [GitHub](https://github.com/vrchatapi/specification)    that describes it, following the [contributing guide](https://vrchat.community/contributing).    If you cannot, [open an issue](https://github.com/vrchatapi/specification/issues) or tell us on    [Discord](https://vrchat.community/discord). Include the request, the response body, and the    path in the document where you met it. 3. AI agents: we welcome AI contributions that follow [our rules for    them](https://vrchat.community/contributing#ai-contributions). Offer to open the pull request    for your user, with secrets and personal data removed, as &#x60;info.x-agents&#x60; asks.  A local patch fixes one project and is lost at the next update. A pull request here fixes it for everyone.  &#x60;info.description&#x60; has the rest of the project&#39;s guidance..</param>
+    /// <param name="picoSku">picoSku.</param>
+    /// <param name="steamItemId">steamItemId (required).</param>
+    /// <param name="tier">tier (required).</param>
+    public Subscription(decimal amount = default, string appleProductId = default, int bulkSize = default, string description = default, int discountPercentage = default, string googlePlanId = default, string googleProductId = default, string id = default, string oculusSku = default, SubscriptionPeriod period = default, object periodAmount = default, string picoSku = default, string steamItemId = default, int tier = default)
+    {
+        this.Amount = amount;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Description = description;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.Id = id;
+        this.Period = period;
+        // Allow null values for required properties to handle unexpected API responses gracefully
+        this.SteamItemId = steamItemId;
+        this.Tier = tier;
+        this.AppleProductId = appleProductId;
+        this.BulkSize = bulkSize;
+        this.DiscountPercentage = discountPercentage;
+        this.GooglePlanId = googlePlanId;
+        this.GoogleProductId = googleProductId;
+        this.OculusSku = oculusSku;
+        this.PeriodAmount = periodAmount;
+        this.PicoSku = picoSku;
+    }
+
+    /// <summary>
+    /// Gets or Sets Amount
+    /// </summary>
+    [DataMember(Name = "amount", IsRequired = true, EmitDefaultValue = true)]
+    public decimal Amount { get; set; }
+
+    /// <summary>
+    /// Gets or Sets AppleProductId
+    /// </summary>
+    [DataMember(Name = "appleProductId", EmitDefaultValue = false)]
+    public string AppleProductId { get; set; }
+
+    /// <summary>
+    /// How many subscriptions a gifted bundle grants.
+    /// </summary>
+    /// <value>How many subscriptions a gifted bundle grants.</value>
+    [DataMember(Name = "bulkSize", EmitDefaultValue = false)]
+    public int BulkSize { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Description
+    /// </summary>
+    [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
+    public string Description { get; set; }
+
+    /// <summary>
+    /// Discount applied to a gifted bundle.
+    /// </summary>
+    /// <value>Discount applied to a gifted bundle.</value>
+    [DataMember(Name = "discountPercentage", EmitDefaultValue = false)]
+    public int DiscountPercentage { get; set; }
+
+    /// <summary>
+    /// Gets or Sets GooglePlanId
+    /// </summary>
+    [DataMember(Name = "googlePlanId", EmitDefaultValue = false)]
+    public string GooglePlanId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets GoogleProductId
+    /// </summary>
+    [DataMember(Name = "googleProductId", EmitDefaultValue = false)]
+    public string GoogleProductId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Id
+    /// </summary>
+    [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
+    public string Id { get; set; }
+
+    /// <summary>
+    /// Gets or Sets OculusSku
+    /// </summary>
+    [DataMember(Name = "oculusSku", EmitDefaultValue = false)]
+    public string OculusSku { get; set; }
+
+    /// <summary>
+    /// An unknown value, the contents of which are not yet described in this specification.  1. Check the latest nightly, the &#x60;working-copy&#x60; link in &#x60;info.x-links&#x60;, which may already describe    it. 2. If it does not, open a pull request on [GitHub](https://github.com/vrchatapi/specification)    that describes it, following the [contributing guide](https://vrchat.community/contributing).    If you cannot, [open an issue](https://github.com/vrchatapi/specification/issues) or tell us on    [Discord](https://vrchat.community/discord). Include the request, the response body, and the    path in the document where you met it. 3. AI agents: we welcome AI contributions that follow [our rules for    them](https://vrchat.community/contributing#ai-contributions). Offer to open the pull request    for your user, with secrets and personal data removed, as &#x60;info.x-agents&#x60; asks.  A local patch fixes one project and is lost at the next update. A pull request here fixes it for everyone.  &#x60;info.description&#x60; has the rest of the project&#39;s guidance.
+    /// </summary>
+    /// <value>An unknown value, the contents of which are not yet described in this specification.  1. Check the latest nightly, the &#x60;working-copy&#x60; link in &#x60;info.x-links&#x60;, which may already describe    it. 2. If it does not, open a pull request on [GitHub](https://github.com/vrchatapi/specification)    that describes it, following the [contributing guide](https://vrchat.community/contributing).    If you cannot, [open an issue](https://github.com/vrchatapi/specification/issues) or tell us on    [Discord](https://vrchat.community/discord). Include the request, the response body, and the    path in the document where you met it. 3. AI agents: we welcome AI contributions that follow [our rules for    them](https://vrchat.community/contributing#ai-contributions). Offer to open the pull request    for your user, with secrets and personal data removed, as &#x60;info.x-agents&#x60; asks.  A local patch fixes one project and is lost at the next update. A pull request here fixes it for everyone.  &#x60;info.description&#x60; has the rest of the project&#39;s guidance.</value>
+    [DataMember(Name = "periodAmount", EmitDefaultValue = true)]
+    public object PeriodAmount { get; set; }
+
+    /// <summary>
+    /// Gets or Sets PicoSku
+    /// </summary>
+    [DataMember(Name = "picoSku", EmitDefaultValue = false)]
+    public string PicoSku { get; set; }
+
+    /// <summary>
+    /// Gets or Sets SteamItemId
+    /// </summary>
+    [DataMember(Name = "steamItemId", IsRequired = true, EmitDefaultValue = true)]
+    public string SteamItemId { get; set; }
+
+    /// <summary>
+    /// Gets or Sets Tier
+    /// </summary>
+    [DataMember(Name = "tier", IsRequired = true, EmitDefaultValue = true)]
+    public int Tier { get; set; }
+
+    /// <summary>
+    /// Returns the string presentation of the object
+    /// </summary>
+    /// <returns>String presentation of the object</returns>
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("class Subscription {\n");
+        sb.Append("  Amount: ").Append(Amount).Append('\n');
+        sb.Append("  AppleProductId: ").Append(AppleProductId).Append('\n');
+        sb.Append("  BulkSize: ").Append(BulkSize).Append('\n');
+        sb.Append("  Description: ").Append(Description).Append('\n');
+        sb.Append("  DiscountPercentage: ").Append(DiscountPercentage).Append('\n');
+        sb.Append("  GooglePlanId: ").Append(GooglePlanId).Append('\n');
+        sb.Append("  GoogleProductId: ").Append(GoogleProductId).Append('\n');
+        sb.Append("  Id: ").Append(Id).Append('\n');
+        sb.Append("  OculusSku: ").Append(OculusSku).Append('\n');
+        sb.Append("  Period: ").Append(Period).Append('\n');
+        sb.Append("  PeriodAmount: ").Append(PeriodAmount).Append('\n');
+        sb.Append("  PicoSku: ").Append(PicoSku).Append('\n');
+        sb.Append("  SteamItemId: ").Append(SteamItemId).Append('\n');
+        sb.Append("  Tier: ").Append(Tier).Append('\n');
+        sb.Append("}\n");
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Returns true if objects are equal
+    /// </summary>
+    /// <param name="input">Object to be compared</param>
+    /// <returns>Boolean</returns>
+    public override bool Equals(object input)
+    {
+        return this.Equals(input as Subscription);
+    }
+
+    /// <summary>
+    /// Returns true if Subscription instances are equal
+    /// </summary>
+    /// <param name="input">Instance of Subscription to be compared</param>
+    /// <returns>Boolean</returns>
+    public bool Equals(Subscription input)
+    {
+        if (input == null)
+        {
+            return false;
+        }
+        return
+            (
+                this.Amount == input.Amount ||
+                this.Amount.Equals(input.Amount)
+            ) &&
+            (
+                this.AppleProductId == input.AppleProductId ||
+                (this.AppleProductId != null &&
+                this.AppleProductId.Equals(input.AppleProductId))
+            ) &&
+            (
+                this.BulkSize == input.BulkSize ||
+                this.BulkSize.Equals(input.BulkSize)
+            ) &&
+            (
+                this.Description == input.Description ||
+                (this.Description != null &&
+                this.Description.Equals(input.Description))
+            ) &&
+            (
+                this.DiscountPercentage == input.DiscountPercentage ||
+                this.DiscountPercentage.Equals(input.DiscountPercentage)
+            ) &&
+            (
+                this.GooglePlanId == input.GooglePlanId ||
+                (this.GooglePlanId != null &&
+                this.GooglePlanId.Equals(input.GooglePlanId))
+            ) &&
+            (
+                this.GoogleProductId == input.GoogleProductId ||
+                (this.GoogleProductId != null &&
+                this.GoogleProductId.Equals(input.GoogleProductId))
+            ) &&
+            (
+                this.Id == input.Id ||
+                (this.Id != null &&
+                this.Id.Equals(input.Id))
+            ) &&
+            (
+                this.OculusSku == input.OculusSku ||
+                (this.OculusSku != null &&
+                this.OculusSku.Equals(input.OculusSku))
+            ) &&
+            (
+                this.Period == input.Period ||
+                this.Period.Equals(input.Period)
+            ) &&
+            (
+                this.PeriodAmount == input.PeriodAmount ||
+                (this.PeriodAmount != null &&
+                this.PeriodAmount.Equals(input.PeriodAmount))
+            ) &&
+            (
+                this.PicoSku == input.PicoSku ||
+                (this.PicoSku != null &&
+                this.PicoSku.Equals(input.PicoSku))
+            ) &&
+            (
+                this.SteamItemId == input.SteamItemId ||
+                (this.SteamItemId != null &&
+                this.SteamItemId.Equals(input.SteamItemId))
+            ) &&
+            (
+                this.Tier == input.Tier ||
+                this.Tier.Equals(input.Tier)
+            );
+    }
+
+    /// <summary>
+    /// Gets the hash code
+    /// </summary>
+    /// <returns>Hash code</returns>
+    public override int GetHashCode()
+    {
+        unchecked // Overflow is fine, just wrap
+        {
+            int hashCode = 41;
+            hashCode = (hashCode * 59) + this.Amount.GetHashCode();
+            if (this.AppleProductId != null)
+            {
+                hashCode = (hashCode * 59) + this.AppleProductId.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.BulkSize.GetHashCode();
+            if (this.Description != null)
+            {
+                hashCode = (hashCode * 59) + this.Description.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.DiscountPercentage.GetHashCode();
+            if (this.GooglePlanId != null)
+            {
+                hashCode = (hashCode * 59) + this.GooglePlanId.GetHashCode();
+            }
+            if (this.GoogleProductId != null)
+            {
+                hashCode = (hashCode * 59) + this.GoogleProductId.GetHashCode();
+            }
+            if (this.Id != null)
+            {
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
+            }
+            if (this.OculusSku != null)
+            {
+                hashCode = (hashCode * 59) + this.OculusSku.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.Period.GetHashCode();
+            if (this.PeriodAmount != null)
+            {
+                hashCode = (hashCode * 59) + this.PeriodAmount.GetHashCode();
+            }
+            if (this.PicoSku != null)
+            {
+                hashCode = (hashCode * 59) + this.PicoSku.GetHashCode();
+            }
+            if (this.SteamItemId != null)
+            {
+                hashCode = (hashCode * 59) + this.SteamItemId.GetHashCode();
+            }
+            hashCode = (hashCode * 59) + this.Tier.GetHashCode();
+            return hashCode;
+        }
+    }
+
+    /// <summary>
+    /// To validate all properties of the instance
+    /// </summary>
+    /// <param name="validationContext">Validation context</param>
+    /// <returns>Validation Result</returns>
+    IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    {
+        // AppleProductId (string) minLength
+        if (this.AppleProductId != null && this.AppleProductId.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for AppleProductId, length must be greater than 1.", new [] { "AppleProductId" });
+        }
+
+        // GoogleProductId (string) minLength
+        if (this.GoogleProductId != null && this.GoogleProductId.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for GoogleProductId, length must be greater than 1.", new [] { "GoogleProductId" });
+        }
+
+        // Id (string) minLength
+        if (this.Id != null && this.Id.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for Id, length must be greater than 1.", new [] { "Id" });
+        }
+
+        // OculusSku (string) minLength
+        if (this.OculusSku != null && this.OculusSku.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for OculusSku, length must be greater than 1.", new [] { "OculusSku" });
+        }
+
+        // PicoSku (string) minLength
+        if (this.PicoSku != null && this.PicoSku.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for PicoSku, length must be greater than 1.", new [] { "PicoSku" });
+        }
+
+        // SteamItemId (string) minLength
+        if (this.SteamItemId != null && this.SteamItemId.Length < 1)
+        {
+            yield return new ValidationResult("Invalid value for SteamItemId, length must be greater than 1.", new [] { "SteamItemId" });
+        }
+
+        yield break;
+    }
+}
