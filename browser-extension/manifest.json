@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "VRCWebP Browser Bridge",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "description": "Share only your VRChat session with the local VRCWebP app.",
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxju1Jo0nzyPYjdAAiM8htrkqRBojmvG8bYoStwSw9qWO4dRPDSKBpCPTLiV3nvmc96gftKhgIYu58pmBPb9ADfTFSqY76yCzK24t4y7KGkrb94eTd+EjSQNNYkuZxUfe7pzNNGveYo7eGBJ/gkv67TaGNAWNWPPd8p+wjcda1uxK/leec5wZ9tdx9KMal2vPKThdc8bmrVJAprIbsZEMJsqMFIz/D8nfyDHUoa0Mi6b0yOnJ2pzdrOf4/XjAvfnrAvp5ARxZdPMgiThbBCkr9RjF3ae8elV8tfP6PGfd+zbzKJm3HIDyl2NtAYYvaD/3OcmgaHMPethRi4bsnJENgQIDAQAB",
   "permissions": [

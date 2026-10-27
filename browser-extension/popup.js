@@ -194,8 +194,7 @@ async function findSession(expected) {
         }
 
         websitePermitted ||= origin === "https://vrchat.com" || origin === "https://www.vrchat.com";
-        // URL filtering also filters by path. A domain query finds valid path-scoped
-        // cookies, and an empty partition key includes Firefox's partitioned cookies.
+        // Enumerate path-scoped and partitioned cookies within the selected store.
         const details = { domain: new URL(origin).hostname, storeId, partitionKey: {} };
 
         // Chrome also exposes browser.*; test the Firefox-only capability instead.
@@ -210,6 +209,22 @@ async function findSession(expected) {
                 || cookie.partitionKey.topLevelSite === "https://vrchat.com" && activeOrigin.endsWith(".vrchat.com"));
         const auths = (await api.cookies.getAll({ ...details, name: "auth" })).filter(usable);
         const factors = (await api.cookies.getAll({ ...details, name: "twoFactorAuth" })).filter(usable);
+
+        if (typeof api.runtime.getBrowserInfo !== "function") {
+            // Chromium's domain query hides non-Secure cookies under HTTPS-only
+            // permissions. HTTPS URL lookups include cookies sent to that URL.
+            const urls = new Set([origin + "/", origin + "/api/1/auth/user"]);
+            if (origin === activeOrigin) { urls.add(origin + new URL(tab.url).pathname); }
+            for (const url of urls) {
+                const [auth, factor] = await Promise.all([
+                    api.cookies.get({ url, name: "auth", storeId }),
+                    api.cookies.get({ url, name: "twoFactorAuth", storeId })
+                ]);
+                if (auth && usable(auth)) { auths.push(auth); }
+                if (factor && usable(factor)) { factors.push(factor); }
+            }
+        }
+
         const context = cookie => JSON.stringify([cookie.firstPartyDomain || "", cookie.partitionKey?.topLevelSite || "", !!cookie.partitionKey?.hasCrossSiteAncestor]);
 
         // Do not guess between different accounts isolated under the same cookie store.

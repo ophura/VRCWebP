@@ -126,7 +126,7 @@ internal sealed partial class VRChatService : IDisposable
             Handler.CookieContainer.Add(new Cookie("twoFactorAuth", "", "/", "api.vrchat.cloud") { Expired = true });
         }
 
-        SetUserAgent("VRCWebP/1.1.12 (+https://github.com/ophura)");
+        SetUserAgent("VRCWebP/1.1.13 (+https://github.com/ophura)");
 
         using JsonDocument Response = Read(await Authentication.GetCurrentUserWithHttpInfoAsync(CancellationToken));
 
